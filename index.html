@@ -15,6 +15,7 @@
       min-height: 100%;
       background: url('https://github.com/acugarcr/digital-resilience-portal/blob/main/AdobeStock_262466237.jpeg?raw=true') no-repeat center center fixed;
       background-size: contain;
+      background-color: #000;
       font-family: 'Splunk Data Sans', system-ui, sans-serif;
       color: white;
       text-align: center;
@@ -39,7 +40,7 @@
     }
 
     .logo-cisco { height: 80px; width: auto; }
-    .logo-splunk { height: 64px; width: auto; } /* 20% smaller */
+    .logo-splunk { height: 64px; width: auto; }
 
     .subtitle {
       font-size: 64px;
@@ -63,7 +64,6 @@
       z-index: 1;
     }
 
-    /* Vertical separators - pink with glow */
     .three-columns::before,
     .three-columns::after {
       content: "";
@@ -100,14 +100,16 @@
       line-height: 1.2;
     }
 
-    .block-column { display: flex; flex-direction: column; align-items: center; gap: 60px; margin-top: 0; }
+    .block-column {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+      margin-top: 0;
+    }
 
     .block {
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 3px solid #f7941d;
-      border-radius: 12px;
+      /* Keep layout the same */
       width: 220px;
       height: 80px;
       display: flex;
@@ -115,12 +117,28 @@
       justify-content: center;
       font-weight: 600;
       font-size: 18px;
-      color: #f7941d;
       cursor: pointer;
       transition: all 0.2s ease-in-out;
+      border-radius: 14px;
+      box-sizing: border-box;
+
+      /* New visual style: dark card with gradient frame */
+      background: 
+        linear-gradient(#000000cc, #000000cc) padding-box,
+        linear-gradient(90deg, #ffb300, #f72ea7 50%, #7e57c2) border-box; /* Splunk orange → pink → violet */
+      border: 5px solid transparent; /* thickness of the frame */
+      color: #ffffff;
+      text-shadow: none;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04), 0 6px 24px rgba(0,0,0,0.35);
     }
 
-    .block:hover { filter: brightness(1.2); transform: translateY(-2px); box-shadow: 0 0 20px rgba(255, 255, 255, 0.15); }
+    .block:hover {
+      transform: translateY(-2px);
+      filter: none;
+      box-shadow: 0 0 24px rgba(247,46,167,0.35), 0 10px 28px rgba(0,0,0,0.45);
+    }
 
     .security-spacer { height: 40px; }
   </style>
