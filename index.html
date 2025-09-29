@@ -47,129 +47,78 @@
       font-size: 48px;
       font-weight: 700;
       color: #fff;
-      margin-bottom: 30px;
-    }
-
-    .logo-cisco { height: 80px; width: auto; }
-    .logo-splunk { height: 64px; width: auto; }
-
-    .subtitle {
-      font-size: 64px;
-      font-weight: 700;
-      color: #fff;
-      margin-top: 10px;
       margin-bottom: 20px;
     }
 
-    .three-columns {
-      display: flex;
-      justify-content: space-around;
-      gap: 60px;
-      flex: 1;
-      align-items: flex-start;
-      position: relative;
-      width: 100%;
-      max-width: 1200px;
-      margin: auto;
-      padding-bottom: 20px;
-      z-index: 1;
-    }
+    .logo-cisco { height: 60px; width: auto; }
+    .logo-splunk { height: 50px; width: auto; }
 
-    .three-columns::before,
-    .three-columns::after {
-      content: "";
-      position: absolute;
-      top: 30px;
-      bottom: 160px;
-      width: 4px;
-      border-radius: 3px;
-      background: linear-gradient(to bottom, #f72ea7, #7e57c2);
-      box-shadow: 0 0 20px rgba(247,46,167,0.6), 0 0 40px rgba(126,87,194,0.4);
-      opacity: 0.95;
-    }
-
-    .three-columns::before { left: 33.3%; transform: translateX(-50%); }
-    .three-columns::after  { left: 66.6%; transform: translateX(-50%); }
-
-    .section {
-      flex: 1;
-      padding: 0 40px;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: center;
-      text-align: center;
-      z-index: 1;
-    }
-
-    .section-title {
-      font-size: 32px;
-      font-weight: 600;
+    .subtitle {
+      font-size: 54px;
+      font-weight: 700;
       color: #fff;
-      margin-bottom: 30px;
-      text-align: center;
-      line-height: 1.2;
+      margin-top: 10px;
+      margin-bottom: 40px;
     }
 
-    .block-column {
+    .blocks-container {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 40px;
-      margin-top: 0;
+      gap: 30px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .block-row {
+      display: flex;
+      justify-content: center;
+      gap: 40px; /* reduced horizontal gap by 10px */
+      width: 100%;
+      max-width: 1080px;
     }
 
     .block {
-      width: 220px;
-      height: 80px;
+      flex: 1;
+      min-width: 230px; /* reduced by 10px */
+      height: 110px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 600;
-      font-size: 18px;
+      font-size: 28px;
       cursor: pointer;
       transition: all 0.2s ease-in-out;
-      border-radius: 20px; /* Visible curve */
+      border-radius: 20px;
       box-sizing: border-box;
-
-      /* Transparent background with blur only */
       background: transparent;
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-
-      /* Gradient border only with rounded corners */
       position: relative;
-      z-index: 1;
+      color: #fff;
+      text-shadow: none;
     }
 
     .block::before {
       content: "";
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      inset: 0;
       border-radius: 20px;
-      padding: 7px; /* border thickness */
+      padding: 10px; /* thicker border */
       background: linear-gradient(45deg, #ffb300, #f72ea7);
       -webkit-mask: 
         linear-gradient(#fff 0 0) content-box, 
         linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
+      -webkit-mask-composite: destination-out;
       mask-composite: exclude;
       pointer-events: none;
     }
 
     .block:hover {
       transform: translateY(-2px);
-      filter: none;
-      box-shadow: 0 0 24px rgba(247,46,167,0.35), 0 10px 28px rgba(0,0,0,0.45);
+      box-shadow: 0 0 25px rgba(247,46,167,0.5), 0 12px 32px rgba(0,0,0,0.5);
     }
-
-    .security-spacer { height: 40px; }
   </style>
-
 </head>
 <body>
   <div class="header">
@@ -181,33 +130,19 @@
     <div class="subtitle">Digital Resilience</div>
   </div>
 
-  <div class="three-columns">
-    <div class="section">
-      <div class="section-title">Security</div>
-      <div class="security-spacer"></div>
-      <div class="block-column">
-        <div class="block">Block A</div>
-        <div class="block">Block B</div>
-        <div class="block">Block C</div>
-      </div>
+  <div class="blocks-container">
+    <div class="block-row">
+      <div class="block">Business Intelligence</div>
     </div>
-
-    <div class="section">
-      <div class="section-title">Software<br>Factory</div>
-      <div class="block-column">
-        <div class="block">Block D</div>
-        <div class="block">Block E</div>
-        <div class="block">Block F</div>
-      </div>
+    <div class="block-row">
+      <div class="block">Security</div>
+      <div class="block">Observability</div>
     </div>
-
-    <div class="section">
-      <div class="section-title">Business<br>Operations</div>
-      <div class="block-column">
-        <div class="block">Block G</div>
-        <div class="block">Block H</div>
-        <div class="block">Block I</div>
-      </div>
+    <div class="block-row">
+      <div class="block">AI</div>
+    </div>
+    <div class="block-row">
+      <div class="block">Platform</div>
     </div>
   </div>
 </body>
