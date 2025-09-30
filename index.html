@@ -2,148 +2,65 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cisco + Splunk Digital Resilience</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cisco + Splunk — Digital Resilience</title>
   <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    html, body {
-      height: 100%;
-      margin: 0;
+    :root{ --o:#ffb300; --p:#f72ea7; --v:#7e57c2; }
+    html,body{height:100%;margin:0}
+    body{
+      min-height:100%;
+      background:url('https://github.com/acugarcr/digital-resilience-portal/blob/main/AdobeStock_190328389.jpeg?raw=true') center/cover fixed no-repeat;
+      font-family:'Splunk Data Sans', system-ui, sans-serif; color:#fff; text-align:center;
+      padding:40px; display:flex; flex-direction:column; position:relative; overflow-x:hidden;
     }
-
-    body {
-      min-height: 100%;
-      background: url('https://github.com/acugarcr/digital-resilience-portal/blob/main/AdobeStock_190328389.jpeg?raw=true') no-repeat center center fixed;
-      background-size: cover;
-      background-color: rgba(0,0,0,0.9);
-      font-family: 'Splunk Data Sans', system-ui, sans-serif;
-      color: white;
-      text-align: center;
-      padding: 40px;
-      display: flex;
-      flex-direction: column;
-      position: relative;
-      overflow-x: hidden;
+    body::after{content:"";position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:0}
+    .header{margin-bottom:40px;position:relative;z-index:1}
+    .logos{display:flex;justify-content:center;align-items:center;gap:20px;margin-bottom:20px}
+    .logo-cisco{height:60px}.logo-splunk{height:50px}
+    .subtitle{font-size:54px;font-weight:700;margin:10px 0 40px}
+    .blocks{display:flex;flex-direction:column;gap:30px;align-items:center;position:relative;z-index:1}
+    .row{display:flex;gap:40px;max-width:1080px;width:100%;justify-content:center}
+    .block{
+      flex:1; min-width:180px; height:110px; display:flex; align-items:center; justify-content:center;
+      font-weight:600; font-size:28px; color:#fff; cursor:pointer; border-radius:20px; position:relative;
+      background:transparent; backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+      transition:transform .2s ease, box-shadow .2s ease;
     }
-
-    body::after {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.5);
-      z-index: 0;
+    .block::before{
+      content:""; position:absolute; inset:0; border-radius:20px; padding:10px;
+      background:linear-gradient(45deg,var(--o),var(--p));
+      -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite:destination-out; mask-composite:exclude; pointer-events:none;
     }
-
-    .header { margin-bottom: 40px; position: relative; z-index: 1; }
-
-    .logos {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 20px;
-      font-size: 48px;
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 20px;
-    }
-
-    .logo-cisco { height: 60px; width: auto; }
-    .logo-splunk { height: 50px; width: auto; }
-
-    .subtitle {
-      font-size: 54px;
-      font-weight: 700;
-      color: #fff;
-      margin-top: 10px;
-      margin-bottom: 40px;
-    }
-
-    .blocks-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 30px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .block-row {
-      display: flex;
-      justify-content: center;
-      gap: 40px; /* reduced horizontal gap by 10px */
-      width: 100%;
-      max-width: 1080px;
-    }
-
-    .block {
-      flex: 1;
-      min-width: 180px; /* reduced by another 30px */
-      height: 110px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 600;
-      font-size: 40px;
-      cursor: pointer;
-      transition: all 0.2s ease-in-out;
-      border-radius: 20px;
-      box-sizing: border-box;
-      background: transparent;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      position: relative;
-      color: #fff;
-      text-shadow: none;
-    }
-
-    .block::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: 20px;
-      padding: 10px; /* thicker border */
-      background: linear-gradient(45deg, #ffb300, #f72ea7);
-      -webkit-mask: 
-        linear-gradient(#fff 0 0) content-box, 
-        linear-gradient(#fff 0 0);
-      -webkit-mask-composite: destination-out;
-      mask-composite: exclude;
-      pointer-events: none;
-    }
-
-    .block:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 0 25px rgba(247,46,167,0.5), 0 12px 32px rgba(0,0,0,0.5);
-    }
+    .block:hover{transform:translateY(-2px); box-shadow:0 0 25px rgba(247,46,167,.5), 0 12px 32px rgba(0,0,0,.5)}
+    .block > a{color:inherit;text-decoration:none;display:flex;align-items:center;justify-content:center;width:100%;height:100%}
   </style>
 </head>
 <body>
-  <div class="header">
+  <header class="header">
     <div class="logos">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Cisco_logo_blue_2016.svg/2560px-Cisco_logo_blue_2016.svg.png" alt="Cisco Logo" class="logo-cisco">
-      <span>+</span>
-      <img src="https://www.splunk.com/content/dam/splunk2/en_us/images/events/mediakit/splunk-corp-logo-w-rgb.png" alt="Splunk Logo" class="logo-splunk">
+      <img class="logo-cisco" alt="Cisco" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Cisco_logo_blue_2016.svg/2560px-Cisco_logo_blue_2016.svg.png">
+      <span style="font-size:48px;font-weight:700">+</span>
+      <img class="logo-splunk" alt="Splunk" src="https://www.splunk.com/content/dam/splunk2/en_us/images/events/mediakit/splunk-corp-logo-w-rgb.png">
     </div>
-    <div class="subtitle">Digital Resilience</div>
-  </div>
+    <h1 class="subtitle">Digital Resilience</h1>
+  </header>
 
-  <div class="blocks-container">
-    <div class="block-row">
-      <div class="block">Business Intelligence</div>
+  <main class="blocks">
+    <div class="row">
+      <div class="block"><a href="bi.html">Business Intelligence</a></div>
     </div>
-    <div class="block-row">
-      <div class="block">Security</div>
-      <div class="block">Observability</div>
+    <div class="row">
+      <div class="block"><a href="security.html">Security</a></div>
+      <div class="block"><a href="observability.html">Observability</a></div>
     </div>
-    <div class="block-row">
-      <div class="block">AI</div>
+    <div class="row">
+      <div class="block"><a href="ai.html">AI</a></div>
     </div>
-    <div class="block-row">
-      <div class="block">Platform</div>
+    <div class="row">
+      <div class="block"><a href="platform.html">Platform</a></div>
     </div>
-  </div>
+  </main>
 </body>
 </html>
