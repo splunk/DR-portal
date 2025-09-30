@@ -1,101 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Security — Cisco + Splunk</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Security - Cisco + Splunk Digital Resilience</title>
   <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    :root{ --o:#ffb300; --p:#f72ea7; --v:#7e57c2; }
-    html,body{height:100%;margin:0}
-    body{
-      min-height:100%;
-      background:url('https://github.com/acugarcr/digital-resilience-portal/blob/main/AdobeStock_190328389.jpeg?raw=true') center/cover fixed no-repeat;
-      font-family:'Splunk Data Sans', system-ui, sans-serif; color:#fff; 
-      padding:40px; position:relative; overflow-x:hidden;
-    }
-    body::after{content:"";position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:0}
-
-    /* Gradient text (Splunk AI style) */
-    .grad{
-      background:linear-gradient(90deg,var(--o),var(--p));
-      -webkit-background-clip:text; background-clip:text; color:transparent;
+    :root{
+      --splunk-orange:#ffb300;
+      --splunk-pink:#f72ea7;
     }
 
-    .wrap{position:relative;z-index:1;max-width:1280px;margin:0 auto}
-    .logos{display:flex;gap:18px;align-items:center;margin-bottom:8px}
-    .logo-cisco{height:50px}.logo-splunk{height:44px}
+    html, body { height: 100%; margin: 0; }
 
-    /* Page title */
-    .title{font-size:88px;font-weight:800;letter-spacing:.5px;margin:18px 0 24px}
-
-    /* Mini menu (top-right) */
-    .mini-menu{
-      position:fixed; top:24px; right:24px; z-index:2;
-      display:flex; flex-direction:column; gap:10px;
-    }
-    .mini-item{
-      width:270px; height:44px; font-size:16px; font-weight:600; 
-      display:flex; align-items:center; justify-content:center; 
-      color:#fff; position:relative; border-radius:12px; text-decoration:none;
-      background:transparent; backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
-    }
-    .mini-item::before{
-      content:""; position:absolute; inset:0; border-radius:12px; padding:6px;
-      background:linear-gradient(45deg,var(--o),var(--p));
-      -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-      -webkit-mask-composite:destination-out; mask-composite:exclude; pointer-events:none;
-    }
-    .mini-item.active{ background:linear-gradient(45deg,var(--o),var(--p)); color:#000; font-weight:700; }
-    .mini-item.active::before{ display:none; }
-
-    /* Big gradient-frame blocks */
-    .stack{ max-width:980px; margin:60px 0 0 50px; display:flex; flex-direction:column; gap:34px; }
-    .gblock{
-      height:110px; display:flex; align-items:center; justify-content:center;
-      font-size:34px; font-weight:700; color:#fff; position:relative; border-radius:20px;
-      background:transparent; backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
-      text-align:center; padding:0 28px;
-    }
-    .gblock::before{
-      content:""; position:absolute; inset:0; border-radius:20px; padding:10px;
-      background:linear-gradient(45deg,var(--o),var(--p));
-      -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-      -webkit-mask-composite:destination-out; mask-composite:exclude; pointer-events:none;
+    body {
+      min-height: 100%;
+      background: url('https://github.com/acugarcr/digital-resilience-portal/blob/main/AdobeStock_190328389.jpeg?raw=true') no-repeat center center fixed;
+      background-size: cover;
+      background-color: rgba(0,0,0,0.9);
+      font-family: 'Splunk Data Sans', system-ui, sans-serif;
+      color: white;
+      text-align: center;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow-x: hidden;
     }
 
-    /* Utility */
-    .topbar{display:flex; align-items:center; justify-content:space-between;}
+    body::after { content:""; position:fixed; inset:0; background:rgba(0,0,0,.55); z-index:0; }
+
+    .header { text-align:left; margin:20px 0 40px 40px; position:relative; z-index:1; }
+    .header h1 { font-size:72px; font-weight:800; margin:0; background:linear-gradient(90deg,var(--splunk-orange),var(--splunk-pink)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+
+    .menu-mini {
+      position:absolute;
+      top:40px;
+      right:40px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      z-index:2;
+    }
+    .menu-mini .block {
+      width:200px;
+      height:50px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:600;
+      font-size:16px;
+      border-radius:14px;
+      background:transparent;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      position:relative;
+      color:#fff;
+      cursor:pointer;
+      text-decoration:none;
+    }
+    .menu-mini .block::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      border-radius:14px;
+      padding:2px;
+      background:linear-gradient(45deg,var(--splunk-orange),var(--splunk-pink));
+      -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+      -webkit-mask-composite: destination-out;
+      mask-composite: exclude;
+      pointer-events:none;
+    }
+
+    .blocks-container { display:flex; flex-direction:column; align-items:flex-start; gap:30px; margin-top:20px; position:relative; z-index:1; }
+    .block-large {
+      width:600px;
+      height:100px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:600;
+      font-size:26px;
+      cursor:pointer;
+      border-radius:20px;
+      background:transparent;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      position:relative;
+      color:#fff;
+    }
+    .block-large::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      border-radius:20px;
+      padding:3px;
+      background:linear-gradient(45deg,var(--splunk-orange),var(--splunk-pink));
+      -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+      -webkit-mask-composite: destination-out;
+      mask-composite: exclude;
+    }
+
+    .back-link{
+      margin-top:40px;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 16px;
+      border-radius:12px;
+      background: rgba(255,255,255,.06);
+      text-decoration:none;
+      color:#fff;
+      font-weight:600;
+      border:1px solid rgba(255,255,255,.12);
+    }
+    .back-link:hover{ background: rgba(255,255,255,.1); }
+
   </style>
 </head>
 <body>
-  <!-- mini menu (top-right) -->
-  <nav class="mini-menu">
-    <a class="mini-item" href="bi.html">Business Intelligence</a>
-    <a class="mini-item active" href="security.html">Security</a>
-    <a class="mini-item" href="observability.html">Observability</a>
-    <a class="mini-item" href="ai.html">AI</a>
-    <a class="mini-item" href="platform.html">Platform</a>
-  </nav>
-
-  <div class="wrap">
-    <header class="topbar">
-      <div class="logos">
-        <img class="logo-cisco" alt="Cisco" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Cisco_logo_blue_2016.svg/2560px-Cisco_logo_blue_2016.svg.png">
-        <span style="font-size:42px;font-weight:700">+</span>
-        <img class="logo-splunk" alt="Splunk" src="https://www.splunk.com/content/dam/splunk2/en_us/images/events/mediakit/splunk-corp-logo-w-rgb.png">
-      </div>
-    </header>
-
-    <!-- Title with gradient -->
-    <h1 class="title grad">Security</h1>
-
-    <!-- Big blocks -->
-    <main class="stack">
-      <div class="gblock">SOC of the Future</div>
-      <div class="gblock">Supercharge Security Operations</div>
-      <div class="gblock">Unify TDIR with Agentic SOC Platform</div>
-    </main>
+  <div class="header">
+    <h1>Security</h1>
   </div>
+
+  <!-- Mini menu at top-right -->
+  <div class="menu-mini">
+    <a href="index.html" class="block">Business Intelligence</a>
+    <a href="security.html" class="block" style="background:rgba(255,255,255,.08)">Security</a>
+    <a href="observability.html" class="block">Observability</a>
+    <a href="ai.html" class="block">AI</a>
+    <a href="platform.html" class="block">Platform</a>
+  </div>
+
+  <!-- Security blocks -->
+  <div class="blocks-container">
+    <div class="block-large">SOC of the Future</div>
+    <div class="block-large">Supercharge Security Operations</div>
+    <div class="block-large">Unify TDIR with Agentic SOC Platform</div>
+  </div>
+
+  <a class="back-link" href="index.html">← Back to Portfolio</a>
+
 </body>
 </html>
