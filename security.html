@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Security — Cisco + Splunk</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{ --o:#ffb300; --p:#f72ea7; --v:#7e57c2; }
+    html,body{height:100%;margin:0}
+    body{
+      min-height:100%;
+      background:url('https://github.com/acugarcr/digital-resilience-portal/blob/main/AdobeStock_190328389.jpeg?raw=true') center/cover fixed no-repeat;
+      font-family:'Splunk Data Sans', system-ui, sans-serif; color:#fff; text-align:center;
+      padding:40px; position:relative; overflow-x:hidden;
+    }
+    body::after{content:"";position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:0}
+    .wrap{position:relative;z-index:1;max-width:1200px;margin:0 auto}
+    .logos{display:flex;justify-content:center;align-items:center;gap:18px;margin-bottom:8px}
+    .logo-cisco{height:50px}.logo-splunk{height:44px}
+    h1{font-size:56px;margin:10px 0 24px;font-weight:800}
+    .grid{display:grid;grid-template-columns:repeat(3,minmax(240px,1fr));gap:28px;align-items:start;justify-items:center}
+    .block{
+      width:100%;max-width:320px;height:110px;display:flex;align-items:center;justify-content:center;
+      border-radius:20px; position:relative; background:transparent; backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+      font-size:22px;font-weight:600;
+    }
+    .block::before{
+      content:""; position:absolute; inset:0; border-radius:20px; padding:10px;
+      background:linear-gradient(45deg,var(--o),var(--p));
+      -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite:destination-out; mask-composite:exclude;
+    }
+    .back{display:inline-flex;gap:8px;align-items:center;margin:32px auto 0;padding:10px 16px;border-radius:12px;background:rgba(255,255,255,.06);text-decoration:none;color:#fff;font-weight:600;border:1px solid rgba(255,255,255,.12)}
+    .back:hover{background:rgba(255,255,255,.1)}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="logos">
+      <img class="logo-cisco" alt="Cisco" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Cisco_logo_blue_2016.svg/2560px-Cisco_logo_blue_2016.svg.png">
+      <span style="font-size:42px;font-weight:700">+</span>
+      <img class="logo-splunk" alt="Splunk" src="https://www.splunk.com/content/dam/splunk2/en_us/images/events/mediakit/splunk-corp-logo-w-rgb.png">
+    </div>
+
+    <h1>Security</h1>
+
+    <section class="grid">
+      <div class="block">Splunk SOAR</div>
+      <div class="block">Enterprise Security</div>
+      <div class="block">Attack Analyzer</div>
+      <div class="block">Fraud</div>
+      <div class="block">Asset & Risk Intel</div>
+      <div class="block">Compliance</div>
+    </section>
+
+    <a class="back" href="index.html">← Back to Portfolio</a>
+  </div>
+</body>
+</html>
