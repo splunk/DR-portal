@@ -4,60 +4,72 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Splunk AI — Assistants everywhere</title>
-  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root{ --o:#ffb300; --p:#f72ea7; --v:#7e57c2; }
+    :root{
+      --o:#ffb300; --p:#f72ea7; --v:#7e57c2; --text:#fff;
+    }
+    *{box-sizing:border-box}
     html,body{height:100%;margin:0}
     body{
       min-height:100%;
+      color:var(--text);
       background:url('https://github.com/acugarcr/digital-resilience-portal/blob/main/AdobeStock_190328389.jpeg?raw=true') center/cover fixed no-repeat;
-      font-family:'Splunk Data Sans', system-ui, sans-serif; color:#fff; text-align:center;
+      font-family: 'Lexend', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, sans-serif;
+      text-align:center;
       padding:40px; position:relative; overflow-x:hidden;
     }
-    body::after{content:"";position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:0}
+    body::after{content:"";position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:0}
     .wrap{position:relative;z-index:1;max-width:1280px;margin:0 auto}
+
     .logos{display:flex;justify-content:center;align-items:center;gap:18px;margin-bottom:8px}
-    .logo-cisco{height:50px}.logo-splunk{height:44px}
-    h1{font-size:64px;margin:6px 0 14px;font-weight:800;letter-spacing:.5px}
-    h1 .grad{background:linear-gradient(90deg,var(--o),var(--p));-webkit-background-clip:text;background-clip:text;color:transparent}
-    .sub{font-size:30px;opacity:.95;margin:0 0 36px}
-    .cols{display:grid;grid-template-columns:repeat(3,minmax(260px,1fr));gap:40px;align-items:start;justify-items:center}
-    .card{width:100%;max-width:360px}
-    .card h3{font-size:30px;line-height:1.2;margin:0 0 16px}
-    .ring{width:360px;height:230px;margin:0 auto 8px;position:relative;display:flex;align-items:center;justify-content:center;border-radius:14px}
-    .ring::before{content:"";position:absolute;inset:0;border-radius:14px;padding:8px;background:linear-gradient(90deg,var(--o),var(--p));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:.95}
-    .mock{flex:1;height:100%;border-radius:10px;background:rgba(255,255,255,.02);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:inset 0 0 0 1px rgba(255,255,255,.05)}
-    .back{display:inline-flex;gap:8px;align-items:center;margin:28px auto 0;padding:10px 16px;border-radius:12px;background:rgba(255,255,255,.06);text-decoration:none;color:#fff;font-weight:600;border:1px solid rgba(255,255,255,.12)}
+    .logo-cisco{height:50px;filter:drop-shadow(0 0 8px rgba(0,0,0,.25))}
+    .logo-splunk{height:44px;filter:drop-shadow(0 0 8px rgba(0,0,0,.25))}
+    .plus{font-size:42px;font-weight:800;line-height:1;opacity:.9}
+
+    h1{font-size:clamp(36px,6vw,64px);margin:10px 0 12px;font-weight:800;letter-spacing:.35px}
+    .grad{background:linear-gradient(90deg,var(--o),var(--p));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .sub{font-size:clamp(16px,2.4vw,22px);opacity:.95;margin:0 0 28px}
+
+    .accent-bar{width:min(220px,40vw);height:3px;margin:14px auto 32px;border-radius:2px;
+      background:linear-gradient(90deg,var(--o),var(--p),var(--v));}
+
+    .cols{display:grid;grid-template-columns:repeat(3,minmax(260px,1fr));gap:36px;align-items:stretch;justify-items:center}
+    @media (max-width:1024px){.cols{grid-template-columns:repeat(2,minmax(260px,1fr))}}
+    @media (max-width:720px){body{padding:24px} .cols{grid-template-columns:1fr;gap:22px}}
+
+    .card{width:100%;max-width:380px;display:flex;flex-direction:column;gap:14px;align-items:center}
+    .card img{max-width:100%;height:auto;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+
+    .back{display:inline-flex;gap:8px;align-items:center;margin:30px auto 0;padding:10px 16px;border-radius:12px;background:rgba(255,255,255,.06);text-decoration:none;color:#fff;font-weight:700;border:1px solid rgba(255,255,255,.12)}
     .back:hover{background:rgba(255,255,255,.1)}
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="logos">
-      <img class="logo-cisco" alt="Cisco" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Cisco_logo_blue_2016.svg/2560px-Cisco_logo_blue_2016.svg.png">
-      <span style="font-size:42px;font-weight:700">+</span>
-      <img class="logo-splunk" alt="Splunk" src="https://www.splunk.com/content/dam/splunk2/en_us/images/events/mediakit/splunk-corp-logo-w-rgb.png">
+  <div class="wrap" role="main">
+    <div class="logos" aria-label="Cisco plus Splunk logos">
+      <img class="logo-cisco" alt="Cisco" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Cisco_logo_blue_2016.svg/2560px-Cisco_logo_blue_2016.svg.png" loading="lazy">
+      <span class="plus" aria-hidden="true">+</span>
+      <img class="logo-splunk" alt="Splunk" src="https://www.splunk.com/content/dam/splunk2/en_us/images/events/mediakit/splunk-corp-logo-w-rgb.png" loading="lazy">
     </div>
 
     <h1><span class="grad">Splunk AI</span> Assistants everywhere</h1>
     <p class="sub">Increase productivity and deliver faster detection and response</p>
+    <div class="accent-bar" aria-hidden="true"></div>
 
-    <section class="cols">
+    <section class="cols" aria-label="AI Assistant Showcase">
       <article class="card">
-        <h3>AI Assistant<br>for SPL</h3>
-        <div class="ring"><div class="mock"></div></div>
+        <img src="ai1.png" alt="AI Assistant showcase">
       </article>
       <article class="card">
-        <h3>AI Assistant in<br>Observability Cloud</h3>
-        <div class="ring"><div class="mock"></div></div>
+        <img src="ai1.png" alt="AI Assistant showcase">
       </article>
       <article class="card">
-        <h3>AI Assistant in<br>Enterprise Security</h3>
-        <div class="ring"><div class="mock"></div></div>
+        <img src="ai1.png" alt="AI Assistant showcase">
       </article>
     </section>
 
-    <a class="back" href="index.html">← Back to Portfolio</a>
+    <a class="back" href="index.html" aria-label="Back to Portfolio">← Back to Portfolio</a>
   </div>
 </body>
 </html>
