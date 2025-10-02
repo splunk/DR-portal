@@ -20,7 +20,7 @@
       padding:40px; position:relative; overflow-x:hidden;
     }
     body::after{content:"";position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:0}
-    .wrap{position:relative;z-index:1;max-width:1280px;margin:0 auto}
+    .wrap{position:relative;z-index:1;max-width:1400px;margin:0 auto}
 
     .logos{display:flex;justify-content:center;align-items:center;gap:18px;margin-bottom:8px}
     .logo-cisco{height:50px;filter:drop-shadow(0 0 8px rgba(0,0,0,.25))}
@@ -31,16 +31,14 @@
     .grad{background:linear-gradient(90deg,var(--o),var(--p));-webkit-background-clip:text;background-clip:text;color:transparent}
     .sub{font-size:clamp(16px,2.4vw,22px);opacity:.95;margin:45px 0 75px}
 
-    .cols{display:grid;grid-template-columns:repeat(3,minmax(260px,1fr));gap:36px;align-items:start;justify-items:center}
-    @media (max-width:1024px){.cols{grid-template-columns:repeat(2,minmax(260px,1fr))}}
-    @media (max-width:720px){body{padding:24px} .cols{grid-template-columns:1fr;gap:22px}}
+    .cols{display:flex;justify-content:space-between;gap:60px;align-items:flex-start;flex-wrap:wrap}
 
-    .card{width:100%;max-width:380px;display:flex;flex-direction:column;gap:10px;align-items:center;background:none;box-shadow:none;border:none}
-    .card h3{margin:0 0 4px;font-size:22px;font-weight:800;letter-spacing:.2px;line-height:1.3}
+    .card{flex:1;min-width:300px;max-width:420px;display:flex;flex-direction:column;align-items:center;text-align:center}
+    .card h3{margin:0 0 20px;font-size:22px;font-weight:800;letter-spacing:.2px;line-height:1.3;text-align:center}
 
     /* Interactive PNG wrapper */
     .shot{display:inline-block;border-radius:14px;overflow:visible;outline:none;background:none;box-shadow:none}
-    .shot img{width:140%;height:auto;display:block;border-radius:14px;transition:transform .35s ease, filter .35s ease}
+    .shot img{width:140%;height:auto;display:block;border-radius:14px;transition:transform .35s ease, filter .35s ease;margin:0 auto}
     .shot:hover img, .shot:focus-visible img, .shot.touched img{
       transform:translateY(-2px);
       filter:
@@ -49,8 +47,18 @@
         drop-shadow(0 0 8px var(--v));
     }
 
-    .back{display:inline-flex;gap:8px;align-items:center;margin:30px auto 0;padding:10px 16px;border-radius:12px;background:rgba(255,255,255,.06);text-decoration:none;color:#fff;font-weight:700;border:1px solid rgba(255,255,255,.12)}
+    .back{display:inline-flex;gap:8px;align-items:center;margin:50px auto 0;padding:10px 16px;border-radius:12px;background:rgba(255,255,255,.06);text-decoration:none;color:#fff;font-weight:700;border:1px solid rgba(255,255,255,.12)}
     .back:hover{background:rgba(255,255,255,.1)}
+
+    @media (max-width:1024px){
+      .cols{justify-content:center;gap:40px}
+    }
+
+    @media (max-width:720px){
+      body{padding:24px}
+      .cols{flex-direction:column;align-items:center;gap:40px}
+      .shot img{width:100%}
+    }
 
     @media (prefers-reduced-motion: reduce){
       .shot img{transition:none}
