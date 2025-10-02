@@ -38,11 +38,25 @@
     @media (max-width:1024px){.cols{grid-template-columns:repeat(2,minmax(260px,1fr))}}
     @media (max-width:720px){body{padding:24px} .cols{grid-template-columns:1fr;gap:22px}}
 
-    .card{width:100%;max-width:380px;display:flex;flex-direction:column;gap:14px;align-items:center}
-    .card img{max-width:100%;height:auto;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+    .card{width:100%;max-width:380px;display:flex;flex-direction:column;gap:10px;align-items:center}
+    .card h3{margin:0 0 4px;font-size:22px;font-weight:800;letter-spacing:.2px}
+
+    /* Interactive PNG wrapper */
+    .shot{position:relative;border-radius:14px;overflow:hidden;display:block;outline:none}
+    .shot img{max-width:100%;height:auto;display:block;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.35);transition:transform .35s ease, box-shadow .35s ease}
+    .shot::after{content:"";position:absolute;inset:-2px;border-radius:16px;pointer-events:none;opacity:0;filter:blur(10px);
+      background:conic-gradient(from 0deg at 50% 50%, var(--o), var(--p), var(--v), var(--o));
+      transition:opacity .35s ease}
+    .shot:hover img, .shot:focus-visible img, .shot.touched img{transform:translateY(-2px);box-shadow:0 16px 40px rgba(0,0,0,.5)}
+    .shot:hover::after, .shot:focus-visible::after, .shot.touched::after{opacity:.9}
 
     .back{display:inline-flex;gap:8px;align-items:center;margin:30px auto 0;padding:10px 16px;border-radius:12px;background:rgba(255,255,255,.06);text-decoration:none;color:#fff;font-weight:700;border:1px solid rgba(255,255,255,.12)}
     .back:hover{background:rgba(255,255,255,.1)}
+
+    @media (prefers-reduced-motion: reduce){
+      .shot img{transition:none}
+      .shot::after{transition:none}
+    }
   </style>
 </head>
 <body>
@@ -59,17 +73,41 @@
 
     <section class="cols" aria-label="AI Assistant Showcase">
       <article class="card">
-        <img src="ai1.png" alt="AI Assistant showcase">
+        <h3>AI Assistant for SPL</h3>
+        <a class="shot" href="#spl" tabindex="0" aria-label="Open SPL Assistant image">
+          <img src="https://github.com/acugarcr/digital-resilience-portal/blob/main/ai1.png?raw=true" alt="SPL Assistant UI screenshot">
+        </a>
       </article>
       <article class="card">
-        <img src="ai1.png" alt="AI Assistant showcase">
+        <h3>AI Assistant in Observability Cloud</h3>
+        <a class="shot" href="#o11y" tabindex="0" aria-label="Open Observability Assistant image">
+          <img src="https://github.com/acugarcr/digital-resilience-portal/blob/main/ai2.png?raw=true" alt="Observability Assistant UI screenshot">
+        </a>
       </article>
       <article class="card">
-        <img src="ai1.png" alt="AI Assistant showcase">
+        <h3>AI Assistant in Enterprise Security</h3>
+        <a class="shot" href="#es" tabindex="0" aria-label="Open Enterprise Security Assistant image">
+          <img src="https://github.com/acugarcr/digital-resilience-portal/blob/main/ai3.png?raw=true" alt="Enterprise Security Assistant UI screenshot">
+        </a>
       </article>
     </section>
 
     <a class="back" href="index.html" aria-label="Back to Portfolio">← Back to Portfolio</a>
   </div>
+
+  <script>
+    // Touch feedback: brief glow when tapped
+    const shots = document.querySelectorAll('.shot');
+    shots.forEach(el => {
+      let t;
+      const flash = () => {
+        el.classList.add('touched');
+        clearTimeout(t);
+        t = setTimeout(()=> el.classList.remove('touched'), 900);
+      };
+      el.addEventListener('touchstart', flash, {passive:true});
+      el.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' '){ e.preventDefault(); flash(); }});
+    });
+  </script>
 </body>
 </html>
