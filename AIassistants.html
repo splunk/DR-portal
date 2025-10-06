@@ -1,161 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Splunk Platform Powered by AI Services + Data</title>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Splunk AI — Assistants everywhere</title>
   <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root{
-      --o:#ffb300;
-      --p:#f72ea7;
-      --v:#7e57c2;
-      --ink:#fff;
-      --bg:#0b0b12;
+      --o:#ffb300; --p:#f72ea7; --v:#7e57c2; --text:#fff;
     }
-
-    *{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%}
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0}
     body{
-      background:
-        radial-gradient(1200px 500px at 15% 10%, #1b1b28 0, transparent 60%),
-        radial-gradient(1200px 600px at 85% 20%, #1a0f1f 0, transparent 60%),
-        linear-gradient(#09090f,#0b0b12);
-      font-family:'Lexend',system-ui,sans-serif;color:var(--ink);
-      overflow-x:hidden;
+      min-height:100%;
+      color:var(--text);
+      background:url('https://github.com/acugarcr/digital-resilience-portal/blob/main/AdobeStock_190328389.jpeg?raw=true') center/cover fixed no-repeat;
+      font-family: 'Lexend', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, sans-serif;
+      text-align:center;
+      padding:40px; position:relative; overflow-x:hidden;
+    }
+    body::after{content:"";position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:0}
+    .wrap{position:relative;z-index:1;max-width:1600px;margin:0 auto}
+
+    .logos{display:flex;justify-content:center;align-items:center;gap:18px;margin-bottom:8px}
+    .logo-cisco{height:50px;filter:drop-shadow(0 0 8px rgba(0,0,0,.25))}
+    .logo-splunk{height:44px;filter:drop-shadow(0 0 8px rgba(0,0,0,.25))}
+    .plus{font-size:42px;font-weight:800;line-height:1;opacity:.9}
+
+    h1{font-size:clamp(36px,6vw,64px);margin:10px 0 45px;font-weight:800;letter-spacing:.35px}
+    .grad{background:linear-gradient(90deg,var(--o),var(--p));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .sub{font-size:clamp(16px,2.4vw,22px);opacity:.95;margin:45px 0 75px}
+
+    .cols{display:flex;justify-content:space-between;gap:80px;align-items:flex-start;flex-wrap:wrap}
+
+    .card{flex:1;min-width:320px;max-width:480px;display:flex;flex-direction:column;align-items:center;text-align:center}
+    .card h3{margin:0 0 20px;font-size:22px;font-weight:800;letter-spacing:.2px;line-height:1.3;text-align:center}
+
+    /* Interactive PNG wrapper */
+    .shot{display:inline-block;border-radius:14px;overflow:visible;outline:none;background:none;box-shadow:none}
+    .shot img{width:100%;height:auto;display:block;border-radius:14px;transition:transform .35s ease, filter .35s ease;margin:0 auto}
+    .shot:hover img, .shot:focus-visible img, .shot.touched img{
+      transform:translateY(-2px);
+      filter:
+        drop-shadow(0 0 2px var(--o))
+        drop-shadow(0 0 3px var(--p))
+        drop-shadow(0 0 4px var(--v));
     }
 
-    .wrap{max-width:1280px;margin:0 auto;padding:60px 40px;text-align:center}
+    .back{display:inline-flex;gap:8px;align-items:center;margin:50px auto 0;padding:10px 16px;border-radius:12px;background:rgba(255,255,255,.06);text-decoration:none;color:#fff;font-weight:700;border:1px solid rgba(255,255,255,.12)}
+    .back:hover{background:rgba(255,255,255,.1)}
 
-    .logos{display:flex;justify-content:center;align-items:center;gap:36px;margin-bottom:48px}
-    .logo-cisco{height:52px;filter:drop-shadow(0 0 8px rgba(0,0,0,.4))}
-    .logo-splunk{height:46px;filter:drop-shadow(0 0 8px rgba(0,0,0,.4))}
-    .plus{font-size:44px;font-weight:800;opacity:.9}
-
-    h1{font-size:clamp(36px,5.4vw,68px);font-weight:800;line-height:1.1;margin-bottom:60px}
-    h1 .grad{background:linear-gradient(90deg,var(--o),var(--p));-webkit-background-clip:text;background-clip:text;color:transparent;white-space:nowrap}
-
-    .header-card{
-      display:block;
-      background:#f3f4f8;
-      color:#111;
-      border-radius:16px;
-      position:relative;
-      overflow:hidden;
-      box-shadow:0 8px 26px rgba(0,0,0,.35);
-      padding:40px 24px;
-      width:95%;
-      font-weight:800;
-      font-size:24px;
-      letter-spacing:.2px;
-      margin:0 auto 60px auto;
-      text-decoration:none;
-      transition:transform .3s ease, box-shadow .3s ease;
+    @media (max-width:1200px){
+      .cols{justify-content:center;gap:50px}
     }
 
-    .header-card::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      border-radius:16px;
-      padding:4px;
-      background:linear-gradient(90deg,var(--o),var(--p));
-      -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
-      -webkit-mask-composite:xor;
-      mask-composite:exclude;
-      opacity:.85;
-      pointer-events:none;
+    @media (max-width:720px){
+      body{padding:24px}
+      .cols{flex-direction:column;align-items:center;gap:40px}
+      .shot img{width:100%}
     }
 
-    .header-card:hover{
-      transform:translateY(-4px);
-      box-shadow:0 0 25px rgba(255,179,0,.3),0 0 40px rgba(247,46,167,.25)
+    @media (prefers-reduced-motion: reduce){
+      .shot img{transition:none}
     }
-
-    .blocks{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-      gap:40px;
-      align-items:start;
-      justify-items:center;
-      margin-top:20px;
-    }
-
-    .block{
-      width:100%;
-      max-width:340px;
-      position:relative;
-      border-radius:14px;
-      overflow:hidden;
-      background:rgba(255,255,255,.03);
-      backdrop-filter:blur(10px);
-      -webkit-backdrop-filter:blur(10px);
-      box-shadow:inset 0 0 0 1px rgba(255,255,255,.05);
-      padding:40px 20px;
-      font-size:20px;
-      font-weight:700;
-      transition:all .3s ease;
-    }
-
-    .block:hover{
-      transform:translateY(-4px);
-      box-shadow:0 0 25px rgba(255,179,0,.3),0 0 40px rgba(247,46,167,.25)
-    }
-
-    .block::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      border-radius:14px;
-      padding:4px;
-      background:linear-gradient(90deg,var(--o),var(--p));
-      -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
-      -webkit-mask-composite:xor;
-      mask-composite:exclude;
-      opacity:.85;
-      pointer-events:none;
-    }
-
-    .back{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      margin:70px auto 0;
-      padding:12px 18px;
-      border-radius:10px;
-      background:rgba(255,255,255,.08);
-      color:#fff;
-      text-decoration:none;
-      font-weight:800;
-      border:1px solid rgba(255,255,255,.2);
-      box-shadow:inset 0 0 0 1px rgba(255,255,255,.06), 0 6px 18px rgba(0,0,0,.45);
-      transition:background .3s ease;
-    }
-
-    .back:hover{background:rgba(255,255,255,.12)}
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="logos">
+  <div class="wrap" role="main">
+    <div class="logos" aria-label="Cisco plus Splunk logos">
       <img class="logo-cisco" alt="Cisco" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Cisco_logo_blue_2016.svg/2560px-Cisco_logo_blue_2016.svg.png" loading="lazy">
-      <span class="plus">+</span>
+      <span class="plus" aria-hidden="true">+</span>
       <img class="logo-splunk" alt="Splunk" src="https://www.splunk.com/content/dam/splunk2/en_us/images/events/mediakit/splunk-corp-logo-w-rgb.png" loading="lazy">
     </div>
 
-    <h1>Splunk Platform Powered by <span class="grad">AI&nbsp;services&nbsp;+&nbsp;data</span></h1>
+    <h1><span class="grad">Splunk AI</span> Assistants everywhere</h1>
+    <p class="sub">Increase productivity and deliver faster detection and response</p>
 
-    <a href="#" class="header-card">AI Assistants</a>
-
-    <section class="blocks">
-      <div class="block">Machine learning</div>
-      <div class="block">Deep learning</div>
-      <div class="block">Generative AI</div>
-      <div class="block">Agentic AI</div>
+    <section class="cols" aria-label="AI Assistant Showcase">
+      <article class="card">
+        <h3>AI Assistant<br>for SPL</h3>
+        <a class="shot" href="#spl" tabindex="0" aria-label="Open SPL Assistant image">
+          <img src="https://github.com/acugarcr/digital-resilience-portal/blob/main/ai1.png?raw=true" alt="SPL Assistant UI screenshot">
+        </a>
+      </article>
+      <article class="card">
+        <h3>AI Assistant<br>in Observability Cloud</h3>
+        <a class="shot" href="#o11y" tabindex="0" aria-label="Open Observability Assistant image">
+          <img src="https://github.com/acugarcr/digital-resilience-portal/blob/main/ai2.png?raw=true" alt="Observability Assistant UI screenshot">
+        </a>
+      </article>
+      <article class="card">
+        <h3>AI Assistant<br>in Enterprise Security</h3>
+        <a class="shot" href="#es" tabindex="0" aria-label="Open Enterprise Security Assistant image">
+          <img src="https://github.com/acugarcr/digital-resilience-portal/blob/main/ai3.png?raw=true" alt="Enterprise Security Assistant UI screenshot">
+        </a>
+      </article>
     </section>
 
-    <a class="back" href="index.html">← Back to Portfolio</a>
+    <a class="back" href="index.html" aria-label="Back to Portfolio">← Back to Portfolio</a>
   </div>
+
+  <script>
+    // Touch feedback: brief glow when tapped
+    const shots = document.querySelectorAll('.shot');
+    shots.forEach(el => {
+      let t;
+      const flash = () => {
+        el.classList.add('touched');
+        clearTimeout(t);
+        t = setTimeout(()=> el.classList.remove('touched'), 900);
+      };
+      el.addEventListener('touchstart', flash, {passive:true});
+      el.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' '){ e.preventDefault(); flash(); }});
+    });
+  </script>
 </body>
 </html>
-
