@@ -26,6 +26,7 @@
       justify-content: flex-start;
       padding: 60px 20px 100px;
       position: relative;
+      overflow-x: hidden;
     }
 
     body::after {
@@ -53,38 +54,32 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 60px;
+      gap: 80px;
       position: relative;
       z-index: 1;
     }
 
     .card {
-      width: 380px;
-      height: 280px;
-      border-radius: 24px;
-      background: rgba(255,255,255,0.05);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 2px solid rgba(255,255,255,0.1);
-      box-shadow: 0 4px 30px rgba(0,0,0,0.3);
-      overflow: hidden;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      cursor: pointer;
+      width: 400px;
+      height: auto;
+      transition: transform 0.35s ease, filter 0.35s ease;
     }
 
     .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+      transform: translateY(-12px) scale(1.03);
+      filter: drop-shadow(0 0 25px rgba(255,179,0,0.4))
+              drop-shadow(0 0 25px rgba(247,46,167,0.25));
     }
 
     .card img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: auto;
+      display: block;
+      transition: transform 0.3s ease;
     }
 
     .back-link {
-      margin-top: 80px;
+      margin-top: 100px;
       position: relative;
       z-index: 1;
       display: inline-flex;
@@ -110,7 +105,7 @@
 
   <div class="cards">
     <a href="https://cisco-full-stack-observability.navattic.com/soc-of-the-future" class="card">
-      <img src="https://github.com/acugarcr/digital-resilience-portal/blob/main/security1.png?raw=true" alt="SOC of the Future">
+      <img src="https://github.com/acugarcr/digital-resilience-portal/blob/main/socfuture.png?raw=true" alt="SOC of the Future">
     </a>
     <a href="https://cisco-full-stack-observability.navattic.com/supercharge-security-operations" class="card">
       <img src="https://github.com/acugarcr/digital-resilience-portal/blob/main/security2.png?raw=true" alt="Supercharge Security Operations">
