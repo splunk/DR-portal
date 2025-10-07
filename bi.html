@@ -25,15 +25,16 @@
     body::after{content:"";position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:0}
     .wrap{position:relative;z-index:1;max-width:1600px;margin:0 auto}
 
-    /* Logos row */
+    /* Logos */
     .logos{display:flex;justify-content:center;align-items:center;gap:18px;margin-bottom:8px}
     .logo-cisco{height:50px;filter:drop-shadow(0 0 8px rgba(0,0,0,.25))}
     .logo-splunk{height:44px;filter:drop-shadow(0 0 8px rgba(0,0,0,.25))}
     .plus{font-size:42px;font-weight:800;line-height:1;opacity:.9}
 
+    /* Title */
     h1{
       font-size:clamp(36px,6vw,64px);
-      margin:10px 0 75px;
+      margin:10px 0 40px;
       font-weight:800;
       letter-spacing:.35px;
     }
@@ -44,7 +45,7 @@
       color:transparent;
     }
 
-    /* Iframe container */
+    /* Frame */
     .frame{
       width:90%;
       max-width:1200px;
@@ -63,7 +64,7 @@
       display:inline-flex;
       gap:8px;
       align-items:center;
-      margin:60px auto 0;
+      margin:45px auto 0;
       padding:10px 16px;
       border-radius:12px;
       background:rgba(255,255,255,.06);
@@ -80,12 +81,13 @@
       .logo-cisco{height:40px}
       .logo-splunk{height:36px}
       .frame{height:70vh}
+      h1{margin-bottom:30px;}
     }
   </style>
 </head>
 <body>
   <div class="wrap" role="main">
-    <!-- Logos row -->
+    <!-- Logos -->
     <div class="logos" aria-label="Cisco plus Splunk logos">
       <img class="logo-cisco" alt="Cisco" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Cisco_logo_blue_2016.svg/2560px-Cisco_logo_blue_2016.svg.png" loading="lazy">
       <span class="plus" aria-hidden="true">+</span>
@@ -95,7 +97,7 @@
     <!-- Title -->
     <h1><span style="color:white;">Unified</span> <span class="grad">Business Intelligence</span></h1>
 
-    <!-- Navattic demo -->
+    <!-- Frame -->
     <div class="frame">
       <iframe
         src="https://cisco-full-stack-observability.navattic.com/l1b05i5"
