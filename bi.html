@@ -25,15 +25,24 @@
     body::after{content:"";position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:0}
     .wrap{position:relative;z-index:1;max-width:1600px;margin:0 auto}
 
-    /* Logos row (copied from Platform) */
+    /* Logos row */
     .logos{display:flex;justify-content:center;align-items:center;gap:18px;margin-bottom:8px}
     .logo-cisco{height:50px;filter:drop-shadow(0 0 8px rgba(0,0,0,.25))}
     .logo-splunk{height:44px;filter:drop-shadow(0 0 8px rgba(0,0,0,.25))}
     .plus{font-size:42px;font-weight:800;line-height:1;opacity:.9}
 
-    h1{font-size:clamp(36px,6vw,64px);margin:10px 0 45px;font-weight:800;letter-spacing:.35px}
-    .grad{background:linear-gradient(90deg,var(--o),var(--p));-webkit-background-clip:text;background-clip:text;color:transparent}
-    .sub{font-size:clamp(16px,2.4vw,22px);opacity:.95;margin:45px 0 75px}
+    h1{
+      font-size:clamp(36px,6vw,64px);
+      margin:10px 0 75px;
+      font-weight:800;
+      letter-spacing:.35px;
+    }
+    .grad{
+      background:linear-gradient(90deg,var(--o),var(--p));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
 
     /* Iframe container */
     .frame{
@@ -83,9 +92,8 @@
       <img class="logo-splunk" alt="Splunk" src="https://www.splunk.com/content/dam/splunk2/en_us/images/events/mediakit/splunk-corp-logo-w-rgb.png" loading="lazy">
     </div>
 
-    <!-- Title + subtitle -->
-    <h1><span class="grad">Unified Business Intelligence</span></h1>
-    <p class="sub">Turn every insight into action — powered by Cisco visibility and Splunk analytics.</p>
+    <!-- Title -->
+    <h1><span style="color:white;">Unified</span> <span class="grad">Business Intelligence</span></h1>
 
     <!-- Navattic demo -->
     <div class="frame">
