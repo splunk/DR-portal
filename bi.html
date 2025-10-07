@@ -1,118 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Splunk + Cisco — Business Intelligence</title>
-  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Splunk + Cisco — Business Intelligence</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+    :root{
     :root {
-      --o:#ffb300; --p:#f72ea7; --v:#7e57c2; --text:#fff;
-    }
+--o:#ffb300; --p:#f72ea7; --v:#7e57c2; --text:#fff;
+}
     *{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%;margin:0}
+    html,body{height:100%;}
     body{
-      min-height:100%;
-      color:var(--text);
+    * { box-sizing:border-box; margin:0; padding:0; }
+    html, body { height:100%; }
+    body {
+font-family:'Lexend', sans-serif;
+color:var(--text);
       background:url('https://github.com/acugarcr/digital-resilience-portal/blob/main/AdobeStock_190328389.jpeg?raw=true') 
-      center/cover fixed no-repeat;
-      font-family:'Lexend', sans-serif;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:flex-start;
-      text-align:center;
-      padding:40px 20px;
-    }
-
-    /* Cisco + Splunk header logos */
-    .logos{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:24px;
-      margin-bottom:20px;
-    }
-    .logos img{
-      height:38px;
-      filter:drop-shadow(0 0 8px rgba(0,0,0,0.4));
-    }
-    .plus{
-      font-size:2rem;
-      font-weight:700;
-      background:linear-gradient(90deg,var(--o),var(--p),var(--v));
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-    }
-
+      background:url('https://github.com/acugarcr/digital-resilience-portal/blob/main/AdobeStock_190328389.jpeg?raw=true')
+center/cover fixed no-repeat;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding:40px 20px;
+      overflow:hidden;
+}
     h1{
-      font-size:3rem;
-      font-weight:800;
-      background:linear-gradient(90deg,var(--o),var(--p),var(--v));
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
+    h1 {
+font-size:3rem;
+background:linear-gradient(90deg, var(--o), var(--p), var(--v));
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
       margin-bottom:10px;
-    }
-
+font-weight:800;
+      margin-bottom:10px;
+}
     h2{
-      font-weight:400;
-      font-size:1.3rem;
-      opacity:0.9;
-      margin-bottom:40px;
-      max-width:800px;
-    }
-
-    .frame-container{
-      width:90%;
-      max-width:1200px;
+    h2 {
+font-weight:400;
+font-size:1.3rem;
+opacity:0.9;
+margin-bottom:40px;
+}
+    iframe{
+    .frame-container {
+width:90%;
+max-width:1200px;
       height:80vh;
-      border-radius:16px;
       border:3px solid rgba(255,255,255,0.2);
-      box-shadow:0 0 30px rgba(0,0,0,0.4);
-      background:#000;
+      aspect-ratio:16/9;
       overflow:hidden;
       position:relative;
-    }
-    .frame-container iframe{
+border-radius:16px;
+      border:3px solid rgba(255,255,255,0.2);
+box-shadow:0 0 30px rgba(0,0,0,0.4);
+background:#000;
+}
+    iframe {
       width:100%;
       height:100%;
       border:0;
+      transform-origin:0 0;
+      transform:scale(1);
     }
 
-    /* Back button */
-    .back-btn{
-      margin-top:40px;
-      background:linear-gradient(90deg,var(--o),var(--p),var(--v));
-      color:#000;
-      font-weight:700;
-      text-decoration:none;
-      padding:12px 30px;
-      border-radius:30px;
-      transition:all 0.2s ease;
+    /* Optional scaling logic for smaller screens */
+    @media (max-width:900px) {
+      .frame-container {
+        aspect-ratio:auto;
+        height:70vh;
+      }
+      iframe {
+        transform:scale(0.9);
+      }
     }
-    .back-btn:hover{
-      opacity:0.85;
-      transform:translateY(-2px);
+    @media (max-width:600px) {
+      iframe {
+        transform:scale(0.8);
+      }
     }
-
-    @media (max-width:900px){
-      h1{font-size:2.4rem;}
-      .frame-container{height:70vh;}
-      .logos img{height:30px;}
-    }
-  </style>
+</style>
 </head>
 <body>
-  <!-- Cisco + Splunk header -->
-  <div class="logos">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Cisco_logo_blue_2016.svg" alt="Cisco logo">
-    <div class="plus">+</div>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e8/Splunk_logo.svg" alt="Splunk logo">
-  </div>
+<h1>Unified Business Intelligence</h1>
+<h2>Turn every insight into action — powered by Cisco visibility and Splunk analytics.</h2>
 
-  <h1>Unified Business Intelligence</h1>
-  <h2>Turn every insight into action — powered by Cisco visibility and Splunk analytics.</h2>
-
+  <iframe src="https://cisco-full-stack-observability.navattic.com/l1b05i5" 
+          title="Business Intelligence Demo"
+          allow="fullscreen; clipboard-read; clipboard-write; autoplay; encrypted-media"
+          loading="lazy">
+  </iframe>
   <div class="frame-container">
     <iframe 
       src="https://cisco-full-stack-observability.navattic.com/l1b05i5"
@@ -121,7 +102,5 @@
       loading="lazy">
     </iframe>
   </div>
-
-  <a href="index.html" class="back-btn">← Return to Portal</a>
 </body>
 </html>
