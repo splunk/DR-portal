@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Platform — Cisco + Splunk Digital Resilience</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --o:#ffb300; --p:#f72ea7; --v:#7e57c2; --text:#fff;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0}
+    body{
+      min-height:100%;
+      color:var(--text);
+      background:url('https://github.com/acugarcr/digital-resilience-portal/blob/main/AdobeStock_190328389.jpeg?raw=true') center/cover fixed no-repeat;
+      font-family: 'Lexend', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, sans-serif;
+      text-align:center;
+      padding:40px; position:relative; overflow-x:hidden;
+    }
+    body::after{content:"";position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:0}
+    .wrap{position:relative;z-index:1;max-width:1600px;margin:0 auto}
+
+    .logos{display:flex;justify-content:center;align-items:center;gap:18px;margin-bottom:8px}
+    .logo-cisco{height:50px;filter:drop-shadow(0 0 8px rgba(0,0,0,.25))}
+    .logo-splunk{height:44px;filter:drop-shadow(0 0 8px rgba(0,0,0,.25))}
+    .plus{font-size:42px;font-weight:800;line-height:1;opacity:.9}
+
+    h1{font-size:clamp(36px,6vw,64px);margin:10px 0 45px;font-weight:800;letter-spacing:.35px}
+    .grad{background:linear-gradient(90deg,var(--o),var(--p));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .sub{font-size:clamp(16px,2.4vw,22px);opacity:.95;margin:45px 0 75px}
+
+    .cols{display:flex;justify-content:space-between;gap:80px;align-items:flex-start;flex-wrap:wrap}
+
+    .card{flex:1;min-width:320px;max-width:480px;display:flex;flex-direction:column;align-items:center;text-align:center}
+    .card h3{margin:0 0 20px;font-size:22px;font-weight:800;letter-spacing:.2px;line-height:1.3;text-align:center}
+
+    /* Interactive PNG wrapper (same as AI Assistants/Security) */
+    .shot{display:inline-block;border-radius:14px;overflow:visible;outline:none;background:none;box-shadow:none}
+    .shot img{width:100%;height:auto;display:block;border-radius:14px;transition:transform .35s ease, filter .35s ease;margin:0 auto}
+    .shot:hover img, .shot:focus-visible img, .shot.touched img{
+      transform:translateY(-2px);
+      filter:
+        drop-shadow(0 0 2px var(--o))
+        drop-shadow(0 0 3px var(--p))
+        drop-shadow(0 0 4px var(--v));
+    }
+
+    .back{display:inline-flex;gap:8px;align-items:center;margin:50px auto 0;padding:10px 16px;border-radius:12px;background:rgba(255,255,255,.06);text-decoration:none;color:#fff;font-weight:700;border:1px solid rgba(255,255,255,.12)}
+    .back:hover{background:rgba(255,255,255,.1)}
+
+    @media (max-width:1200px){
+      .cols{justify-content:center;gap:50px}
+    }
+    @media (max-width:720px){
+      body{padding:24px}
+      .cols{flex-direction:column;align-items:center;gap:40px}
+      .shot img{width:100%}
+    }
+    @media (prefers-reduced-motion: reduce){
+      .shot img{transition:none}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap" role="main">
+    <!-- Logos row -->
+    <div class="logos" aria-label="Cisco plus Splunk logos">
+      <img class="logo-cisco" alt="Cisco" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Cisco_logo_blue_2016.svg/2560px-Cisco_logo_blue_2016.svg.png" loading="lazy">
+      <span class="plus" aria-hidden="true">+</span>
+      <img class="logo-splunk" alt="Splunk" src="https://www.splunk.com/content/dam/splunk2/en_us/images/events/mediakit/splunk-corp-logo-w-rgb.png" loading="lazy">
+    </div>
+
+    <!-- Title + subtitle -->
+    <h1><span class="grad">Cisco + Splunk</span> Platform</h1>
+    <p class="sub">Collect, process, and secure your data at scale — then search it fast for answers that matter.</p>
+
+    <!-- Cards -->
+    <section class="cols" aria-label="Platform showcase">
+      <article class="card">
+        <h3>Ingest &amp; Data Pipelines (Edge Processor)</h3>
+        <!-- TODO: replace href with your Navattic or doc link -->
+        <a class="shot" href="#" target="_blank" tabindex="0" aria-label="Open Edge Processor & Data Pipelines demo">
+          <!-- TODO: replace with your PNG path -->
+          <img src="https://github.com/acugarcr/digital-resilience-portal/blob/main/platform1.png?raw=true" alt="Edge Processor & Data Pipelines preview">
+        </a>
+      </article>
+
+      <article class="card">
+        <h3>Search, Indexing &amp; Federated Access</h3>
+        <a class="shot" href="#" target="_blank" tabindex="0" aria-label="Open Search, Indexing & Federated Access demo">
+          <img src="https://github.com/acugarcr/digital-resilience-portal/blob/main/platform2.png?raw=true" alt="Search, Indexing & Federated Access preview">
+        </a>
+      </article>
+
+      <article class="card">
+        <h3>Admin, Scale &amp; Upgrade Readiness</h3>
+        <a class="shot" href="#" target="_blank" tabindex="0" aria-label="Open Admin, Scale & Upgrade Readiness demo">
+          <img src="https://github.com/acugarcr/digital-resilience-portal/blob/main/platform3.png?raw=true" alt="Admin, Scale & Upgrade Readiness preview">
+        </a>
+      </article>
+    </section>
+
+    <a class="back" href="index.html" aria-label="Back to Portfolio">← Back to Portfolio</a>
+  </div>
+
+  <script>
+    // Touch/keyboard feedback (same behavior as other pages)
+    const shots = document.querySelectorAll('.shot');
+    shots.forEach(el => {
+      let t;
+      const flash = () => {
+        el.classList.add('touched');
+        clearTimeout(t);
+        t = setTimeout(()=> el.classList.remove('touched'), 900);
+      };
+      el.addEventListener('touchstart', flash, {passive:true});
+      el.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' '){ e.preventDefault(); flash(); }});
+    });
+  </script>
+</body>
+</html>
