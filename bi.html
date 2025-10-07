@@ -3,88 +3,134 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Splunk + Cisco — Business Intelligence</title>
+  <title>Cisco + Splunk — Business Intelligence</title>
   <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --o:#ffb300; --p:#f72ea7; --v:#7e57c2; --text:#fff;
     }
-    * { box-sizing:border-box; margin:0; padding:0; }
-    html, body { height:100%; }
-    body {
-      font-family:'Lexend', sans-serif;
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family:'Lexend',sans-serif;
       color:var(--text);
-      background:url('https://github.com/acugarcr/digital-resilience-portal/blob/main/AdobeStock_190328389.jpeg?raw=true')
-        center/cover fixed no-repeat;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      padding:40px 20px;
-      overflow:hidden;
+      background:url('https://github.com/acugarcr/digital-resilience-portal/blob/main/AdobeStock_190328389.jpeg?raw=true') center/cover fixed no-repeat;
+      display:flex; flex-direction:column; align-items:center; justify-content:flex-start;
+      padding:32px 20px; gap:20px;
     }
-    h1 {
-      font-size:3rem;
-      background:linear-gradient(90deg, var(--o), var(--p), var(--v));
+
+    /* Top lockup */
+    .lockup{
+      font-size:1.1rem;
+      letter-spacing:1px;
+      font-weight:600;
+      text-transform:uppercase;
+      opacity:0.9;
+    }
+    .lockup span{
+      background:linear-gradient(90deg,var(--o),var(--p),var(--v));
       -webkit-background-clip:text;
       -webkit-text-fill-color:transparent;
       font-weight:800;
-      margin-bottom:10px;
-    }
-    h2 {
-      font-weight:400;
-      font-size:1.3rem;
-      opacity:0.9;
-      margin-bottom:40px;
-    }
-    .frame-container {
-      width:90%;
-      max-width:1200px;
-      aspect-ratio:16/9;
-      overflow:hidden;
-      position:relative;
-      border-radius:16px;
-      border:3px solid rgba(255,255,255,0.2);
-      box-shadow:0 0 30px rgba(0,0,0,0.4);
-      background:#000;
-    }
-    iframe {
-      width:100%;
-      height:100%;
-      border:0;
-      transform-origin:0 0;
-      transform:scale(1);
     }
 
-    /* Optional scaling logic for smaller screens */
-    @media (max-width:900px) {
-      .frame-container {
-        aspect-ratio:auto;
-        height:70vh;
-      }
-      iframe {
-        transform:scale(0.9);
-      }
+    h1{
+      font-size:3rem; font-weight:800;
+      background:linear-gradient(90deg,var(--o),var(--p),var(--v));
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+      line-height:1.1; text-align:center;
     }
-    @media (max-width:600px) {
-      iframe {
-        transform:scale(0.8);
-      }
+    h2{
+      font-weight:400; font-size:1.3rem;
+      opacity:0.9; text-align:center;
+    }
+
+    /* Stage container */
+    .bi-stage{
+      width:min(1200px,92vw);
+      height:min(78vh,900px);
+      border-radius:16px;
+      border:3px solid rgba(255,255,255,.2);
+      box-shadow:0 0 30px rgba(0,0,0,.4);
+      background:#000;
+      position:relative;
+      overflow:hidden;
+    }
+    .bi-scale-surface{
+      position:absolute; top:50%; left:50%;
+      transform-origin:top left;
+    }
+    .bi-iframe{
+      width:1440px; height:900px; border:0; display:block;
+      background:#000;
+    }
+
+    /* Return button */
+    .back-btn{
+      margin-top:28px;
+      background:linear-gradient(90deg,var(--o),var(--p),var(--v));
+      color:#000;
+      font-weight:700;
+      text-decoration:none;
+      padding:12px 28px;
+      border-radius:30px;
+      transition:all .2s ease;
+      font-size:1rem;
+    }
+    .back-btn:hover{
+      opacity:.85;
+      transform:translateY(-2px);
     }
   </style>
 </head>
 <body>
+  <div class="lockup">Cisco + <span>Splunk</span></div>
   <h1>Unified Business Intelligence</h1>
   <h2>Turn every insight into action — powered by Cisco visibility and Splunk analytics.</h2>
 
-  <div class="frame-container">
-    <iframe 
-      src="https://cisco-full-stack-observability.navattic.com/l1b05i5"
-      title="Business Intelligence Demo"
-      allow="fullscreen; autoplay; encrypted-media; clipboard-read; clipboard-write"
-      loading="lazy">
-    </iframe>
+  <div class="bi-stage" id="biStage" data-base-w="1440" data-base-h="900">
+    <div class="bi-scale-surface" id="biSurface">
+      <iframe
+        class="bi-iframe"
+        src="https://cisco-full-stack-observability.navattic.com/l1b05i5"
+        title="Business Intelligence Demo"
+        allow="fullscreen; autoplay; encrypted-media; clipboard-read; clipboard-write"
+        allowfullscreen
+        loading="lazy">
+      </iframe>
+    </div>
   </div>
+
+  <a href="index.html" class="back-btn">← Return to Portal</a>
+
+  <script>
+    (function(){
+      const stage   = document.getElementById('biStage');
+      const surface = document.getElementById('biSurface');
+      const BASE_W  = parseInt(stage.dataset.baseW || '1440', 10);
+      const BASE_H  = parseInt(stage.dataset.baseH || '900', 10);
+
+      function fit(){
+        const sw = stage.clientWidth;
+        const sh = stage.clientHeight;
+        const scale = Math.min(sw / BASE_W, sh / BASE_H);
+        const scaledW = BASE_W * scale;
+        const scaledH = BASE_H * scale;
+        const offsetX = (sw - scaledW) / 2;
+        const offsetY = (sh - scaledH) / 2;
+        surface.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(${scale})`;
+        surface.style.width = BASE_W + 'px';
+        surface.style.height = BASE_H + 'px';
+      }
+
+      let t;
+      const onResize = () => { clearTimeout(t); t = setTimeout(fit, 50); };
+      window.addEventListener('resize', onResize);
+      window.addEventListener('orientationchange', onResize);
+      document.addEventListener('readystatechange', fit);
+      window.addEventListener('load', fit);
+      fit();
+    })();
+  </script>
 </body>
 </html>
