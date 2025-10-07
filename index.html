@@ -34,11 +34,20 @@
       -webkit-mask-composite:destination-out; mask-composite:exclude; pointer-events:none;
     }
     .grad{
-  background:linear-gradient(90deg, #ffb300, #f72ea7);
-  -webkit-background-clip:text; background-clip:text; color:transparent;
+      background:linear-gradient(90deg, #ffb300, #f72ea7);
+      -webkit-background-clip:text; background-clip:text; color:transparent;
     }
     .block:hover{transform:translateY(-2px); box-shadow:0 0 25px rgba(247,46,167,.5), 0 12px 32px rgba(0,0,0,.5)}
     .block > a{color:inherit;text-decoration:none;display:flex;align-items:center;justify-content:center;width:100%;height:100%}
+    .footer-phrase{
+      margin-top:50px;
+      font-size:1.4rem;
+      font-weight:500;
+      max-width:700px;
+      line-height:1.6;
+      position:relative;
+      z-index:1;
+    }
   </style>
 </head>
 <body>
@@ -48,9 +57,7 @@
       <span style="font-size:48px;font-weight:700">+</span>
       <img class="logo-splunk" alt="Splunk" src="https://www.splunk.com/content/dam/splunk2/en_us/images/events/mediakit/splunk-corp-logo-w-rgb.png">
     </div>
-<h1 class="subtitle"><span class="grad">Digital</span> Resilience</h1>
-      <p>From insight to action — Cisco visibility and Splunk analytics keep your world running.</p>
-
+    <h1 class="subtitle"><span class="grad">Digital</span> Resilience</h1>
   </header>
 
   <main class="blocks">
@@ -68,5 +75,7 @@
       <div class="block"><a href="platform.html">Platform</a></div>
     </div>
   </main>
+
+  <p class="footer-phrase">From insight to action — Cisco visibility and Splunk analytics keep your world running.</p>
 </body>
 </html>
