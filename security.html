@@ -1,143 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Security - Cisco + Splunk Digital Resilience</title>
-  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Security — Cisco + Splunk Digital Resilience</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --splunk-orange:#ffb300;
-      --splunk-pink:#f72ea7;
+    :root {
+      --o:#ffb300;
+      --p:#f72ea7;
+      --v:#7e57c2;
+      --text:#fff;
     }
 
-    html, body { height: 100%; margin: 0; }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
     body {
-      min-height: 100%;
-      background: url('https://github.com/acugarcr/digital-resilience-portal/blob/main/AdobeStock_190328389.jpeg?raw=true') no-repeat center center fixed;
-      background-size: cover;
-      background-color: rgba(0,0,0,0.9);
-      font-family: 'Splunk Data Sans', system-ui, sans-serif;
-      color: white;
-      text-align: center;
-      padding: 40px;
+      font-family: 'Lexend', 'Splunk Data Sans', system-ui, sans-serif;
+      color: var(--text);
+      background: url('https://github.com/acugarcr/digital-resilience-portal/blob/main/AdobeStock_190328389.jpeg?raw=true') 
+        center/cover fixed no-repeat;
       display: flex;
       flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 60px 20px 100px;
       position: relative;
-      overflow-x: hidden;
     }
 
-    body::after { content:""; position:fixed; inset:0; background:rgba(0,0,0,.55); z-index:0; }
-
-    .header { text-align:left; margin:20px 0 40px 40px; position:relative; z-index:1; }
-    .header h1 { font-size:72px; font-weight:800; margin:0; background:linear-gradient(90deg,var(--splunk-orange),var(--splunk-pink)); -webkit-background-clip:text; background-clip:text; color:transparent; }
-
-    .menu-mini{
-      position:fixed; top:24px; right:24px; z-index:2;
-      width:240px; /* reduced 20% */
-      display:flex; flex-direction:column; gap:10px;
-    }
-    .mm-row{ width:100%; }
-    .mm-row.two{ display:flex; gap:10px; }
-
-    .mm-btn{
-      flex:1; height:48px; display:flex; align-items:center; justify-content:center;
-      font-weight:600; font-size:16px; color:#fff; text-decoration:none;
-      position:relative; border-radius:12px; background:transparent;
-      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-      box-shadow: 0 3px 12px rgba(0,0,0,.25);
-    }
-    .mm-btn::before{
-      content:""; position:absolute; inset:0; border-radius:12px; padding:4px;
-      background:linear-gradient(45deg,var(--splunk-orange),var(--splunk-pink));
-      -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
-      -webkit-mask-composite: destination-out; mask-composite: exclude; pointer-events:none;
-    }
-    .mm-btn.active{
-      background: linear-gradient(45deg,var(--splunk-orange),var(--splunk-pink));
-      color:#000; font-weight:700;
-    }
-    .mm-btn.active::before{ display:none; }
-
-    .blocks-container { display:flex; flex-direction:column; align-items:flex-start; gap:40px; margin-top:20px; position:relative; z-index:1; }
-    .block-large {
-      width:1200px; /* doubled length */
-      height:100px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-weight:600;
-      font-size:26px;
-      cursor:pointer;
-      border-radius:20px;
-      background:transparent;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      position:relative;
-      color:#fff;
-    }
-    .block-large::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      border-radius:20px;
-      padding:6px; /* thicker border */
-      background:linear-gradient(45deg,var(--splunk-orange),var(--splunk-pink));
-      -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
-      -webkit-mask-composite: destination-out;
-      mask-composite: exclude;
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.55);
+      z-index: 0;
     }
 
-    .back-link{
-      margin-top:40px;
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:14px 20px;
-      border-radius:14px;
+    h1 {
+      font-size: 72px;
+      font-weight: 800;
+      background: linear-gradient(90deg, var(--o), var(--p));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 80px;
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 60px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card {
+      width: 380px;
+      height: 280px;
+      border-radius: 24px;
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 2px solid rgba(255,255,255,0.1);
+      box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+    }
+
+    .card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .back-link {
+      margin-top: 80px;
+      position: relative;
+      z-index: 1;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 16px 22px;
+      border-radius: 14px;
       background: rgba(255,255,255,.06);
-      text-decoration:none;
-      color:#fff;
-      font-weight:600;
-      font-size:18px;
-      border:2px solid rgba(255,255,255,.12);
+      text-decoration: none;
+      color: #fff;
+      font-weight: 600;
+      font-size: 18px;
+      border: 2px solid rgba(255,255,255,.12);
       backdrop-filter: blur(10px);
+      transition: background 0.3s ease;
     }
-    .back-link:hover{ background: rgba(255,255,255,.1); }
 
+    .back-link:hover { background: rgba(255,255,255,.1); }
   </style>
 </head>
 <body>
-  <div class="header">
-    <h1>Security</h1>
+  <h1>Security</h1>
+
+  <div class="cards">
+    <a href="https://cisco-full-stack-observability.navattic.com/soc-of-the-future" class="card">
+      <img src="https://github.com/acugarcr/digital-resilience-portal/blob/main/security1.png?raw=true" alt="SOC of the Future">
+    </a>
+    <a href="https://cisco-full-stack-observability.navattic.com/supercharge-security-operations" class="card">
+      <img src="https://github.com/acugarcr/digital-resilience-portal/blob/main/security2.png?raw=true" alt="Supercharge Security Operations">
+    </a>
+    <a href="https://cisco-full-stack-observability.navattic.com/agentic-soc-platform" class="card">
+      <img src="https://github.com/acugarcr/digital-resilience-portal/blob/main/security3.png?raw=true" alt="Unify TDIR with Agentic SOC Platform">
+    </a>
   </div>
 
-  <!-- Mini menu at top-right -->
-  <div class="menu-mini">
-    <div class="mm-row">
-      <a href="bi.html" class="mm-btn">Business Intelligence</a>
-    </div>
-    <div class="mm-row two">
-      <a href="security.html" class="mm-btn active">Security</a>
-      <a href="observability.html" class="mm-btn">Observability</a>
-    </div>
-    <div class="mm-row">
-      <a href="ai.html" class="mm-btn">AI</a>
-    </div>
-    <div class="mm-row">
-      <a href="platform.html" class="mm-btn">Platform</a>
-    </div>
-  </div>
-
-  <!-- Security blocks -->
-  <div class="blocks-container">
-    <div class="block-large">SOC of the Future</div>
-    <div class="block-large">Supercharge Security Operations</div>
-    <div class="block-large">Unify TDIR with Agentic SOC Platform</div>
-  </div>
-
-  <a class="back-link" href="index.html">← Back to Portal</a>
-
+  <a href="index.html" class="back-link">← Back to Portal</a>
 </body>
 </html>
