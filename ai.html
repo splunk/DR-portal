@@ -90,12 +90,24 @@
       backdrop-filter:blur(10px);
       -webkit-backdrop-filter:blur(10px);
       box-shadow:inset 0 0 0 1px rgba(255,255,255,.05);
-      padding:40px 20px;
+      padding:40px 20px 20px;
       font-size:20px;
       font-weight:700;
       transition:all .3s ease;
       text-decoration:none;
       color:#fff;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+    }
+
+    .block img{
+      width:80px;
+      height:80px;
+      object-fit:contain;
+      margin-bottom:10px;
     }
 
     .block:hover{
@@ -146,13 +158,13 @@
 
     <h1>Splunk Platform Powered by <span class="grad">AI&nbsp;services&nbsp;+&nbsp;data</span></h1>
 
-    <a href="https://acugarcr.github.io/digital-resilience-portal/AIassistants.html" class="header-card" target="_blank">AI Assistants</a>
+    <a href="https://github.com/acugarcr/digital-resilience-portal/blob/main/AIassistants.html" class="header-card" target="_blank">AI Assistants</a>
 
     <section class="blocks">
-      <a href="https://cisco-full-stack-observability.navattic.com/splunk-ai?g=cmed5q1ho000004jmepyw3so3&s=0" class="block">Machine learning</a>
-      <a href="https://cisco-full-stack-observability.navattic.com/splunk-ai?g=cmek6v9th000004ld03ee3vdm&s=0" class="block">Deep learning</a>
-      <a href="https://cisco-full-stack-observability.navattic.com/llm-integrations-start?g=cmdnpdqlg000204l14vvs8x5d&s=0&utm_source=navattic" class="block">Generative AI</a>
-      <a href="https://cisco-full-stack-observability.navattic.com/splunk-ai?g=cmed6dekb000004ky0spihzf9&s=0" class="block">Agentic AI</a>
+      <a href="#ml" class="block"><img src="https://github.com/acugarcr/digital-resilience-portal/blob/main/icon_machine-learning_color-w.png?raw=true" alt="Machine Learning Icon">Machine learning</a>
+      <a href="#dl" class="block"><img src="https://github.com/acugarcr/digital-resilience-portal/blob/main/icon_deep-learning_color-w.png?raw=true" alt="Deep Learning Icon">Deep learning</a>
+      <a href="#genai" class="block"><img src="https://github.com/acugarcr/digital-resilience-portal/blob/main/icon_generative-ai_color-w.svg?raw=true" alt="Generative AI Icon">Generative AI</a>
+      <a href="#agentic" class="block"><img src="https://github.com/acugarcr/digital-resilience-portal/blob/main/icon_splunk-ai_color-w.png?raw=true" alt="Agentic AI Icon">Agentic AI</a>
     </section>
 
     <a class="back" href="index.html">← Back to Portfolio</a>
