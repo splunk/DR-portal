@@ -69,7 +69,7 @@ body::after{content:"";position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:
   pointer-events: none;
 }
 #buttercup.show {
-  bottom: 20px;
+  bottom: 0px; /* 20% less pop-up (was 20px before) */
   animation: wave 1.5s ease-in-out infinite;
 }
 @keyframes wave {
@@ -106,7 +106,7 @@ body::after{content:"";position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:
 </main>
 
 <!-- 🧡 Buttercup Easter Egg -->
-<img id="buttercup" src="https://github.com/splunk/DR-portal/blob/main/buttercup.png?raw=true" alt="Buttercup Easter Egg">
+<img id="buttercup" src="https://github.com/acugarcr/digital-resilience-portal/blob/main/buttercup.png?raw=true" alt="Buttercup Easter Egg">
 
 <script>
   const buttercup = document.getElementById('buttercup');
@@ -117,10 +117,10 @@ body::after{content:"";position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:
   }
 
   // Show once shortly after page load
-  setTimeout(showButtercup, 100);
+  setTimeout(showButtercup, 10000);
 
   // Then every 10 minutes (600000 ms)
-  setInterval(showButtercup, 600);
+  setInterval(showButtercup, 600000);
 </script>
 
 </body>
