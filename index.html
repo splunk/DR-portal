@@ -7,64 +7,121 @@
 <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 :root{ --o:#ffb300; --p:#f72ea7; --v:#7e57c2; }
+
 html,body{height:100%;margin:0}
+
 body{
-min-height:100%;
-background:url('https://github.com/acugarcr/digital-resilience-portal/blob/main/AdobeStock_190328389.jpeg?raw=true') center/cover fixed no-repeat;
-font-family:'Splunk Data Sans', system-ui, sans-serif; color:#fff; text-align:center;
-padding:40px; display:flex; flex-direction:column; position:relative; overflow-x:hidden;
+  min-height:100%;
+  background:url('https://github.com/acugarcr/digital-resilience-portal/blob/main/AdobeStock_190328389.jpeg?raw=true') center/cover fixed no-repeat;
+  font-family:'Splunk Data Sans', system-ui, sans-serif;
+  color:#fff; text-align:center;
+  padding:40px; display:flex; flex-direction:column;
+  position:relative; overflow-x:hidden;
 }
 body::after{content:"";position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:0}
+
 .header{margin-bottom:40px;position:relative;z-index:1}
 .logos{display:flex;justify-content:center;align-items:center;gap:20px;margin-bottom:20px}
-.logo-cisco{height:60px}.logo-splunk{height:50px}
+.logo-cisco{height:60px}
+.logo-splunk{height:50px}
 .subtitle{font-size:68px;font-weight:700;margin:10px 0 40px}
+
 .blocks{display:flex;flex-direction:column;gap:30px;align-items:center;position:relative;z-index:1}
 .row{display:flex;gap:40px;max-width:1080px;width:100%;justify-content:center}
+
 .block{
-flex:1; min-width:180px; height:110px; display:flex; align-items:center; justify-content:center;
-font-weight:600; font-size:28px; color:#fff; cursor:pointer; border-radius:20px; position:relative;
-background:transparent; backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
-transition:transform .2s ease, box-shadow .2s ease;
+  flex:1; min-width:180px; height:110px;
+  display:flex; align-items:center; justify-content:center;
+  font-weight:600; font-size:28px; color:#fff;
+  cursor:pointer; border-radius:20px; position:relative;
+  background:transparent; backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  transition:transform .2s ease, box-shadow .2s ease;
 }
 .block::before{
-content:""; position:absolute; inset:0; border-radius:20px; padding:7px;
-background:linear-gradient(45deg,var(--o),var(--p));
--webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
--webkit-mask-composite:destination-out; mask-composite:exclude; pointer-events:none;
+  content:""; position:absolute; inset:0; border-radius:20px; padding:7px;
+  background:linear-gradient(45deg,var(--o),var(--p));
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite:destination-out; mask-composite:exclude;
+  pointer-events:none;
 }
 .grad{
-background:linear-gradient(90deg, #ffb300, #f72ea7);
--webkit-background-clip:text; background-clip:text; color:transparent;
+  background:linear-gradient(90deg, #ffb300, #f72ea7);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
 }
-.block:hover{transform:translateY(-2px); box-shadow:0 0 25px rgba(247,46,167,.5), 0 12px 32px rgba(0,0,0,.5)}
-.block > a{color:inherit;text-decoration:none;display:flex;align-items:center;justify-content:center;width:100%;height:100%}
+.block:hover{
+  transform:translateY(-2px);
+  box-shadow:0 0 25px rgba(247,46,167,.5), 0 12px 32px rgba(0,0,0,.5)
+}
+.block > a{
+  color:inherit;text-decoration:none;
+  display:flex;align-items:center;justify-content:center;width:100%;height:100%
+}
+
+/* 🐴 Buttercup Easter Egg */
+#buttercup {
+  position: fixed;
+  bottom: -300px;
+  right: 20px;
+  height: 200px;
+  z-index: 9999;
+  transition: bottom 0.8s ease, transform 0.3s ease-in-out;
+  pointer-events: none;
+}
+#buttercup.show {
+  bottom: 20px;
+  animation: wave 1.5s ease-in-out infinite;
+}
+@keyframes wave {
+  0%,100% { transform: rotate(0deg) translateY(0); }
+  50% { transform: rotate(3deg) translateY(-5px); }
+}
 </style>
 </head>
+
 <body>
 <header class="header">
-<div class="logos">
-<img class="logo-cisco" alt="Cisco" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Cisco_logo_blue_2016.svg/2560px-Cisco_logo_blue_2016.svg.png">
-<span style="font-size:48px;font-weight:700">+</span>
-<img class="logo-splunk" alt="Splunk" src="https://www.splunk.com/content/dam/splunk2/en_us/images/events/mediakit/splunk-corp-logo-w-rgb.png">
-</div>
-<h1 class="subtitle"><span class="grad">Digital</span> Resilience</h1>
+  <div class="logos">
+    <img class="logo-cisco" alt="Cisco" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Cisco_logo_blue_2016.svg/2560px-Cisco_logo_blue_2016.svg.png">
+    <span style="font-size:48px;font-weight:700">+</span>
+    <img class="logo-splunk" alt="Splunk" src="https://www.splunk.com/content/dam/splunk2/en_us/images/events/mediakit/splunk-corp-logo-w-rgb.png">
+  </div>
+  <h1 class="subtitle"><span class="grad">Digital</span> Resilience</h1>
 </header>
 
 <main class="blocks">
-<div class="row">
-      <div class="block"><a href="bi.html">Business Intelligence</a></div>
-</div>
-<div class="row">
-<div class="block"><a href="security.html">Security</a></div>
-<div class="block"><a href="observability.html">Observability</a></div>
-</div>
-<div class="row">
-<div class="block"><a href="ai.html">AI</a></div>
-</div>
-<div class="row">
-<div class="block"><a href="platform.html">Platform</a></div>
-</div>
+  <div class="row">
+    <div class="block"><a href="bi.html">Business Intelligence</a></div>
+  </div>
+  <div class="row">
+    <div class="block"><a href="security.html">Security</a></div>
+    <div class="block"><a href="observability.html">Observability</a></div>
+  </div>
+  <div class="row">
+    <div class="block"><a href="ai.html">AI</a></div>
+  </div>
+  <div class="row">
+    <div class="block"><a href="platform.html">Platform</a></div>
+  </div>
 </main>
+
+<!-- 🧡 Buttercup Easter Egg -->
+<img id="buttercup" src="https://github.com/splunk/DR-portal/blob/main/buttercup.png?raw=true" alt="Buttercup Easter Egg">
+
+<script>
+  const buttercup = document.getElementById('buttercup');
+
+  function showButtercup() {
+    buttercup.classList.add('show');
+    setTimeout(() => buttercup.classList.remove('show'), 5000); // stays visible 5s
+  }
+
+  // Show once shortly after page load
+  setTimeout(showButtercup, 100);
+
+  // Then every 10 minutes (600000 ms)
+  setInterval(showButtercup, 600);
+</script>
+
 </body>
 </html>
