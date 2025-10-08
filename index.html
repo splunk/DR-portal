@@ -113,11 +113,11 @@ body::after{content:"";position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:
 
   function showButtercup() {
     buttercup.classList.add('show');
-    setTimeout(() => buttercup.classList.remove('show'), 2000); // stays visible 5s
+    setTimeout(() => buttercup.classList.remove('show'), 2000); // stays visible 2s
   }
 
   // Show once shortly after page load
-  setTimeout(showButtercup, 10000);
+  setTimeout(showButtercup, 250000);
 
   // Then every 10 minutes (600000 ms)
   setInterval(showButtercup, 600000);
