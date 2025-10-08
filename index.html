@@ -69,7 +69,7 @@ body::after{content:"";position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:
   pointer-events: none;
 }
 #buttercup.show {
-  bottom: 0px; /* 20% less pop-up (was 20px before) */
+  bottom: -10px; /* 20% less pop-up (was 20px before) */
   animation: wave 1.5s ease-in-out infinite;
 }
 @keyframes wave {
@@ -113,7 +113,7 @@ body::after{content:"";position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:
 
   function showButtercup() {
     buttercup.classList.add('show');
-    setTimeout(() => buttercup.classList.remove('show'), 5000); // stays visible 5s
+    setTimeout(() => buttercup.classList.remove('show'), 2000); // stays visible 5s
   }
 
   // Show once shortly after page load
