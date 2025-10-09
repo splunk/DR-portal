@@ -4,6 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Cisco + Splunk — Digital Resilience</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 :root{ --o:#ffb300; --p:#f72ea7; --v:#7e57c2; }
 
@@ -12,7 +13,7 @@ html,body{height:100%;margin:0}
 body{
   min-height:100%;
   background:url('https://github.com/acugarcr/digital-resilience-portal/blob/main/AdobeStock_190328389.jpeg?raw=true') center/cover fixed no-repeat;
-  font-family:'Splunk Data Sans', system-ui, sans-serif;
+  font-family:'Lexend', system-ui, sans-serif;
   color:#fff; text-align:center;
   padding:40px; display:flex; flex-direction:column;
   position:relative; overflow-x:hidden;
@@ -109,21 +110,21 @@ body::after{content:"";position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:
 </main>
 
 <!-- 🧡 Buttercup Easter Egg -->
-<img id="buttercup" src="https://github.com/acugarcr/digital-resilience-portal/blob/main/buttercup.png?raw=true" alt="Buttercup Easter Egg">
+<img id="buttercup" src="https://github.com/splunk/DR-portal/blob/main/buttercup.png?raw=true" alt="Buttercup Easter Egg">
 
 <script>
   const buttercup = document.getElementById('buttercup');
 
   function showButtercup() {
     buttercup.classList.add('show');
-    setTimeout(() => buttercup.classList.remove('show'), 5000); // stays visible 5s
+    setTimeout(() => buttercup.classList.remove('show'), 2000); // visible for 2 seconds
   }
 
   // Show once shortly after page load
   setTimeout(showButtercup, 10000);
 
-  // Then every 10 minutes (600000 ms)
-  setInterval(showButtercup, 600000);
+  // Then every 13 minutes (780,000 ms)
+  setInterval(showButtercup, 780000);
 </script>
 
 </body>
