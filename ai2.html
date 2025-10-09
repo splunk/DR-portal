@@ -4,17 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Splunk Platform Powered by AI Services + Data</title>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root{
-      --o:#ffb300; /* Splunk orange */
-      --p:#f72ea7; /* Splunk pink */
-      --v:#7e57c2; /* Splunk violet */
+      --o:#ffb300;
+      --p:#f72ea7;
+      --v:#7e57c2;
       --ink:#fff;
       --bg:#0b0b12;
-      --cardGlass: rgba(255,255,255,.03);
-      --cardBorder: rgba(255,255,255,.08);
     }
 
     *{box-sizing:border-box;margin:0;padding:0}
@@ -24,127 +21,237 @@
       font-family:'Lexend',system-ui,sans-serif;color:var(--ink);
       overflow-x:hidden;
     }
+
     body::after{content:"";position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:0}
 
-    .wrap{max-width:1280px;margin:0 auto;padding:44px 32px;text-align:center;position:relative;z-index:1}
+    .wrap{max-width:1280px;margin:0 auto;padding:60px 40px;text-align:center;position:relative;z-index:1}
 
-    .logos{display:flex;justify-content:center;align-items:center;gap:28px;margin-bottom:36px}
+    .logos{display:flex;justify-content:center;align-items:center;gap:36px;margin-bottom:48px}
     .logo-cisco{height:52px;filter:drop-shadow(0 0 8px rgba(0,0,0,.4))}
     .logo-splunk{height:46px;filter:drop-shadow(0 0 8px rgba(0,0,0,.4))}
-    .plus{font-size:40px;font-weight:800;opacity:.9}
+    .plus{font-size:44px;font-weight:800;opacity:.9}
 
-    h1{
-      font-size:clamp(36px,5.2vw,66px);
-      font-weight:800;line-height:1.1;margin-bottom:40px
-    }
-    h1 .grad{
-      background:linear-gradient(90deg,var(--o),var(--p),var(--v));
-      -webkit-background-clip:text;background-clip:text;color:transparent;white-space:nowrap
-    }
+    h1{font-size:clamp(36px,5.4vw,68px);font-weight:800;line-height:1.1;margin-bottom:60px}
+    h1 .grad{background:linear-gradient(90deg,var(--o),var(--p));-webkit-background-clip:text;background-clip:text;color:transparent;white-space:nowrap}
 
     .header-card{
-      display:block;background:#f3f4f8;color:#111;border-radius:16px;position:relative;overflow:hidden;
-      box-shadow:0 8px 26px rgba(0,0,0,.35);padding:28px 36px;
-      width:min(100%,1024px);margin:0 auto 44px auto;text-decoration:none;
-      font-weight:800;font-size:22px;letter-spacing:.2px;
-      transition:transform .25s ease, box-shadow .25s ease, opacity .25s ease;
+      display:block;
+      background:#f3f4f8;
+      color:#111;
+      border-radius:16px;
+      position:relative;
+      overflow:hidden;
+      box-shadow:0 8px 26px rgba(0,0,0,.35);
+      padding:40px 44px;
+      width:calc(95% + 45px);
+      font-weight:800;
+      font-size:24px;
+      letter-spacing:.2px;
+      margin:0 auto 60px auto;
+      text-decoration:none;
+      transition:transform .3s ease, box-shadow .3s ease;
     }
     .header-card::before{
-      content:"";position:absolute;inset:0;border-radius:16px;padding:3px;
-      background:linear-gradient(90deg,var(--o),var(--p),var(--v));
+      content:"";
+      position:absolute;
+      inset:0;
+      border-radius:16px;
+      padding:4px;
+      background:linear-gradient(90deg,var(--o),var(--p));
       -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
-      -webkit-mask-composite:xor;mask-composite:exclude;opacity:.9;pointer-events:none;
+      -webkit-mask-composite:xor;
+      mask-composite:exclude;
+      opacity:.85;
+      pointer-events:none;
     }
-    .header-card:hover{transform:translateY(-3px);box-shadow:0 0 22px rgba(255,179,0,.28),0 0 36px rgba(247,46,167,.22)}
-    .header-card:focus-visible{outline:3px solid #fff;outline-offset:3px}
+    .header-card:hover{
+      transform:translateY(-4px);
+      box-shadow:0 0 25px rgba(255,179,0,.3),0 0 40px rgba(247,46,167,.25)
+    }
+
+    /* ===== New “Detect | Investigate | Respond | Prevent” section ===== */
+    .quad-card{
+      background:#fff;
+      color:#111;
+      border-radius:16px;
+      box-shadow:
+        0 2px 0 rgba(40,20,80,.4) inset,  /* subtle inner edge */
+        0 12px 28px rgba(0,0,0,.35);      /* depth */
+      padding:28px 22px 26px;
+      width:calc(95% + 45px);
+      margin: -24px auto 56px;           /* sits close under AI Assistants */
+      position:relative;
+      overflow:hidden;
+    }
+    /* thin outer stroke like your mock */
+    .quad-card::after{
+      content:"";
+      position:absolute;inset:0;border-radius:16px;
+      box-shadow:0 0 0 2px rgba(25,5,60,.6);
+      pointer-events:none;
+    }
+    .quad-top{
+      display:flex;justify-content:center;align-items:center;
+      gap:28px;font-weight:700;font-size:clamp(18px,2.2vw,22px);
+      margin-bottom:18px;
+    }
+    .quad-top .bar{
+      width:2px;height:26px;background:#111;border-radius:2px;opacity:.95;
+    }
+
+    .quad-actions{
+      display:flex;justify-content:center;gap:22px;flex-wrap:wrap;
+      margin-top:8px;
+    }
+    .pill{
+      --stroke:#ccc;
+      display:inline-flex;align-items:center;gap:12px;
+      padding:16px 28px;border-radius:14px;
+      border:2px solid var(--stroke);
+      font-weight:700;font-size:clamp(18px,2vw,22px);
+      background:#fff;
+      color:#222;text-decoration:none;
+      position:relative;
+      min-width:240px;justify-content:center;
+    }
+    .pill .ico{width:28px;height:28px;display:inline-block}
+    /* corner accent */
+    .pill::after{
+      content:"";
+      position:absolute;right:10px;bottom:8px;
+      width:26px;height:12px;border:3px solid var(--stroke);
+      border-left:none;border-top:none;border-radius:0 12px 12px 0;
+    }
+    /* specific brand strokes */
+    .pill.analytics{ --stroke: var(--o); }
+    .pill.automation{ --stroke: var(--p); }
+    /* hover lift (subtle) */
+    .pill:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.12)}
+    /* ================================================================== */
 
     .blocks{
-      display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-      gap:32px;align-items:start;justify-items:center;margin-top:10px
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:40px;
+      align-items:start;
+      justify-items:center;
+      margin-top:20px;
     }
 
     .block{
-      width:100%;max-width:340px;position:relative;border-radius:14px;overflow:hidden;
-      background:var(--cardGlass);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
-      box-shadow:inset 0 0 0 1px var(--cardBorder);
-      padding:32px 20px 20px;font-size:19px;font-weight:800;
-      transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
-      text-decoration:none;color:#fff;display:flex;flex-direction:column;align-items:center;gap:16px;min-height:180px
+      width:100%;
+      max-width:340px;
+      position:relative;
+      border-radius:14px;
+      overflow:hidden;
+      background:rgba(255,255,255,.03);
+      backdrop-filter:blur(10px);
+      -webkit-backdrop-filter:blur(10px);
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.05);
+      padding:40px 20px 20px;
+      font-size:20px;
+      font-weight:700;
+      transition:all .3s ease;
+      text-decoration:none;
+      color:#fff;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
     }
-    .block img{width:76px;height:76px;object-fit:contain;margin-bottom:4px}
+    .block img{
+      width:80px;
+      height:80px;
+      object-fit:contain;
+      margin-bottom:10px;
+    }
+    .block:hover{
+      transform:translateY(-4px);
+      box-shadow:0 0 25px rgba(255,179,0,.3),0 0 40px rgba(247,46,167,.25)
+    }
     .block::before{
-      content:"";position:absolute;inset:0;border-radius:14px;padding:3px;
-      background:linear-gradient(90deg,var(--o),var(--p),var(--v));
+      content:"";
+      position:absolute;
+      inset:0;
+      border-radius:14px;
+      padding:4px;
+      background:linear-gradient(90deg,var(--o),var(--p));
       -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
-      -webkit-mask-composite:xor;mask-composite:exclude;opacity:.9;pointer-events:none
+      -webkit-mask-composite:xor;
+      mask-composite:exclude;
+      opacity:.85;
+      pointer-events:none;
     }
-    .block:hover{transform:translateY(-3px);box-shadow:0 0 22px rgba(255,179,0,.28),0 0 36px rgba(247,46,167,.22)}
-    .block:focus-visible{outline:3px solid #fff;outline-offset:3px}
 
     .back{
-      display:inline-flex;align-items:center;gap:10px;margin:56px auto 0;padding:12px 18px;border-radius:10px;
-      background:rgba(255,255,255,.08);color:#fff;text-decoration:none;font-weight:800;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      margin:70px auto 0;
+      padding:12px 18px;
+      border-radius:10px;
+      background:rgba(255,255,255,.08);
+      color:#fff;
+      text-decoration:none;
+      font-weight:800;
       border:1px solid rgba(255,255,255,.2);
       box-shadow:inset 0 0 0 1px rgba(255,255,255,.06), 0 6px 18px rgba(0,0,0,.45);
-      transition:background .25s ease, transform .25s ease
+      transition:background .3s ease;
     }
-    .back:hover{background:rgba(255,255,255,.12);transform:translateY(-2px)}
-    .back:focus-visible{outline:3px solid #fff;outline-offset:3px}
-
-    @media (max-width:520px){
-      .logos{gap:18px}
-      .logo-cisco{height:44px}
-      .logo-splunk{height:40px}
-      .plus{font-size:32px}
-      .header-card{font-size:20px;padding:22px}
-    }
-
-    @media (prefers-reduced-motion: reduce){
-      .header-card,.block,.back{transition:none}
-    }
+    .back:hover{background:rgba(255,255,255,.12)}
   </style>
 </head>
 <body>
   <div class="wrap">
     <div class="logos">
-      <img class="logo-cisco" alt="Cisco" decoding="async"
-           src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Cisco_logo_blue_2016.svg/2560px-Cisco_logo_blue_2016.svg.png" loading="lazy">
-      <span class="plus" aria-hidden="true">+</span>
-      <img class="logo-splunk" alt="Splunk" decoding="async"
-           src="https://www.splunk.com/content/dam/splunk2/en_us/images/events/mediakit/splunk-corp-logo-w-rgb.png" loading="lazy">
+      <img class="logo-cisco" alt="Cisco" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Cisco_logo_blue_2016.svg/2560px-Cisco_logo_blue_2016.svg.png" loading="lazy">
+      <span class="plus">+</span>
+      <img class="logo-splunk" alt="Splunk" src="https://www.splunk.com/content/dam/splunk2/en_us/images/events/mediakit/splunk-corp-logo-w-rgb.png" loading="lazy">
     </div>
 
     <h1>Splunk Platform Powered by <span class="grad">AI&nbsp;services&nbsp;+&nbsp;data</span></h1>
 
-    <!-- Opens in same tab -->
-    <a href="https://acugarcr.github.io/digital-resilience-portal/AIassistants.html" class="header-card" aria-label="Open AI Assistants">
-      AI Assistants
-    </a>
+    <a href="https://acugarcr.github.io/digital-resilience-portal/AIassistants.html" class="header-card">AI Assistants</a>
 
-    <section class="blocks" aria-label="AI Capabilities">
-      <!-- All tiles open same tab (no target=_blank) -->
-      <a href="https://cisco-full-stack-observability.navattic.com/splunk-ai?g=cmed5q1ho000004jmepyw3so3&s=0" class="block" aria-label="Machine learning">
-        <img src="https://github.com/acugarcr/digital-resilience-portal/blob/main/icon_machine-learning_color-w.png?raw=true" alt="" loading="lazy" decoding="async">
-        Machine learning
-      </a>
+    <!-- NEW: Static “Detect | Investigate | Respond | Prevent” card -->
+    <section class="quad-card" aria-label="Lifecycle">
+      <div class="quad-top">
+        <span>Detect</span><span class="bar" aria-hidden="true"></span>
+        <span>Investigate</span><span class="bar" aria-hidden="true"></span>
+        <span>Respond</span><span class="bar" aria-hidden="true"></span>
+        <span>Prevent</span>
+      </div>
+      <div class="quad-actions">
+        <span class="pill analytics" role="button" aria-label="Analytics (static)">
+          <!-- simple chart icon -->
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="14" rx="2" ry="2"></rect>
+            <path d="M6 13l3-4 3 2 3-5 3 4" />
+          </svg>
+          Analytics
+        </span>
+        <span class="pill automation" role="button" aria-label="Automation (static)">
+          <!-- gear/loop icon -->
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 8.5a3.5 3.5 0 1 1 0 7 3.5 3.5 0 0 1 0-7z"/>
+            <path d="M19 8l2 1-1.2 2.1M5 16l-2-1 1.2-2.1"/>
+            <path d="M7 4l1.2 2.1M17 20l-1.2-2.1"/>
+          </svg>
+          Automation
+        </span>
+      </div>
+    </section>
+    <!-- END NEW -->
 
-      <a href="https://cisco-full-stack-observability.navattic.com/splunk-ai?g=cmek6v9th000004ld03ee3vdm&s=0" class="block" aria-label="Deep learning">
-        <img src="https://github.com/acugarcr/digital-resilience-portal/blob/main/icon_deep-learning_color-w.png?raw=true" alt="" loading="lazy" decoding="async">
-        Deep learning
-      </a>
-
-      <a href="https://cisco-full-stack-observability.navattic.com/llm-integrations-start?utm_source=navattic" class="block" aria-label="Generative AI">
-        <img src="https://github.com/acugarcr/digital-resilience-portal/blob/main/icon_generative-ai_color-w.svg?raw=true" alt="" loading="lazy" decoding="async">
-        Generative AI
-      </a>
-
-      <a href="https://cisco-full-stack-observability.navattic.com/splunk-ai?g=cmed6dekb000004ky0spihzf9&s=0" class="block" aria-label="Agentic AI">
-        <img src="https://github.com/acugarcr/digital-resilience-portal/blob/main/icon_splunk-ai_color-w.png?raw=true" alt="" loading="lazy" decoding="async">
-        Agentic AI
-      </a>
+    <section class="blocks">
+      <a href="https://cisco-full-stack-observability.navattic.com/splunk-ai?g=cmed5q1ho000004jmepyw3so3&s=0" class="block"><img src="https://github.com/acugarcr/digital-resilience-portal/blob/main/icon_machine-learning_color-w.png?raw=true" alt="Machine Learning Icon">Machine learning</a>
+      <a href="https://cisco-full-stack-observability.navattic.com/splunk-ai?g=cmek6v9th000004ld03ee3vdm&s=0" class="block"><img src="https://github.com/acugarcr/digital-resilience-portal/blob/main/icon_deep-learning_color-w.png?raw=true" alt="Deep Learning Icon">Deep learning</a>
+      <a href="https://cisco-full-stack-observability.navattic.com/llm-integrations-start?utm_source=navattic" class="block"><img src="https://github.com/acugarcr/digital-resilience-portal/blob/main/icon_generative-ai_color-w.svg?raw=true" alt="Generative AI Icon">Generative AI</a>
+      <a href="https://cisco-full-stack-observability.navattic.com/splunk-ai?g=cmed6dekb000004ky0spihzf9&s=0" class="block"><img src="https://github.com/acugarcr/digital-resilience-portal/blob/main/icon_splunk-ai_color-w.png?raw=true" alt="Agentic AI Icon">Agentic AI</a>
     </section>
 
-    <a class="back" href="index.html" aria-label="Back to Portal">← Back to Portal</a>
+    <a class="back" href="index.html">← Back to Portfolio</a>
   </div>
 </body>
 </html>
