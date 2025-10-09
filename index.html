@@ -27,7 +27,7 @@ body::after{content:"";position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:
 .subtitle{
   font-size:68px;
   font-weight:700;
-  margin:10px 0 -5px; /* reduced space below by 20px */
+  margin:10px 0 -10px; /* reduced space below by 20px */
 }
 
 .blocks{display:flex;flex-direction:column;gap:30px;align-items:center;position:relative;z-index:1}
@@ -121,7 +121,7 @@ body::after{content:"";position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:
   }
 
   // Show once shortly after page load
-  setTimeout(showButtercup, 10000);
+  setTimeout(showButtercup, 150000);
 
   // Then every 13 minutes (780,000 ms)
   setInterval(showButtercup, 780000);
