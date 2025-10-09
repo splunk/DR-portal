@@ -87,9 +87,16 @@
     }
     .pill::before{
       content:"";position:absolute;inset:0;border-radius:14px;padding:4px;
-      background:linear-gradient(135deg,var(--y),var(--o),var(--p));
       -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
       -webkit-mask-composite:xor;mask-composite:exclude;opacity:.9;pointer-events:none;
+    }
+    /* yellow gradient for analytics */
+    .pill.analytics::before{
+      background:linear-gradient(135deg,#ffab0f,#ff712b);
+    }
+    /* pink gradient for automation */
+    .pill.automation::before{
+      background:linear-gradient(135deg,#ff0f7b,#f72ea7);
     }
     .pill:hover{transform:translateY(-3px);box-shadow:0 5px 14px rgba(0,0,0,.15);}
     .pill img{width:28px;height:28px;object-fit:contain}
@@ -101,7 +108,7 @@
       gap:30px;
       align-items:start;
       justify-items:center;
-      margin-top:35px; /* slightly reduced spacing */
+      margin-top:35px; /* consistent spacing */
     }
     .block{
       width:100%;max-width:320px;position:relative;border-radius:14px;overflow:hidden;
