@@ -11,7 +11,6 @@
       --p:#f72ea7;
       --v:#7e57c2;
       --ink:#fff;
-      --bg:#0b0b12;
     }
 
     *{box-sizing:border-box;margin:0;padding:0}
@@ -21,9 +20,7 @@
       font-family:'Lexend',system-ui,sans-serif;color:var(--ink);
       overflow-x:hidden;
     }
-
     body::after{content:"";position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:0}
-
     .wrap{max-width:1280px;margin:0 auto;padding:60px 40px;text-align:center;position:relative;z-index:1}
 
     .logos{display:flex;justify-content:center;align-items:center;gap:36px;margin-bottom:48px}
@@ -69,66 +66,95 @@
       box-shadow:0 0 25px rgba(255,179,0,.3),0 0 40px rgba(247,46,167,.25)
     }
 
-    /* ===== New “Detect | Investigate | Respond | Prevent” section ===== */
+    /* ==== New Section ==== */
     .quad-card{
       background:#fff;
       color:#111;
       border-radius:16px;
-      box-shadow:
-        0 2px 0 rgba(40,20,80,.4) inset,  /* subtle inner edge */
-        0 12px 28px rgba(0,0,0,.35);      /* depth */
-      padding:28px 22px 26px;
-      width:calc(95% + 45px);
-      margin: -24px auto 56px;           /* sits close under AI Assistants */
+      box-shadow:0 8px 26px rgba(0,0,0,.35);
       position:relative;
       overflow:hidden;
+      width:calc(95% + 45px);
+      margin:-20px auto 60px auto;
+      padding:32px 24px 38px;
     }
-    /* thin outer stroke like your mock */
-    .quad-card::after{
+    .quad-card::before{
       content:"";
-      position:absolute;inset:0;border-radius:16px;
-      box-shadow:0 0 0 2px rgba(25,5,60,.6);
+      position:absolute;
+      inset:0;
+      border-radius:16px;
+      padding:4px;
+      background:linear-gradient(90deg,var(--o),var(--p));
+      -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+      -webkit-mask-composite:xor;
+      mask-composite:exclude;
+      opacity:.9;
       pointer-events:none;
     }
+
     .quad-top{
-      display:flex;justify-content:center;align-items:center;
-      gap:28px;font-weight:700;font-size:clamp(18px,2.2vw,22px);
-      margin-bottom:18px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      gap:28px;
+      font-weight:700;
+      font-size:clamp(18px,2vw,22px);
+      margin-bottom:20px;
     }
     .quad-top .bar{
-      width:2px;height:26px;background:#111;border-radius:2px;opacity:.95;
+      width:2px;height:26px;background:#111;border-radius:2px;opacity:.9;
     }
 
     .quad-actions{
-      display:flex;justify-content:center;gap:22px;flex-wrap:wrap;
-      margin-top:8px;
+      display:flex;justify-content:center;gap:24px;flex-wrap:wrap;margin-top:10px;
     }
-    .pill{
-      --stroke:#ccc;
-      display:inline-flex;align-items:center;gap:12px;
-      padding:16px 28px;border-radius:14px;
-      border:2px solid var(--stroke);
-      font-weight:700;font-size:clamp(18px,2vw,22px);
-      background:#fff;
-      color:#222;text-decoration:none;
-      position:relative;
-      min-width:240px;justify-content:center;
-    }
-    .pill .ico{width:28px;height:28px;display:inline-block}
-    /* corner accent */
-    .pill::after{
-      content:"";
-      position:absolute;right:10px;bottom:8px;
-      width:26px;height:12px;border:3px solid var(--stroke);
-      border-left:none;border-top:none;border-radius:0 12px 12px 0;
-    }
-    /* specific brand strokes */
-    .pill.analytics{ --stroke: var(--o); }
-    .pill.automation{ --stroke: var(--p); }
-    /* hover lift (subtle) */
-    .pill:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.12)}
-    /* ================================================================== */
 
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:12px;
+      padding:16px 28px;
+      border-radius:14px;
+      background:#fff;
+      color:#111;
+      font-weight:700;
+      font-size:clamp(18px,2vw,22px);
+      position:relative;
+      text-decoration:none;
+      min-width:240px;
+      justify-content:center;
+      overflow:hidden;
+      box-shadow:0 4px 12px rgba(0,0,0,.08);
+      transition:transform .3s ease, box-shadow .3s ease;
+    }
+    .pill::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      border-radius:14px;
+      padding:3px;
+    }
+    .pill.analytics::before{
+      background:linear-gradient(90deg,var(--o),var(--p));
+      -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+      -webkit-mask-composite:xor;
+      mask-composite:exclude;
+      opacity:.9;
+    }
+    .pill.automation::before{
+      background:linear-gradient(90deg,var(--p),var(--v));
+      -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+      -webkit-mask-composite:xor;
+      mask-composite:exclude;
+      opacity:.9;
+    }
+    .pill:hover{
+      transform:translateY(-3px);
+      box-shadow:0 6px 16px rgba(0,0,0,.15);
+    }
+    .pill img{width:32px;height:32px;object-fit:contain}
+
+    /* ==== Blocks (unchanged) ==== */
     .blocks{
       display:grid;
       grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
@@ -137,7 +163,6 @@
       justify-items:center;
       margin-top:20px;
     }
-
     .block{
       width:100%;
       max-width:340px;
@@ -160,12 +185,7 @@
       justify-content:space-between;
       gap:20px;
     }
-    .block img{
-      width:80px;
-      height:80px;
-      object-fit:contain;
-      margin-bottom:10px;
-    }
+    .block img{width:80px;height:80px;object-fit:contain;margin-bottom:10px}
     .block:hover{
       transform:translateY(-4px);
       box-shadow:0 0 25px rgba(255,179,0,.3),0 0 40px rgba(247,46,167,.25)
@@ -214,7 +234,7 @@
 
     <a href="https://acugarcr.github.io/digital-resilience-portal/AIassistants.html" class="header-card">AI Assistants</a>
 
-    <!-- NEW: Static “Detect | Investigate | Respond | Prevent” card -->
+    <!-- New Static Section -->
     <section class="quad-card" aria-label="Lifecycle">
       <div class="quad-top">
         <span>Detect</span><span class="bar" aria-hidden="true"></span>
@@ -222,27 +242,18 @@
         <span>Respond</span><span class="bar" aria-hidden="true"></span>
         <span>Prevent</span>
       </div>
+
       <div class="quad-actions">
-        <span class="pill analytics" role="button" aria-label="Analytics (static)">
-          <!-- simple chart icon -->
-          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <rect x="3" y="3" width="18" height="14" rx="2" ry="2"></rect>
-            <path d="M6 13l3-4 3 2 3-5 3 4" />
-          </svg>
+        <span class="pill analytics">
+          <img src="https://github.com/splunk/DR-portal/blob/main/icon_monitor-complex-financial-business-processes_color-k.png?raw=true" alt="Analytics Icon">
           Analytics
         </span>
-        <span class="pill automation" role="button" aria-label="Automation (static)">
-          <!-- gear/loop icon -->
-          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M12 8.5a3.5 3.5 0 1 1 0 7 3.5 3.5 0 0 1 0-7z"/>
-            <path d="M19 8l2 1-1.2 2.1M5 16l-2-1 1.2-2.1"/>
-            <path d="M7 4l1.2 2.1M17 20l-1.2-2.1"/>
-          </svg>
+        <span class="pill automation">
+          <img src="https://github.com/splunk/DR-portal/blob/main/icon_it-operations-management_color-k.png?raw=true" alt="Automation Icon">
           Automation
         </span>
       </div>
     </section>
-    <!-- END NEW -->
 
     <section class="blocks">
       <a href="https://cisco-full-stack-observability.navattic.com/splunk-ai?g=cmed5q1ho000004jmepyw3so3&s=0" class="block"><img src="https://github.com/acugarcr/digital-resilience-portal/blob/main/icon_machine-learning_color-w.png?raw=true" alt="Machine Learning Icon">Machine learning</a>
