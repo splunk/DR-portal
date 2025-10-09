@@ -31,23 +31,24 @@
     h1{font-size:clamp(36px,5.4vw,68px);font-weight:800;line-height:1.1;margin-bottom:40px}
     h1 .grad{background:linear-gradient(90deg,var(--o),var(--p));-webkit-background-clip:text;background-clip:text;color:transparent;white-space:nowrap}
 
-    /* === AI Assistants card === */
+    /* === AI Assistants card (centered + less tall) === */
     .header-card{
-      display:block;
+      display:flex;align-items:center;justify-content:center;
       background:#f3f4f8;
       color:#111;
       border-radius:16px;
       position:relative;
       overflow:hidden;
       box-shadow:0 6px 20px rgba(0,0,0,.3);
-      padding:28px 36px;
-      width:calc(95% + 55px); /* +10px wider */
+      padding:18px 36px; /* reduced height */
+      width:calc(95% + 55px);
       font-weight:800;
       font-size:27px;
       letter-spacing:.2px;
       margin:0 auto 35px auto;
       text-decoration:none;
       transition:transform .3s ease, box-shadow .3s ease;
+      height:auto;min-height:70px;
     }
     .header-card::before{
       content:"";
@@ -75,7 +76,7 @@
       box-shadow:0 6px 20px rgba(0,0,0,.3);
       position:relative;
       overflow:hidden;
-      width:calc(95% + 55px); /* +10px wider */
+      width:calc(95% + 55px);
       margin:-5px auto 45px auto;
       padding:24px 22px 28px;
     }
@@ -120,7 +121,7 @@
       font-size:clamp(16px,2vw,20px);
       position:relative;
       text-decoration:none;
-      min-width:400px; /* 2x wider */
+      min-width:400px;
       justify-content:center;
       overflow:hidden;
       box-shadow:0 3px 10px rgba(0,0,0,.08);
@@ -131,7 +132,7 @@
       position:absolute;
       inset:0;
       border-radius:14px;
-      padding:3px;
+      padding:4px; /* match all other borders */
     }
     .pill.analytics::before{
       background:linear-gradient(90deg,#ffb300,#ffd54f);
@@ -186,13 +187,12 @@
       transform:translateY(-4px);
       box-shadow:0 0 25px rgba(255,179,0,.3),0 0 40px rgba(247,46,167,.25)
     }
-    /* Thicker gradient border to match top */
     .block::before{
       content:"";
       position:absolute;
       inset:0;
       border-radius:14px;
-      padding:4px; /* was 3px → thicker */
+      padding:4px; /* consistent border width */
       background:linear-gradient(90deg,var(--o),var(--p));
       -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
       -webkit-mask-composite:xor;
