@@ -7,9 +7,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root{
-      --o:#ffb300;
-      --p:#f72ea7;
-      --v:#7e57c2;
+      --y:#ffab0f;
+      --o:#ff712b;
+      --p:#ff0f7b;
       --ink:#fff;
     }
 
@@ -29,7 +29,10 @@
     .plus{font-size:44px;font-weight:800;opacity:.9}
 
     h1{font-size:clamp(36px,5.4vw,68px);font-weight:800;line-height:1.1;margin-bottom:40px}
-    h1 .grad{background:linear-gradient(90deg,var(--o),var(--p));-webkit-background-clip:text;background-clip:text;color:transparent;white-space:nowrap}
+    h1 .grad{
+      background:linear-gradient(135deg,var(--y),var(--o),var(--p));
+      -webkit-background-clip:text;background-clip:text;color:transparent;white-space:nowrap;
+    }
 
     /* === AI Assistants card === */
     .header-card{
@@ -43,13 +46,13 @@
     }
     .header-card::before{
       content:"";position:absolute;inset:0;border-radius:16px;padding:4px;
-      background:linear-gradient(90deg,var(--o),var(--p),var(--v));
+      background:linear-gradient(135deg,var(--y),var(--o),var(--p));
       -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
       -webkit-mask-composite:xor;mask-composite:exclude;opacity:.9;pointer-events:none;
     }
     .header-card:hover{
       transform:translateY(-4px);
-      box-shadow:0 0 25px rgba(255,179,0,.3),0 0 40px rgba(247,46,167,.25)
+      box-shadow:0 0 25px rgba(255,171,15,.3),0 0 40px rgba(255,15,123,.25)
     }
 
     /* === Quad section === */
@@ -60,7 +63,7 @@
     }
     .quad-card::before{
       content:"";position:absolute;inset:0;border-radius:16px;padding:4px;
-      background:linear-gradient(90deg,var(--o),var(--p),var(--v));
+      background:linear-gradient(135deg,var(--y),var(--o),var(--p));
       -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
       -webkit-mask-composite:xor;mask-composite:exclude;opacity:.9;pointer-events:none;
     }
@@ -84,14 +87,9 @@
     }
     .pill::before{
       content:"";position:absolute;inset:0;border-radius:14px;padding:4px;
+      background:linear-gradient(135deg,var(--y),var(--o),var(--p));
       -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
       -webkit-mask-composite:xor;mask-composite:exclude;opacity:.9;pointer-events:none;
-    }
-    .pill.analytics::before{
-      background:linear-gradient(90deg,#ffb300,#ffd54f);
-    }
-    .pill.automation::before{
-      background:linear-gradient(90deg,#ff80c8,var(--p));
     }
     .pill:hover{transform:translateY(-3px);box-shadow:0 5px 14px rgba(0,0,0,.15);}
     .pill img{width:28px;height:28px;object-fit:contain}
@@ -103,7 +101,7 @@
       gap:30px;
       align-items:start;
       justify-items:center;
-      margin-top:35px; /* reduced by 10px */
+      margin-top:35px; /* slightly reduced spacing */
     }
     .block{
       width:100%;max-width:320px;position:relative;border-radius:14px;overflow:hidden;
@@ -113,10 +111,10 @@
       text-decoration:none;color:#fff;display:flex;flex-direction:column;align-items:center;gap:14px;min-height:150px;
     }
     .block img{width:68px;height:68px;object-fit:contain;margin-bottom:6px}
-    .block:hover{transform:translateY(-4px);box-shadow:0 0 25px rgba(255,179,0,.3),0 0 40px rgba(247,46,167,.25)}
+    .block:hover{transform:translateY(-4px);box-shadow:0 0 25px rgba(255,171,15,.3),0 0 40px rgba(255,15,123,.25)}
     .block::before{
       content:"";position:absolute;inset:0;border-radius:14px;padding:4px;
-      background:linear-gradient(90deg,var(--o),var(--p),var(--v));
+      background:linear-gradient(135deg,var(--y),var(--o),var(--p));
       -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
       -webkit-mask-composite:xor;mask-composite:exclude;opacity:.9;pointer-events:none;
     }
