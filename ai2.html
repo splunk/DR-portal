@@ -23,7 +23,6 @@
     body::after{content:"";position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:0}
     .wrap{max-width:1280px;margin:0 auto;padding:40px 40px;text-align:center;position:relative;z-index:1}
 
-    /* logos moved up (less margin-bottom) */
     .logos{display:flex;justify-content:center;align-items:center;gap:36px;margin-bottom:30px}
     .logo-cisco{height:52px;filter:drop-shadow(0 0 8px rgba(0,0,0,.4))}
     .logo-splunk{height:46px;filter:drop-shadow(0 0 8px rgba(0,0,0,.4))}
@@ -32,7 +31,7 @@
     h1{font-size:clamp(36px,5.4vw,68px);font-weight:800;line-height:1.1;margin-bottom:40px}
     h1 .grad{background:linear-gradient(90deg,var(--o),var(--p));-webkit-background-clip:text;background-clip:text;color:transparent;white-space:nowrap}
 
-    /* AI Assistants card bigger text (25% larger) */
+    /* === AI Assistants card === */
     .header-card{
       display:block;
       background:#f3f4f8;
@@ -42,9 +41,9 @@
       overflow:hidden;
       box-shadow:0 6px 20px rgba(0,0,0,.3);
       padding:28px 36px;
-      width:calc(95% + 45px);
+      width:calc(95% + 55px); /* +10px wider */
       font-weight:800;
-      font-size:27px; /* was 22px → 25% larger */
+      font-size:27px;
       letter-spacing:.2px;
       margin:0 auto 35px auto;
       text-decoration:none;
@@ -68,7 +67,7 @@
       box-shadow:0 0 25px rgba(255,179,0,.3),0 0 40px rgba(247,46,167,.25)
     }
 
-    /* ==== Compact Detect/Investigate Section ==== */
+    /* === Quad section === */
     .quad-card{
       background:#fff;
       color:#111;
@@ -76,7 +75,7 @@
       box-shadow:0 6px 20px rgba(0,0,0,.3);
       position:relative;
       overflow:hidden;
-      width:calc(95% + 45px);
+      width:calc(95% + 55px); /* +10px wider */
       margin:-5px auto 45px auto;
       padding:24px 22px 28px;
     }
@@ -106,14 +105,14 @@
     .quad-top .bar{width:2px;height:22px;background:#111;border-radius:2px;opacity:.9;}
 
     .quad-actions{
-      display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-top:4px;
+      display:flex;justify-content:center;gap:30px;flex-wrap:wrap;margin-top:4px;
     }
 
     .pill{
       display:inline-flex;
       align-items:center;
       gap:10px;
-      padding:12px 24px;
+      padding:14px 28px;
       border-radius:14px;
       background:#fff;
       color:#111;
@@ -121,7 +120,7 @@
       font-size:clamp(16px,2vw,20px);
       position:relative;
       text-decoration:none;
-      min-width:200px;
+      min-width:400px; /* 2x wider */
       justify-content:center;
       overflow:hidden;
       box-shadow:0 3px 10px rgba(0,0,0,.08);
@@ -134,15 +133,13 @@
       border-radius:14px;
       padding:3px;
     }
-    /* solid yellow for Analytics */
     .pill.analytics::before{
-      background:linear-gradient(90deg,var(--o),#ffd54f);
+      background:linear-gradient(90deg,#ffb300,#ffd54f);
       -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
       -webkit-mask-composite:xor;
       mask-composite:exclude;
       opacity:.9;
     }
-    /* solid pink for Automation */
     .pill.automation::before{
       background:linear-gradient(90deg,#ff80c8,var(--p));
       -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
@@ -153,7 +150,7 @@
     .pill:hover{transform:translateY(-3px);box-shadow:0 5px 14px rgba(0,0,0,.15);}
     .pill img{width:28px;height:28px;object-fit:contain}
 
-    /* ==== AI Blocks ==== */
+    /* === AI blocks (bottom) === */
     .blocks{
       display:grid;
       grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
@@ -189,17 +186,18 @@
       transform:translateY(-4px);
       box-shadow:0 0 25px rgba(255,179,0,.3),0 0 40px rgba(247,46,167,.25)
     }
+    /* Thicker gradient border to match top */
     .block::before{
       content:"";
       position:absolute;
       inset:0;
       border-radius:14px;
-      padding:3px;
+      padding:4px; /* was 3px → thicker */
       background:linear-gradient(90deg,var(--o),var(--p));
       -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
       -webkit-mask-composite:xor;
       mask-composite:exclude;
-      opacity:.85;
+      opacity:.9;
       pointer-events:none;
     }
 
