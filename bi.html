@@ -49,7 +49,7 @@
     .frame{
       width:90%;
       max-width:1200px;
-      height:72vh; /* smaller frame (10% less) */
+      height:72vh;
       margin:0 auto;
       border-radius:16px;
       border:3px solid rgba(255,255,255,.2);
@@ -59,22 +59,33 @@
     }
     iframe{width:100%;height:100%;border:0;}
 
-    /* Back button */
-    .back{
-      display:inline-flex;
-      gap:8px;
-      align-items:center;
-      margin:45px auto 0;
-      padding:10px 16px;
-      border-radius:12px;
-      background:rgba(255,255,255,.06);
+    /* Back arrow (top-left) */
+    .back-arrow{
+      position:fixed;
+      top:22px;
+      left:26px;
+      font-size:34px;
       text-decoration:none;
       color:#fff;
-      font-weight:700;
-      border:1px solid rgba(255,255,255,.12);
-      transition:background .2s ease;
+      z-index:15;
+      opacity:0.85;
+      transition:transform .2s ease, opacity .2s ease;
     }
-    .back:hover{background:rgba(255,255,255,.1)}
+    .back-arrow:hover{
+      transform:translateX(-3px);
+      opacity:1;
+    }
+
+    /* Corner PNG (top-right) */
+    .corner-img{
+      position:fixed;
+      top:20px;
+      right:25px;
+      width:120px;
+      z-index:10;
+      opacity:0.95;
+      pointer-events:none;
+    }
 
     @media(max-width:720px){
       body{padding:24px}
@@ -82,10 +93,17 @@
       .logo-splunk{height:36px}
       .frame{height:64vh}
       h1{margin-bottom:30px;}
+      .corner-img{width:80px;top:15px;right:15px;}
     }
   </style>
 </head>
 <body>
+  <!-- Back arrow top-left -->
+  <a class="back-arrow" href="index.html" aria-label="Back to Portal">←</a>
+
+  <!-- Corner PNG top-right -->
+  <img class="corner-img" src="https://github.com/splunk/DR-portal/blob/main/BIthumb.png?raw=true" alt="Business Intelligence icon">
+
   <div class="wrap" role="main">
     <!-- Logos -->
     <div class="logos" aria-label="Cisco plus Splunk logos">
@@ -106,9 +124,6 @@
         loading="lazy">
       </iframe>
     </div>
-
-    <!-- Back button -->
-    <a class="back" href="index.html" aria-label="Back to Portfolio">← Back to Portfolio</a>
   </div>
 </body>
 </html>
