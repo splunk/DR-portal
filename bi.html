@@ -59,21 +59,29 @@
     }
     iframe{width:100%;height:100%;border:0;}
 
-    /* Back arrow (top-left) */
-    .back-arrow{
+    /* Back button (top-left, same style but only arrow) */
+    .back{
       position:fixed;
       top:22px;
       left:26px;
-      font-size:34px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:44px;
+      height:44px;
+      border-radius:12px;
+      background:rgba(255,255,255,.06);
       text-decoration:none;
       color:#fff;
-      z-index:15;
-      opacity:0.85;
-      transition:transform .2s ease, opacity .2s ease;
+      font-size:26px;
+      font-weight:700;
+      border:1px solid rgba(255,255,255,.12);
+      transition:background .2s ease, transform .2s ease;
+      z-index:20;
     }
-    .back-arrow:hover{
-      transform:translateX(-3px);
-      opacity:1;
+    .back:hover{
+      background:rgba(255,255,255,.1);
+      transform:translateX(-2px);
     }
 
     /* Corner PNG (top-right) */
@@ -81,7 +89,7 @@
       position:fixed;
       top:20px;
       right:25px;
-      width:120px;
+      width:240px; /* doubled */
       z-index:10;
       opacity:0.95;
       pointer-events:none;
@@ -93,13 +101,14 @@
       .logo-splunk{height:36px}
       .frame{height:64vh}
       h1{margin-bottom:30px;}
-      .corner-img{width:80px;top:15px;right:15px;}
+      .corner-img{width:140px;top:15px;right:15px;}
+      .back{width:38px;height:38px;font-size:22px;top:16px;left:18px;}
     }
   </style>
 </head>
 <body>
-  <!-- Back arrow top-left -->
-  <a class="back-arrow" href="index.html" aria-label="Back to Portal">←</a>
+  <!-- Back button (arrow only) -->
+  <a class="back" href="index.html" aria-label="Back to Portal">←</a>
 
   <!-- Corner PNG top-right -->
   <img class="corner-img" src="https://github.com/splunk/DR-portal/blob/main/BIthumb.png?raw=true" alt="Business Intelligence icon">
