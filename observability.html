@@ -15,11 +15,12 @@
       min-height:100%;
       color:var(--text);
       background:url('https://github.com/splunk/DR-portal/blob/main/PortalBG.jpeg?raw=true') center/cover fixed no-repeat;
-      font-family: 'Lexend', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, sans-serif;
+      font-family:'Lexend', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, sans-serif;
       text-align:center;
       padding:40px; position:relative; overflow-x:hidden;
     }
-    body::after{content:"";position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:0}
+    /* ✅ overlay safety so it never blocks clicks */
+    body::after{content:"";position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:0;pointer-events:none}
     .wrap{position:relative;z-index:1;max-width:1600px;margin:0 auto}
 
     .logos{display:flex;justify-content:center;align-items:center;gap:18px;margin-bottom:8px}
@@ -47,8 +48,39 @@
         drop-shadow(0 0 4px var(--v));
     }
 
-    .back{display:inline-flex;gap:8px;align-items:center;margin:50px auto 0;padding:10px 16px;border-radius:12px;background:rgba(255,255,255,.06);text-decoration:none;color:#fff;font-weight:700;border:1px solid rgba(255,255,255,.12)}
-    .back:hover{background:rgba(255,255,255,.1)}
+    /* Fixed back button (top-left, arrow only) */
+    .back{
+      position:fixed;
+      top:22px; left:26px;
+      display:flex; align-items:center; justify-content:center;
+      width:48px; height:48px; border-radius:12px;
+      background:rgba(255,255,255,.06);
+      text-decoration:none; color:#fff; font-size:26px; font-weight:700;
+      border:1px solid rgba(255,255,255,.12);
+      transition:background .2s ease, transform .2s ease;
+      z-index:20;
+    }
+    .back:hover{ background:rgba(255,255,255,.1); transform:translateX(-2px) }
+
+    /* Corner PNG (top-right) */
+    .corner-img{
+      position:fixed;
+      top:20px; right:25px;
+      width:240px; z-index:10; opacity:0.95; pointer-events:none;
+    }
+
+    /* Bottom back button (kept your original, renamed) */
+    .back-bottom{
+      display:inline-flex;gap:8px;align-items:center;margin:50px auto 0;
+      padding:10px 16px;border-radius:12px;background:rgba(255,255,255,.06);
+      text-decoration:none;color:#fff;font-weight:700;border:1px solid rgba(255,255,255,.12)
+    }
+    .back-bottom:hover{background:rgba(255,255,255,.1)}
+
+    /* Focus rings (keyboard a11y) */
+    .back:focus-visible, .shot:focus-visible, .back-bottom:focus-visible{
+      outline:2px solid #fff; outline-offset:3px; box-shadow:0 0 0 3px rgba(255,255,255,.25);
+    }
 
     @media (max-width:1200px){
       .cols{justify-content:center;gap:50px}
@@ -57,6 +89,7 @@
       body{padding:24px}
       .cols{flex-direction:column;align-items:center;gap:40px}
       .shot img{width:100%}
+      .corner-img{width:160px; top:15px; right:18px}
     }
     @media (prefers-reduced-motion: reduce){
       .shot img{transition:none}
@@ -64,6 +97,12 @@
   </style>
 </head>
 <body>
+  <!-- Back button (arrow only) -->
+  <a class="back" href="index.html" aria-label="Back to Portfolio">←</a>
+
+  <!-- Corner PNG top-right (swap the image if you prefer another thumb) -->
+  <img class="corner-img" src="https://github.com/splunk/DR-portal/blob/main/O11ythumb.png?raw=true" alt="Observability corner icon">
+
   <div class="wrap" role="main">
     <!-- Logos row -->
     <div class="logos" aria-label="Cisco plus Splunk logos">
@@ -72,7 +111,7 @@
       <img class="logo-splunk" alt="Splunk" src="https://github.com/splunk/DR-portal/blob/main/Splunklogo.png?raw=true" loading="lazy">
     </div>
 
-    <!-- Title + subtitle (feel free to tweak copy) -->
+    <!-- Title + subtitle -->
     <h1><span class="grad">Splunk</span> Observability</h1>
     <p class="sub">Find, fix, and optimize faster — from frontend to backend with OpenTelemetry and AI.</p>
 
@@ -80,9 +119,7 @@
     <section class="cols" aria-label="Observability showcase">
       <article class="card">
         <h3>Observability Cloud <br>Technical Deep Dive</h3>
-        <!-- TODO: replace href with your Navattic link; o11y-aia is an example from your assistants page -->
         <a class="shot" href="https://cisco-full-stack-observability.navattic.com/sgb0rrj" target="_blank" tabindex="0" aria-label="Observability Cloud Technical Deep Dive">
-          <!-- TODO: replace with your PNG path -->
           <img src="https://github.com/splunk/DR-portal/blob/main/observability.png?raw=true" alt="Observability Cloud Technical Deep Dive">
         </a>
       </article>
@@ -102,7 +139,7 @@
       </article>
     </section>
 
-    <a class="back" href="index.html" aria-label="Back to Portfolio">← Back to Portfolio</a>
+    <a class="back-bottom" href="index.html" aria-label="Back to Portfolio">← Back to Portfolio</a>
   </div>
 
   <script>
