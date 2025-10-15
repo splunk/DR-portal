@@ -15,11 +15,11 @@
       min-height:100%;
       color:var(--text);
       background:url('https://github.com/splunk/DR-portal/blob/main/PortalBG.jpeg?raw=true') center/cover fixed no-repeat;
-      font-family: 'Lexend', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, sans-serif;
-      text-align:center;
-      padding:40px; position:relative; overflow-x:hidden;
+      font-family:'Lexend', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, sans-serif;
+      text-align:center; padding:40px; position:relative; overflow-x:hidden;
     }
-    body::after{content:"";position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:0}
+    /* ✅ overlay safety: behind content and non-click-blocking */
+    body::after{content:"";position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:0;pointer-events:none}
     .wrap{position:relative;z-index:1;max-width:1600px;margin:0 auto}
 
     .logos{display:flex;justify-content:center;align-items:center;gap:18px;margin-bottom:8px}
@@ -32,40 +32,76 @@
     .sub{font-size:clamp(16px,2.4vw,22px);opacity:.95;margin:45px 0 75px}
 
     .cols{display:flex;justify-content:space-between;gap:80px;align-items:flex-start;flex-wrap:wrap}
-
     .card{flex:1;min-width:320px;max-width:480px;display:flex;flex-direction:column;align-items:center;text-align:center}
     .card h3{margin:0 0 20px;font-size:22px;font-weight:800;letter-spacing:.2px;line-height:1.3;text-align:center}
 
-    /* Interactive PNG wrapper (same glow and behavior as AI Assistants) */
+    /* Interactive PNG wrapper */
     .shot{display:inline-block;border-radius:14px;overflow:visible;outline:none;background:none;box-shadow:none}
     .shot img{width:100%;height:auto;display:block;border-radius:14px;transition:transform .35s ease, filter .35s ease;margin:0 auto}
     .shot:hover img, .shot:focus-visible img, .shot.touched img{
       transform:translateY(-2px);
-      filter:
-        drop-shadow(0 0 2px var(--o))
-        drop-shadow(0 0 3px var(--p))
-        drop-shadow(0 0 4px var(--v));
+      filter: drop-shadow(0 0 2px var(--o)) drop-shadow(0 0 3px var(--p)) drop-shadow(0 0 4px var(--v));
     }
 
-    .back{display:inline-flex;gap:8px;align-items:center;margin:50px auto 0;padding:10px 16px;border-radius:12px;background:rgba(255,255,255,.06);text-decoration:none;color:#fff;font-weight:700;border:1px solid rgba(255,255,255,.12)}
-    .back:hover{background:rgba(255,255,255,.1)}
+    /* Fixed back button (top-left, arrow only) */
+    .back{
+      position:fixed; top:22px; left:26px;
+      display:flex; align-items:center; justify-content:center;
+      width:48px; height:48px; border-radius:12px;
+      background:rgba(255,255,255,.06);
+      text-decoration:none; color:#fff; font-size:26px; font-weight:700;
+      border:1px solid rgba(255,255,255,.12);
+      transition:background .2s ease, transform .2s ease;
+      z-index:20;
+    }
+    .back:hover{background:rgba(255,255,255,.1); transform:translateX(-2px)}
+
+    /* Corner PNG (top-right) */
+    .corner-img{
+      position:fixed; top:20px; right:25px; width:240px;
+      z-index:10; opacity:.95; pointer-events:none;
+    }
+
+    /* Bottom back button (your original, renamed) */
+    .back-bottom{
+      display:inline-flex;gap:8px;align-items:center;margin:50px auto 0;
+      padding:10px 16px;border-radius:12px;background:rgba(255,255,255,.06);
+      text-decoration:none;color:#fff;font-weight:700;border:1px solid rgba(255,255,255,.12)
+    }
+    .back-bottom:hover{background:rgba(255,255,255,.1)}
+
+    /* Focus rings (keyboard a11y) */
+    .back:focus-visible, .shot:focus-visible, .back-bottom:focus-visible{
+      outline:2px solid #fff; outline-offset:3px; box-shadow:0 0 0 3px rgba(255,255,255,.25);
+    }
+
+    /* Safe-area for iOS notches */
+    @supports (padding: max(0px)){
+      .back{ top:calc(22px + env(safe-area-inset-top)); left:calc(26px + env(safe-area-inset-left)) }
+      .corner-img{ top:calc(20px + env(safe-area-inset-top)); right:calc(25px + env(safe-area-inset-right)) }
+    }
 
     @media (max-width:1200px){
       .cols{justify-content:center;gap:50px}
     }
-
     @media (max-width:720px){
       body{padding:24px}
       .cols{flex-direction:column;align-items:center;gap:40px}
       .shot img{width:100%}
+      .corner-img{width:160px; top:15px; right:18px}
     }
-
     @media (prefers-reduced-motion: reduce){
       .shot img{transition:none}
     }
   </style>
 </head>
 <body>
+  <!-- Back button (arrow only) -->
+  <a class="back" href="index.html" aria-label="Back to Portfolio">←</a>
+
+  <!-- Corner PNG (swap to another security asset anytime) -->
+  <img class="corner-img" src="https://github.com/splunk/DR-portal/blob/main/secthumb.png?raw=true" alt="Security corner icon">
+
   <div class="wrap" role="main">
     <div class="logos" aria-label="Cisco plus Splunk logos">
       <img class="logo-cisco" alt="Cisco" src="https://github.com/splunk/DR-portal/blob/main/Cisco%20logo%20blue.png?raw=true" loading="lazy">
@@ -99,11 +135,10 @@
       </article>
     </section>
 
-    <a class="back" href="index.html" aria-label="Back to Portfolio">← Back to Portfolio</a>
   </div>
 
   <script>
-    // Touch/keyboard feedback (same as AI Assistants)
+    // Touch/keyboard feedback
     const shots = document.querySelectorAll('.shot');
     shots.forEach(el => {
       let t;
