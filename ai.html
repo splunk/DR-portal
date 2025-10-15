@@ -20,8 +20,15 @@
       font-family:'Lexend',system-ui,sans-serif;color:var(--ink);
       overflow-x:hidden;
     }
-    body::after{content:"";position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:0}
-    .wrap{max-width:1280px;margin:0 auto;padding:40px;text-align:center;position:relative;z-index:1}
+    /* ✅ overlay safety: sits behind content and doesn't block clicks */
+    body::after{
+      content:"";position:fixed;inset:0;background:rgba(0,0,0,.55);
+      z-index:0; pointer-events:none;
+    }
+    .wrap{
+      max-width:1280px;margin:0 auto;padding:40px;text-align:center;
+      position:relative;z-index:1;
+    }
 
     .logos{display:flex;justify-content:center;align-items:center;gap:36px;margin-bottom:30px}
     .logo-cisco{height:52px;filter:drop-shadow(0 0 8px rgba(0,0,0,.4))}
@@ -91,13 +98,9 @@
       -webkit-mask-composite:xor;mask-composite:exclude;opacity:.9;pointer-events:none;
     }
     /* yellow gradient for analytics */
-    .pill.analytics::before{
-      background:linear-gradient(135deg,#ffab0f,#ff712b);
-    }
+    .pill.analytics::before{ background:linear-gradient(135deg,#ffab0f,#ff712b); }
     /* pink gradient for automation */
-    .pill.automation::before{
-      background:linear-gradient(135deg,#ff0f7b,#f72ea7);
-    }
+    .pill.automation::before{ background:linear-gradient(135deg,#ff0f7b,#f72ea7); }
     .pill:hover{transform:translateY(-3px);box-shadow:0 5px 14px rgba(0,0,0,.15);}
     .pill img{width:28px;height:28px;object-fit:contain}
 
@@ -126,21 +129,59 @@
       -webkit-mask-composite:xor;mask-composite:exclude;opacity:.9;pointer-events:none;
     }
 
+    /* === Buttons === */
+
+    /* Fixed back button (top-left, arrow only) */
     .back{
+      position:fixed;
+      top:22px; left:26px;
+      display:flex; align-items:center; justify-content:center;
+      width:48px; height:48px; border-radius:12px;
+      background:rgba(255,255,255,.06);
+      text-decoration:none; color:#fff; font-size:26px; font-weight:700;
+      border:1px solid rgba(255,255,255,.12);
+      transition:background .2s ease, transform .2s ease;
+      z-index:20;
+    }
+    .back:hover{ background:rgba(255,255,255,.1); transform:translateX(-2px); }
+
+    /* Bottom back button (kept your original) */
+    .back-bottom{
       display:inline-flex;align-items:center;gap:10px;margin:45px auto 0;
       padding:10px 16px;border-radius:10px;background:rgba(255,255,255,.08);color:#fff;
       text-decoration:none;font-weight:800;border:1px solid rgba(255,255,255,.2);
       box-shadow:inset 0 0 0 1px rgba(255,255,255,.06), 0 5px 14px rgba(0,0,0,.45);
       transition:background .3s ease;
     }
-    .back:hover{background:rgba(255,255,255,.12)}
+    .back-bottom:hover{background:rgba(255,255,255,.12)}
+
+    /* Corner PNG (top-right) */
+    .corner-img{
+      position:fixed;
+      top:20px; right:25px;
+      width:240px;
+      z-index:10; opacity:0.95; pointer-events:none;
+    }
+
+    /* Responsive tweaks */
+    @media (max-width:720px){
+      .wrap{padding:24px}
+      .corner-img{width:160px; top:15px; right:18px}
+    }
   </style>
 </head>
 <body>
+
+  <!-- Back button (arrow only) -->
+  <a class="back" href="index.html" aria-label="Back to Portal">←</a>
+
+  <!-- Corner PNG top-right (swap image if you prefer another icon) -->
+  <img class="corner-img" src="https://github.com/splunk/DR-portal/blob/main/BIthumb.png?raw=true" alt="Corner icon">
+
   <div class="wrap">
-    <div class="logos">
+    <div class="logos" aria-label="Cisco plus Splunk logos">
       <img class="logo-cisco" alt="Cisco" src="https://github.com/splunk/DR-portal/blob/main/Cisco%20logo%20blue.png?raw=true" loading="lazy">
-      <span class="plus">+</span>
+      <span class="plus" aria-hidden="true">+</span>
       <img class="logo-splunk" alt="Splunk" src="https://github.com/splunk/DR-portal/blob/main/Splunklogo.png?raw=true" loading="lazy">
     </div>
 
@@ -168,14 +209,26 @@
       </div>
     </section>
 
-    <section class="blocks">
-      <a href="https://cisco-full-stack-observability.navattic.com/splunk-ai?g=cmed5q1ho000004jmepyw3so3&s=0" class="block"><img src="https://github.com/splunk/DR-portal/blob/main/icon_machine-learning_color-w.png?raw=true" alt="Machine Learning Icon">Machine learning</a>
-      <a href="https://cisco-full-stack-observability.navattic.com/splunk-ai?g=cmek6v9th000004ld03ee3vdm&s=0" class="block"><img src="https://github.com/splunk/DR-portal/blob/main/icon_deep-learning_color-w.png?raw=true" alt="Deep Learning Icon">Deep learning</a>
-      <a href="https://cisco-full-stack-observability.navattic.com/llm-integrations-start?utm_source=navattic" class="block"><img src="https://github.com/splunk/DR-portal/blob/main/icon_generative-ai_color-w.svg?raw=true" alt="Generative AI Icon">Generative AI</a>
-      <a href="https://cisco-full-stack-observability.navattic.com/splunk-ai?g=cmed6dekb000004ky0spihzf9&s=0" class="block"><img src="https://github.com/splunk/DR-portal/blob/main/icon_splunk-ai_color-w.png?raw=true" alt="Agentic AI Icon">Agentic AI</a>
+    <section class="blocks" aria-label="AI building blocks">
+      <a href="https://cisco-full-stack-observability.navattic.com/splunk-ai?g=cmed5q1ho000004jmepyw3so3&s=0" class="block">
+        <img src="https://github.com/splunk/DR-portal/blob/main/icon_machine-learning_color-w.png?raw=true" alt="Machine Learning Icon">
+        Machine learning
+      </a>
+      <a href="https://cisco-full-stack-observability.navattic.com/splunk-ai?g=cmek6v9th000004ld03ee3vdm&s=0" class="block">
+        <img src="https://github.com/splunk/DR-portal/blob/main/icon_deep-learning_color-w.png?raw=true" alt="Deep Learning Icon">
+        Deep learning
+      </a>
+      <a href="https://cisco-full-stack-observability.navattic.com/llm-integrations-start?utm_source=navattic" class="block">
+        <img src="https://github.com/splunk/DR-portal/blob/main/icon_generative-ai_color-w.svg?raw=true" alt="Generative AI Icon">
+        Generative AI
+      </a>
+      <a href="https://cisco-full-stack-observability.navattic.com/splunk-ai?g=cmed6dekb000004ky0spihzf9&s=0" class="block">
+        <img src="https://github.com/splunk/DR-portal/blob/main/icon_splunk-ai_color-w.png?raw=true" alt="Agentic AI Icon">
+        Agentic AI
+      </a>
     </section>
 
-    <a class="back" href="index.html">← Back to Portfolio</a>
+    <a class="back-bottom" href="index.html">← Back to Portfolio</a>
   </div>
 </body>
 </html>
