@@ -46,42 +46,10 @@
         drop-shadow(0 0 3px var(--p))
         drop-shadow(0 0 4px var(--v));
     }
-    /* Back button (top-left, centered arrow) */
-    .back{
-      position:fixed;
-      top:22px;
-      left:26px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      width:48px;
-      height:48px;
-      border-radius:12px;
-      background:rgba(255,255,255,.06);
-      text-decoration:none;
-      color:#fff;
-      font-size:26px;
-      font-weight:700;
-      border:1px solid rgba(255,255,255,.12);
-      transition:background .2s ease, transform .2s ease;
-      z-index:20;
-    }
-    .back:hover{
-      background:rgba(255,255,255,.1);
-      transform:translateX(-2px);
-    }
 
-    /* Corner PNG (top-right) */
-    .corner-img{
-      position:fixed;
-      top:20px;
-      right:25px;
-      width:240px; /* doubled size */
-      z-index:10;
-      opacity:0.95;
-      pointer-events:none;
-    }
-  
+    .back{display:inline-flex;gap:8px;align-items:center;margin:50px auto 0;padding:10px 16px;border-radius:12px;background:rgba(255,255,255,.06);text-decoration:none;color:#fff;font-weight:700;border:1px solid rgba(255,255,255,.12)}
+    .back:hover{background:rgba(255,255,255,.1)}
+
     @media (max-width:1200px){
       .cols{justify-content:center;gap:50px}
     }
@@ -98,12 +66,6 @@
   </style>
 </head>
 <body>
-    <!-- Back button (arrow only) -->
-  <a class="back" href="index.html" aria-label="Back to Portal">←</a>
-
-  <!-- Corner PNG top-right -->
-  <img class="corner-img" src="https://github.com/splunk/DR-portal/blob/main/BIthumb.png?raw=true" alt=
-    
   <div class="wrap" role="main">
     <div class="logos" aria-label="Cisco plus Splunk logos">
       <img class="logo-cisco" alt="Cisco" src="https://github.com/splunk/DR-portal/blob/main/Cisco%20logo%20blue.png?raw=true" loading="lazy">
@@ -135,6 +97,7 @@
       </article>
     </section>
 
+    <a class="back" href="index.html" aria-label="Back to Portfolio">← Back to Portfolio</a>
   </div>
 
   <script>
