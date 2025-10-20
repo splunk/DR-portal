@@ -55,10 +55,10 @@
 
     /* Frame */
     .frame{
-      width:90%;              /* 5% smaller */
+      width:90%;
       max-width:1250px;
-      height:74vh;            /* 5% less tall */
-      margin:-5px auto 0;     /* subtle upward shift */
+      height:74vh;
+      margin:-5px auto 0;
       border-radius:16px;
       border:3px solid rgba(255,255,255,.2);
       box-shadow:0 0 30px rgba(0,0,0,.4);
@@ -68,7 +68,7 @@
     }
     iframe{width:100%;height:100%;border:0;}
 
-    /* Back button (top-left) */
+    /* Back button (uses JS now) */
     .back{
       position:fixed;
       top:22px;
@@ -87,6 +87,7 @@
       border:1px solid rgba(255,255,255,.12);
       transition:background .2s ease, transform .2s ease;
       z-index:20;
+      cursor:pointer;
     }
     .back:hover{
       background:rgba(255,255,255,.1);
@@ -117,11 +118,11 @@
   </style>
 </head>
 <body>
-  <!-- Back button -->
-  <a class="back" href="index.html" aria-label="Back to Portal">←</a>
+  <!-- Back button (now uses JavaScript history) -->
+  <div class="back" role="button" aria-label="Go Back" onclick="window.history.back()">←</div>
 
   <!-- Corner PNG -->
-  <img class="corner-img" src="https://github.com/splunk/DR-portal/blob/main/BIthumb.png?raw=true" alt="Business Intelligence icon">
+  <img class="corner-img" src="https://github.com/splunk/DR-portal/blob/main/secthumb.png?raw=true" alt="Security icon">
 
   <div class="wrap" role="main">
     <!-- Title + Subtitle -->
@@ -138,7 +139,7 @@
       </iframe>
     </div>
 
-    <!-- Logos moved below iframe -->
+    <!-- Logos -->
     <div class="logos" aria-label="Cisco plus Splunk logos">
       <img class="logo-cisco" alt="Cisco" src="https://github.com/splunk/DR-portal/blob/main/Cisco%20logo%20blue.png?raw=true" loading="lazy">
       <span class="plus" aria-hidden="true">+</span>
