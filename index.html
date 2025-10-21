@@ -125,6 +125,14 @@ body::after{content:"";position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:
 
   // Then every 13 minutes (780,000 ms)
   setInterval(showButtercup, 780000);
+
+  // 🧠 Hotkey: Press "B" to summon Buttercup
+  document.addEventListener('keydown', (e) => {
+    if (e.key.toLowerCase() === 'b') {
+      showButtercup();
+    }
+  });
+  
 </script>
 
 </body>
