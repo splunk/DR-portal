@@ -119,7 +119,12 @@
 </head>
 <body>
   <!-- Back button (now uses JavaScript history) -->
-  <div class="back" role="button" aria-label="Go Back" onclick="window.history.back()">←</div>
+  <div class="back" role="button" aria-label="Go Back"
+     onclick="if (document.referrer && document.referrer !== location.href) { 
+                window.history.back(); 
+              } else { 
+                window.location.href='index.html'; 
+              }">
 
   <!-- Corner PNG -->
   <img class="corner-img" src="https://github.com/splunk/DR-portal/blob/main/secthumb2.png?raw=true" alt="Security Intelligence icon">
