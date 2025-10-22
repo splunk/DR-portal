@@ -128,6 +128,19 @@
       }
     }
   </script>
+  </style>
+  <script>
+    // Back behavior that avoids stepping the iframe's history:
+    function smartBack(fallback = 'index.html') {
+      if (document.referrer && document.referrer !== location.href) {
+        // Navigate directly to the referrer URL (top-level), bypassing session history steps
+        window.top.location.replace(document.referrer);
+      } else {
+        // No referrer? Go to your fallback page
+        window.top.location.href = fallback;
+      }
+    }
+  </script>
 </head>
 <body>
 
@@ -152,6 +165,10 @@
       </iframe>
     </div>
   </div>
+  <!-- Optional noscript fallback -->
+  <noscript>
+    <p><a href="index.html">Go back</a></p>
+  </noscript>
   <!-- Optional noscript fallback -->
   <noscript>
     <p><a href="index.html">Go back</a></p>
