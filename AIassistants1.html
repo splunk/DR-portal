@@ -25,12 +25,6 @@
     body::after{content:"";position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:0}
     .wrap{position:relative;z-index:1;max-width:1600px;margin:0 auto}
 
-    /* Logos (below iframe) */
-    .logos{display:flex;justify-content:center;align-items:center;gap:18px;margin-top:28px}
-    .logo-cisco{height:50px;filter:drop-shadow(0 0 8px rgba(0,0,0,.25))}
-    .logo-splunk{height:44px;filter:drop-shadow(0 0 8px rgba(0,0,0,.25))}
-    .plus{font-size:42px;font-weight:800;line-height:1;opacity:.9}
-
     /* Title */
     h1{
       font-size:clamp(36px,6vw,64px);
@@ -68,7 +62,7 @@
     }
     iframe{width:100%;height:100%;border:0;}
 
-    /* Back button (uses JS now) */
+    /* Back button (now uses referrer redirect to avoid iframe history) */
     .back{
       position:fixed;
       top:22px;
@@ -94,7 +88,7 @@
       transform:translateX(-2px);
     }
 
-    /* Corner PNG (top-right) */
+    /* Corner PNG */
     .corner-img{
       position:fixed;
       top:20px;
@@ -107,8 +101,6 @@
 
     @media(max-width:720px){
       body{padding:24px}
-      .logo-cisco{height:40px}
-      .logo-splunk{height:36px}
       .frame{width:90%;height:65vh;margin-top:-6px;}
       h1{margin-bottom:10px;}
       h2{margin-bottom:26px;}
@@ -116,11 +108,23 @@
       .back{width:40px;height:40px;font-size:22px;top:16px;left:18px;}
     }
   </style>
+  <script>
+    // Back behavior that avoids stepping the iframe's history:
+    function smartBack(fallback = 'index.html') {
+      if (document.referrer && document.referrer !== location.href) {
+        // Navigate directly to the referrer URL (top-level), bypassing session history steps
+        window.top.location.replace(document.referrer);
+      } else {
+        // No referrer? Go to your fallback page
+        window.top.location.href = fallback;
+      }
+    }
+  </script>
 </head>
 <body>
-  <!-- Back button (now uses JavaScript history) -->
-  <div class="back" role="button" aria-label="Go Back" onclick="https://splunk.github.io/DR-portal/AIassistants.html">←</div>
-  
+
+  <!-- Back button -->
+  <button class="back" aria-label="Go Back" onclick="smartBack('index.html')">←</button>
 
   <!-- Corner PNG -->
   <img class="corner-img" src="https://github.com/splunk/DR-portal/blob/main/AIthumb2.png?raw=true" alt="Splunk AI icon">
@@ -139,8 +143,11 @@
         loading="lazy">
       </iframe>
     </div>
-
-
   </div>
+
+  <!-- Optional noscript fallback -->
+  <noscript>
+    <p><a href="index.html">Go back</a></p>
+  </noscript>
 </body>
 </html>
