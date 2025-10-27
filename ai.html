@@ -62,7 +62,9 @@
     .header-card::before{
       content:"";position:absolute;inset:0;border-radius:16px;padding:4px;
       background:linear-gradient(135deg,var(--y),var(--o),var(--p));
-      -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
       -webkit-mask-composite:xor;mask-composite:exclude;opacity:.9;pointer-events:none;
     }
     .header-card:hover{
@@ -79,7 +81,8 @@
     .quad-card::before{
       content:"";position:absolute;inset:0;border-radius:16px;padding:4px;
       background:linear-gradient(135deg,var(--y),var(--o),var(--p));
-      -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
       -webkit-mask-composite:xor;mask-composite:exclude;opacity:.9;pointer-events:none;
     }
 
@@ -102,7 +105,8 @@
     }
     .pill::before{
       content:"";position:absolute;inset:0;border-radius:14px;padding:4px;
-      -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
       -webkit-mask-composite:xor;mask-composite:exclude;opacity:.9;pointer-events:none;
     }
     /* yellow gradient for analytics */
@@ -133,7 +137,8 @@
     .block::before{
       content:"";position:absolute;inset:0;border-radius:14px;padding:4px;
       background:linear-gradient(135deg,var(--y),var(--o),var(--p));
-      -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
       -webkit-mask-composite:xor;mask-composite:exclude;opacity:.9;pointer-events:none;
     }
 
@@ -183,7 +188,7 @@
   <!-- Back button (arrow only) -->
   <a class="back" href="index.html" aria-label="Back to Portal">←</a>
 
-  <!-- Corner PNG top-right (swap image if you prefer another icon) -->
+  <!-- Section-specific corner icon -->
   <img class="corner-img" src="Assets/AIthumb2.png" alt="Corner icon">
 
   <div class="wrap">
@@ -194,7 +199,8 @@
 
     <a href="https://splunk.github.io/DR-portal/AIassistants.html" class="header-card">AI Assistants</a>
 
-    <section class="quad-card" aria-label="Lifecycle">
+  <!-- AI lifecycle navigation -->
+  <section class="quad-card" aria-label="Lifecycle">
       <div class="quad-top">
         <span>Detect</span><span class="bar" aria-hidden="true"></span>
         <span>Investigate</span><span class="bar" aria-hidden="true"></span>
@@ -214,7 +220,8 @@
       </div>
     </section>
 
-    <section class="blocks" aria-label="AI building blocks">
+  <!-- Navigation cards for AI demos -->
+  <section class="blocks" aria-label="AI building blocks">
       <a href="https://splunk.github.io/DR-portal/ai1.html" class="block">
         <img src="Assets/icon_machine-learning_color-w.png" alt="Machine Learning Icon">
         Machine learning

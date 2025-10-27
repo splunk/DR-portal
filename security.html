@@ -42,6 +42,9 @@
       transform:translateY(-2px);
       filter: drop-shadow(0 0 2px var(--o)) drop-shadow(0 0 3px var(--p)) drop-shadow(0 0 4px var(--v));
     }
+      .shot {
+        -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+        mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
 
     /* Fixed back button (top-left, arrow only) */
     .back{
@@ -99,7 +102,7 @@
   <!-- Back button (arrow only) -->
   <a class="back" href="index.html" aria-label="Back to Portfolio">←</a>
 
-  <!-- Corner PNG (swap to another security asset anytime) -->
+  <!-- Section-specific corner icon -->
   <img class="corner-img" src="Assets/secthumb2.png" alt="Security corner icon">
 
   <div class="wrap" role="main">
@@ -107,7 +110,8 @@
     <h1><span class="grad">Security</span> Intelligence</h1>
     <p class="sub">See across every signal, secure every surface — powered by Cisco visibility and Splunk analytics.</p>
 
-    <section class="cols" aria-label="Security showcase">
+  <!-- Security showcase cards -->
+  <section class="cols" aria-label="Security showcase">
       <article class="card">
         <h3>SOC of the Future</h3>
         <a class="shot" href="https://splunk.github.io/DR-portal/security1.html" target="_self" tabindex="0" aria-label="Open SOC of the Future demo">
