@@ -93,6 +93,54 @@
       #buttercup{ transition:none }
       #buttercup.show{ animation:none }
     }
+
+    /* --- Mobile-first improvements --- */
+
+/* Typography scales */
+.subtitle { font-size: clamp(28px, 7vw, 68px); }
+
+/* Cards: bigger tap targets, allow tighter grid */
+.card,
+.block { height: 120px; font-size: 24px; } /* if you still use .block */
+
+.row { flex-wrap: wrap; gap: 20px; }
+
+/* iOS: disable fixed background on small screens to stop jitter */
+@media (max-width: 768px) {
+  body {
+    background-attachment: scroll; /* was fixed via shorthand */
+    padding: 24px;
+  }
+  .logos { gap: 12px; margin-bottom: 12px; }
+  .logo-cisco { height: 44px; }
+  .logo-splunk { height: 40px; }
+  .plus { font-size: 36px; }
+
+  /* Cards stack nicer on phones */
+  .row { max-width: 640px; gap: 16px; }
+  .card { flex: 1 1 100%; min-width: 280px; height: 96px; font-size: 22px; }
+
+  /* Softer effects for mobile perf */
+  .card { backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+  .card:hover { transform: none; box-shadow: 0 8px 18px rgba(0,0,0,.35); }
+
+  /* Gradient border thinner on small screens */
+  .card::before { padding: 5px; }
+}
+
+/* Extra-small phones */
+@media (max-width: 420px) {
+  body { padding: 16px; }
+  .card { min-width: 240px; height: 88px; font-size: 20px; }
+  .row { gap: 12px; }
+}
+
+/* Buttercup tweaks on mobile */
+@media (max-width: 768px) {
+  #buttercup { height: 140px; right: 12px; bottom: -160px; }
+  #buttercup.show { bottom: -8px; } /* less intrusive */
+}
+
   </style>
 </head>
 
