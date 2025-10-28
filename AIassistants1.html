@@ -88,15 +88,13 @@
       transform:translateX(-2px);
     }
 
-    /* Corner PNG */
+    /* Corner icon (top-right) */
     .corner-img{
-      position:fixed;
-      top:20px;
-      right:25px;
-      width:240px;
-      z-index:10;
-      opacity:0.95;
-      pointer-events:none;
+      position:fixed; top:20px; right:25px;
+      width:240px; max-width:18vw; height:auto;
+      border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,.5);
+      background:rgba(0,0,0,.04); object-fit:contain;
+      z-index:10; opacity:0.95; pointer-events:none;
     }
 
     @media(max-width:720px){
@@ -104,7 +102,7 @@
       .frame{width:90%;height:65vh;margin-top:-6px;}
       h1{margin-bottom:10px;}
       h2{margin-bottom:26px;}
-      .corner-img{width:140px;top:15px;right:15px;}
+  .corner-img{width:160px; top:15px; right:18px}
       .back{width:40px;height:40px;font-size:22px;top:16px;left:18px;}
     }
   </style>

@@ -61,9 +61,13 @@
     }
     .back:hover{background:rgba(255,255,255,.1); transform:translateX(-2px)}
 
-    /* Corner PNG (top-right) */
+    /* Corner icon (top-right) */
     .corner-img{
-      position:fixed; top:20px; right:25px; width:240px;
+      position:fixed;
+      top:20px; right:25px;
+      width:240px; max-width:18vw; height:auto;
+      border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,.5);
+      background:rgba(0,0,0,.04); object-fit:contain;
       z-index:10; opacity:.95; pointer-events:none;
     }
 
@@ -83,7 +87,7 @@
     /* Safe-area for iOS notches */
     @supports (padding: max(0px)){
       .back{ top:calc(22px + env(safe-area-inset-top)); left:calc(26px + env(safe-area-inset-left)) }
-      .corner-img{ top:calc(20px + env(safe-area-inset-top)); right:calc(25px + env(safe-area-inset-right)) }
+  .corner-img{ top:calc(20px + env(safe-area-inset-top)); right:calc(25px + env(safe-area-inset-right)) }
     }
 
     @media (max-width:1200px){
@@ -93,7 +97,7 @@
       body{padding:24px}
       .cols{flex-direction:column; align-items:center; gap:40px}
       .shot img{width:100%}
-      .corner-img{width:160px; top:15px; right:18px}
+  .corner-img{width:160px; top:15px; right:18px}
     }
     @media (prefers-reduced-motion: reduce){
       .shot img{transition:none}

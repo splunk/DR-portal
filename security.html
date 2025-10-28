@@ -45,8 +45,9 @@
       .shot {
         -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
         mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      }
 
-    /* Fixed back button (top-left, arrow only) */
+      /* Fixed back button (top-left, arrow only) */
     .back{
       position:fixed; top:22px; left:26px;
       display:flex; align-items:center; justify-content:center;
@@ -61,7 +62,9 @@
 
     /* Corner PNG (top-right) */
     .corner-img{
-      position:fixed; top:20px; right:25px; width:240px;
+      position:fixed; top:20px; right:25px; width:240px; height:auto; max-width:18vw;
+      border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,.5);
+      background:rgba(0,0,0,.04); object-fit:contain;
       z-index:10; opacity:.95; pointer-events:none;
     }
 
@@ -102,8 +105,8 @@
   <!-- Back button (arrow only) -->
   <a class="back" href="index.html" aria-label="Back to Portfolio">←</a>
 
-  <!-- Section-specific corner icon -->
-  <img class="corner-img" src="Assets/secthumb2.png" alt="Security corner icon">
+  <!-- Corner icon -->
+  <img class="corner-img" src="Assets/secthumb.png" alt="Security corner icon">
 
   <div class="wrap" role="main">
 
