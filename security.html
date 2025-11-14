@@ -101,6 +101,18 @@
       .shot img{transition:none}
     }
   </style>
+  <script>
+    // Inactivity timeout: redirect to index.html after 10 minutes
+    let inactivityTimer;
+    function resetTimer() {
+      clearTimeout(inactivityTimer);
+      inactivityTimer = setTimeout(() => { window.location.href = 'index.html'; }, 600000); // 10 min
+    }
+    ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart', 'click'].forEach(evt => 
+      document.addEventListener(evt, resetTimer, true)
+    );
+    resetTimer();
+  </script>
 </head>
 <body>
   <!-- Back button -->
