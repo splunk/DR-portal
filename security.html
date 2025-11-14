@@ -57,6 +57,7 @@
       border:1px solid rgba(255,255,255,.12);
       transition:background .2s ease, transform .2s ease;
       z-index:20;
+      cursor:pointer;
     }
     .back:hover{background:rgba(255,255,255,.1); transform:translateX(-2px)}
 
@@ -101,9 +102,19 @@
     }
   </style>
 </head>
+<script>
+  // Back behavior that avoids stepping the iframe's history:
+  function smartBack(fallback = 'index.html') {
+    if (document.referrer && document.referrer !== location.href) {
+      window.top.location.replace(document.referrer);
+    } else {
+      window.top.location.href = fallback;
+    }
+  }
+</script>
 <body>
-  <!-- Back button (arrow only) -->
-  <a class="back" href="index.html" aria-label="Back to Portfolio">←</a>
+  <!-- Back button (JS-driven) -->
+  <button class="back" aria-label="Go Back" onclick="smartBack('index.html')">←</button>
 
   <!-- Corner icon -->
   <img class="corner-img" src="Assets/secthumb.png" alt="Security corner icon">
