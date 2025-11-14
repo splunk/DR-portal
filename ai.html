@@ -185,21 +185,11 @@
       .corner-img{width:160px; top:15px; right:18px}
     }
   </style>
-  <script>
-    // Back behavior that avoids stepping the iframe's history:
-    function smartBack(fallback = 'index.html') {
-      if (document.referrer && document.referrer !== location.href) {
-        window.top.location.replace(document.referrer);
-      } else {
-        window.top.location.href = fallback;
-      }
-    }
-  </script>
 </head>
 <body>
 
-  <!-- Back button (JS-driven) -->
-  <button class="back" aria-label="Go Back" onclick="smartBack('index.html')">←</button>
+  <!-- Back button -->
+  <button class="back" aria-label="Go Back" onclick="history.back()">←</button>
 
   <!-- Section-specific corner icon -->
   <a href="index.html" aria-label="Back to homepage"><img class="corner-img" src="Assets/AIthumb2.png" alt="Corner icon"></a>
