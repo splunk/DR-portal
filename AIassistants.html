@@ -123,12 +123,21 @@
       document.addEventListener(evt, resetTimer, true)
     );
     resetTimer();
+
+    // Back behavior that avoids stepping the iframe's history:
+    function smartBack(fallback = 'index.html') {
+      if (document.referrer && document.referrer !== location.href) {
+        window.top.location.replace(document.referrer);
+      } else {
+        window.top.location.href = fallback;
+      }
+    }
   </script>
 </head>
 
 <body>
   <!-- Back button -->
-  <button class="back" aria-label="Go Back" onclick="history.back()">←</button>
+  <button class="back" aria-label="Go Back" onclick="smartBack('index.html')">←</button>
 
   <!-- Corner PNG top-right -->
   <a href="index.html" aria-label="Back to homepage"><img class="corner-img" src="Assets/AIthumb2.png" alt="Business Intelligence icon"></a>
