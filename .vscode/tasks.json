@@ -1,0 +1,15 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Apply hub back logic fixes",
+			"type": "shell",
+			"command": "echo Applying hub back logic fixes"
+		},
+		{
+			"label": "Patch hub smartBack logic",
+			"type": "shell",
+			"command": "echo Patching smartBack on hub pages"
+		}
+	]
+}

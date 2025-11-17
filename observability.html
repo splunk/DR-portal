@@ -111,10 +111,17 @@
     );
     resetTimer();
 
-    // Back behavior that avoids stepping the iframe's history:
+    // Back behavior that avoids stepping the iframe's history and detail bounce:
     function smartBack(fallback = 'index.html') {
-      if (document.referrer && document.referrer !== location.href) {
-        window.top.location.replace(document.referrer);
+      const ref = document.referrer || '';
+      const detailPages = ['observability1.html','observability2.html','observability3.html'];
+      const cameFromDetail = ref && detailPages.some(p => ref.includes(p));
+      if (!ref || cameFromDetail) {
+        window.top.location.href = fallback;
+        return;
+      }
+      if (ref !== location.href) {
+        window.top.location.replace(ref);
       } else {
         window.top.location.href = fallback;
       }
