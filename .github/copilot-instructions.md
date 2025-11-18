@@ -1,95 +1,50 @@
-# Copilot Instructions for DR-Portal
+# Copilot Instructions for DR‑Portal
 
-## Project Overview
-This is the Digital Resilience (DR) Portal, a web-based hub showcasing Cisco + Splunk integration capabilities across different domains:
-- Business Intelligence
-- Security
-- Observability
-- AI/ML
-- Platform Services
+These notes help AI coding agents work effectively in this repo. Keep changes minimal, consistent, and accessible.
 
-## Architecture
-- Single-page static HTML structure with content sections for each domain
-- Each domain has multiple sub-pages (e.g., ai1.html, ai2.html) for detailed demos
-- Common UI components:
-  - Navigation between pages via cards and back buttons
-  - Consistent header with Cisco + Splunk branding
-  - Corner icons specific to each section
-  - Embedded iframes for interactive demos
-  - Responsive design with mobile breakpoints
+## What This Repo Is
+- Static multi‑page HTML portal (no build system) showcasing Cisco + Splunk demos across: AI/ML, Security, Observability, BI, Platform.
+- Each domain has a hub page (e.g., `ai.html`) and several detail pages (e.g., `ai1.html`..`ai4.html`).
+- Content is self‑contained per page with inline CSS for portability.
 
-## File Structure
-- `index.html` - Main landing page and navigation hub
-- Domain-specific files:
-  - `{domain}.html` - Main page for each domain (e.g., ai.html)
-  - `{domain}[1-4].html` - Sub-pages with specific demos
-- Assets loaded from GitHub repo URLs:
-  - Background: `PortalBG.jpeg`
-  - Logos: `Cisco logo blue.png`, `Splunklogo.png`
-  - Icons: `{domain}thumb2.png`
-  - Demo previews: `*.png`
+## Key Files/Patterns
+- Reused classes: `.wrap`, `.grad`, `.card`, `.shot`, `.frame`, `.corner-img`, `.back`.
+- Color tokens: `--o`, `--p`, `--v`, `--text` (see examples in pages).
+- Back navigation uses a JS helper that avoids stepping iframe history: `smartBack(fallback)` as in `ai1.html`.
+- Inactivity redirect appears on some detail pages (e.g., `ai1.html`): 10‑minute idle → `index.html`.
 
-## Styling Conventions
-- CSS Variables:
-  ```css
-  :root {
-    --o: #ffb300;  /* Orange */
-    --p: #f72ea7;  /* Pink */
-    --v: #7e57c2;  /* Violet */
-    --text: #fff;
-  }
-  ```
-- Font: Lexend (weights: 400, 600, 700, 800)
-- Common components use consistent classes:
-  - `.wrap` - Main content container
-  - `.grad` - Gradient text effect
-  - `.back` - Back navigation button
-  - `.corner-img` - Section-specific corner icon
-  - `.frame` - Demo iframe container
+## Embeds (Navattic)
+- Demos are embedded via `iframe` to `https://cisco-full-stack-observability.navattic.com/...` with:
+  - `allow="fullscreen; autoplay; encrypted-media; clipboard-read; clipboard-write"`,
+  - descriptive `title`,
+  - `loading="lazy"` where appropriate,
+  - wrapped in a `.frame` container (rounded corners + shadow).
+- Pages currently embedding Navattic (17 total): `ai1.html`, `ai2.html`, `ai3.html`, `ai4.html`, `AIassistants1.html`, `AIassistants2.html`, `AIassistants3.html`, `bi.html`, `observability1.html`, `observability2.html`, `observability3.html`, `platform1.html`, `platform2.html`, `platform3.html`, `security1.html`, `security2.html`, `security3.html`.
 
-## Accessibility
-- ARIA landmarks and labels used throughout
-- Skip link available for keyboard navigation
-- Interactive elements properly labeled
-- Semantic HTML structure (header, main, section, etc.)
-- Responsive design accommodates various devices
+## Fullscreen Pattern
+- Example implementation in `ai1.html`:
+  - Button near the top right with clear label/icon.
+  - JS `toggleFullscreen()` calls `frame.requestFullscreen()` on the `.frame` wrapper.
+  - Keyboard shortcut: press `f` to toggle.
+- When adding fullscreen to other pages, copy the button + script block and adjust positioning to avoid overlapping `.corner-img`.
 
-## Best Practices
-- Keep HTML structure consistent with existing pages
-- Maintain accessibility features when adding content
-- Use the established CSS variable system for colors
-- Load external assets from the GitHub repo URLs
-- Ensure responsive design works at mobile breakpoints
-- Include proper ARIA attributes for new components
+## Navigation & Cards
+- Hub pages link to detail pages using `.card .shot` anchors with `target="_self"` and proper `alt` text on images.
+- The `.back` button is a `<button>` invoking `smartBack('index.html')`; do not use `history.back()` (it can get stuck inside iframes).
 
-## Common Patterns
-- Page structure:
-  ```html
-  <!DOCTYPE html>
-  <html lang="en">
-    <head>
-      <!-- Meta + title + font + styles -->
-    </head>
-    <body>
-      <a class="back" href="index.html">←</a>
-      <img class="corner-img" src="...">
-      <div class="wrap" role="main">
-        <!-- Content -->
-      </div>
-    </body>
-  </html>
-  ```
-- Navigation cards:
-  ```html
-  <article class="card">
-    <h3>Title</h3>
-    <a class="shot" href="..." target="_self">
-      <img src="..." alt="...">
-    </a>
-  </article>
-  ```
+## Local Preview / QA
+- Open files directly or use a tiny server for iframe features:
+  - PowerShell: `python -m http.server 8000; Start-Process http://localhost:8000/index.html`
+- Quick checks per page: heading hierarchy, `iframe` `title`, focus styles (`:focus-visible`), alt text, mobile breakpoint at ~720px.
 
-## Integration Points
-- Demo iframes loaded from cisco-full-stack-observability.navattic.com
-- Assets served from github.com/splunk/DR-portal
-- Font loading from fonts.googleapis.com
+## Adding/Updating a Demo Page
+1. Start from a similar existing page; keep inline CSS structure.
+2. Place new images in `Assets/` and reference relatively.
+3. For new iframes, include `title`, `allow` list above, and wrap in `.frame`.
+4. Add/position `.corner-img` appropriately; keep it clickable to the hub or index.
+5. If adding a fullscreen button, ensure mobile hides the text label to save space.
+
+## Gotchas
+- Keep styles minimal and consistent—avoid introducing a global stylesheet unless agreed.
+- Use `window.top.location.replace(document.referrer)` in `smartBack` to avoid iframe session history loops.
+- Do not rely on service workers or client routing—this is a purely static site intended for GitHub Pages / file preview.
