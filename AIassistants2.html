@@ -65,8 +65,33 @@
       background:#000;
       overflow:hidden;
       transition:all .3s ease;
+      position:relative;
     }
     iframe{width:100%;height:100%;border:0;}
+
+    /* Fullscreen button (under corner image) */
+    .fullscreen-btn{
+      position:fixed; top:22px; right:280px;
+      display:flex; align-items:center; gap:10px;
+      padding:10px 14px; height:48px;
+      border-radius:12px;
+      background:linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.06));
+      color:#fff; font-size:18px; font-weight:700;
+      border:1px solid rgba(255,255,255,.28);
+      box-shadow:0 6px 22px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.15);
+      transition:background .2s ease, transform .2s ease, box-shadow .2s ease;
+      z-index:20; cursor:pointer; backdrop-filter: blur(4px);
+    }
+    .fullscreen-btn:hover{background:linear-gradient(180deg, rgba(255,255,255,.2), rgba(255,255,255,.1)); transform:translateY(-1px)}
+    .fullscreen-btn:focus-visible{outline:2px solid #fff; outline-offset:3px}
+    .fullscreen-btn .label{font-size:16px;letter-spacing:.2px;opacity:.95}
+    .fullscreen-btn .icon{font-size:20px;line-height:1}
+
+    /* Fullscreen overlay inside the frame */
+    .frame .fs-overlay{position:absolute;bottom:12px;right:12px;pointer-events:none;z-index:30}
+    .frame .fs-exit-btn{pointer-events:auto;align-items:center;display:inline-flex;gap:6px;padding:6px 10px;border-radius:8px;background:linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.35));color:#fff;border:1px solid rgba(255,255,255,.12);font-weight:600;cursor:pointer;font-size:12px}
+    .frame .fs-exit-btn:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(0,0,0,.5)}
+    .frame .fs-exit-btn[hidden]{display:none}
 
     /* Back button (uses JS now) */
     .back{
@@ -112,6 +137,8 @@
       h2{margin-bottom:26px;}
   .corner-img{width:160px; top:15px; right:18px}
       .back{width:40px;height:40px;font-size:22px;top:16px;left:18px;}
+      .fullscreen-btn{right:185px;height:40px;font-size:18px;top:16px;padding:8px 12px;gap:8px}
+      .fullscreen-btn .label{display:none}
     }
   </style>
   <script>
@@ -136,12 +163,46 @@
         window.top.location.href = fallback;
       }
     }
+
+    // Fullscreen toggle
+    function toggleFullscreen() {
+      const frame = document.querySelector('.frame');
+      if (!document.fullscreenElement) {
+        frame.requestFullscreen().catch(err => { console.error('Fullscreen failed:', err); });
+      } else {
+        document.exitFullscreen();
+      }
+    }
+
+    // Keyboard shortcut: press "f" to toggle fullscreen
+    document.addEventListener('keydown', (e) => {
+      const tag = (e.target && e.target.tagName) ? e.target.tagName.toLowerCase() : '';
+      if (tag === 'input' || tag === 'textarea' || e.altKey || e.ctrlKey || e.metaKey) return;
+      if (e.key === 'f' || e.key === 'F') { e.preventDefault(); toggleFullscreen(); }
+    });
+
+    // Show an exit button when the frame is fullscreen
+    function updateFullscreenUI(){
+      const frame = document.querySelector('.frame');
+      const exitBtn = document.getElementById('fsExitBtn');
+      if (!frame || !exitBtn) return;
+      if (document.fullscreenElement === frame) { exitBtn.removeAttribute('hidden'); }
+      else { exitBtn.setAttribute('hidden',''); }
+    }
+    document.addEventListener('fullscreenchange', updateFullscreenUI);
+    document.addEventListener('DOMContentLoaded', updateFullscreenUI);
   </script>
 </head>
 <body>
   
   <!-- Back button (now uses JavaScript history) -->
   <button class="back" aria-label="Go Back" onclick="smartBack('index.html')">←</button>
+
+  <!-- Fullscreen button -->
+  <button class="fullscreen-btn" aria-label="Toggle Fullscreen" title="Toggle Fullscreen (F)" onclick="toggleFullscreen()">
+    <span class="icon" aria-hidden="true">⛶</span>
+    <span class="label">Fullscreen</span>
+  </button>
 
   <!-- Corner PNG -->
   <a href="index.html" aria-label="Back to homepage"><img class="corner-img" src="Assets/AIthumb2.png" alt="Splunk AI icon"></a>
@@ -153,6 +214,9 @@
 
     <!-- Frame -->
     <div class="frame">
+      <div class="fs-overlay" aria-hidden="true">
+        <button class="fs-exit-btn" id="fsExitBtn" aria-label="Exit fullscreen" title="Exit fullscreen" hidden onclick="toggleFullscreen()">✕ <span class="fs-label">Exit</span></button>
+      </div>
       <iframe
         src="https://cisco-full-stack-observability.navattic.com/o11y-aia"
         title="AI Assistant in Observability Cloud"
