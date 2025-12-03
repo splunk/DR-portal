@@ -136,6 +136,22 @@
         window.top.location.href = fallback;
       }
     }
+    // Fullscreen helpers
+    function toggleFullscreen() {
+      const frame = document.querySelector('.frame');
+      if (!document.fullscreenElement) {
+        frame.requestFullscreen();
+      } else {
+        document.exitFullscreen();
+      }
+    }
+    function exitFullscreen() { document.exitFullscreen(); }
+    function updateFullscreenUI() {
+      const overlay = document.getElementById('fs-overlay');
+      overlay && (overlay.hidden = !document.fullscreenElement);
+    }
+    document.addEventListener('fullscreenchange', updateFullscreenUI);
+    document.addEventListener('keydown', (e) => { if (e.key && e.key.toLowerCase() === 'f') toggleFullscreen(); });
   </script>
 </head>
 <body>
@@ -145,6 +161,8 @@
 
   <!-- Corner icon -->
   <a href="index.html" aria-label="Back to homepage"><img class="corner-img" src="Assets/O11ythumb2.png" alt="Security Intelligence icon"></a>
+  <!-- Fullscreen toggle under corner icon -->
+  <button class="fullscreen-btn" onclick="toggleFullscreen()" aria-label="Enter fullscreen"><span>Fullscreen</span> ⛶</button>
 
   <div class="wrap" role="main">
     <!-- Title + Subtitle -->
@@ -159,6 +177,10 @@
         allow="fullscreen; autoplay; encrypted-media; clipboard-read; clipboard-write"
         loading="lazy">
       </iframe>
+      <!-- Fullscreen exit overlay -->
+      <div class="fs-overlay" id="fs-overlay" hidden>
+        <button class="fs-exit-btn" onclick="exitFullscreen()" aria-label="Exit fullscreen">Exit</button>
+      </div>
     </div>
 
 
@@ -169,4 +191,13 @@
   </noscript>
 </body>
 </html>
+  <style>
+    .frame{position:relative}
+    .fullscreen-btn{ position:fixed; top:72px; right:28px; z-index:15; display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; border:1px solid rgba(255,255,255,.22); background:var(--p); color:#fff; font-weight:600; cursor:pointer; box-shadow:0 6px 20px rgba(0,0,0,.35); }
+    .fullscreen-btn:hover{filter:brightness(1.08)}
+    .fullscreen-btn:focus-visible{outline:3px solid rgba(255,255,255,.35)}
+    @media(max-width:720px){ .fullscreen-btn span{display:none} .fullscreen-btn{top:64px; right:22px; padding:8px 10px} }
+    .fs-overlay{position:fixed; inset:0; pointer-events:none}
+    .fs-exit-btn{ position:fixed; right:20px; bottom:20px; pointer-events:auto; padding:8px 12px; border-radius:999px; border:1px solid rgba(255,255,255,.25); background:rgba(0,0,0,.6); color:#fff; font-weight:600; }
+  </style>
 
