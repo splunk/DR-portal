@@ -148,7 +148,7 @@
     <div class="logos" role="img" aria-label="Cisco plus Splunk">
       <img class="logo-cisco" alt="Cisco logo" src="Assets/Cisco logo blue.png" loading="eager" decoding="async">
       <span class="plus" aria-hidden="true">+</span>
-      <img class="logo-splunk" alt="Splunk logo" src="Assets/Splunklogo.png" loading="eager" decoding="async">
+      <img id="splunk-logo" class="logo-splunk" alt="Splunk logo" src="Assets/Splunklogo.png" loading="eager" decoding="async" style="cursor:pointer;">
     </div>
     <h1 id="page-title" class="subtitle"><span class="grad">Digital</span> Resilience</h1>
   </header>
@@ -174,8 +174,12 @@
   <img id="buttercup" src="Assets/buttercup.png" alt="" aria-hidden="true" decoding="async" />
 
   <script>
-    // Buttercup: show for 2s on demand + every 13 minutes + hotkey "B"
+    // Buttercup: show for 2s on demand + every 13 minutes + hotkey "B" + 5 clicks on Splunk logo
     const buttercup = document.getElementById('buttercup');
+    const splunkLogo = document.getElementById('splunk-logo');
+    let clickCount = 0;
+    let clickTimer = null;
+
     const show = () => {
       buttercup.classList.add('show');
       setTimeout(() => buttercup.classList.remove('show'), 2000);
@@ -190,6 +194,25 @@
     // Hotkey: B
     document.addEventListener('keydown', (e) => {
       if (e.key && e.key.toLowerCase() === 'b') show();
+    });
+
+    // Easter egg: 5 clicks on Splunk logo within 2 seconds
+    splunkLogo.addEventListener('click', () => {
+      clickCount++;
+      
+      // Clear any existing timer
+      if (clickTimer) clearTimeout(clickTimer);
+      
+      // Check if we reached 5 clicks
+      if (clickCount >= 5) {
+        show();
+        clickCount = 0;
+      } else {
+        // Reset counter after 2 seconds of inactivity
+        clickTimer = setTimeout(() => {
+          clickCount = 0;
+        }, 2000);
+      }
     });
   </script>
 </body>
