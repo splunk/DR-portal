@@ -136,6 +136,25 @@
         window.top.location.href = fallback;
       }
     }
+
+    // Fullscreen helpers
+    function toggleFullscreen() {
+      const frame = document.querySelector('.frame');
+      if (!document.fullscreenElement) {
+        frame.requestFullscreen();
+      } else {
+        document.exitFullscreen();
+      }
+    }
+    function exitFullscreen() { document.exitFullscreen(); }
+    function updateFullscreenUI() {
+      const overlay = document.getElementById('fs-overlay');
+      overlay && (overlay.hidden = !document.fullscreenElement);
+    }
+    document.addEventListener('fullscreenchange', updateFullscreenUI);
+    document.addEventListener('keydown', (e) => {
+      if (e.key && e.key.toLowerCase() === 'f') toggleFullscreen();
+    });
   </script>
 </head>
 <body>
@@ -144,6 +163,8 @@
   <button class="back" aria-label="Go Back" onclick="smartBack('index.html')">←</button>
   <!-- Corner icon -->
   <a href="index.html" aria-label="Back to homepage"><img class="corner-img" src="Assets/AIthumb2.png" alt="Splunk AI icon"></a>
+    <!-- Fullscreen toggle under corner icon -->
+    <button class="fullscreen-btn" onclick="toggleFullscreen()" aria-label="Enter fullscreen"><span>Fullscreen</span> ⛶</button>
 
   <div class="wrap" role="main">
   <!-- Title and subtitle -->
@@ -158,6 +179,10 @@
         allow="fullscreen; autoplay; encrypted-media; clipboard-read; clipboard-write"
         loading="lazy">
       </iframe>
+        <!-- Fullscreen exit overlay (only visible in fullscreen) -->
+        <div class="fs-overlay" id="fs-overlay" hidden>
+          <button class="fs-exit-btn" onclick="exitFullscreen()" aria-label="Exit fullscreen">Exit</button>
+        </div>
     </div>
 
 
