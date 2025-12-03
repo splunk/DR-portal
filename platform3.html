@@ -65,8 +65,14 @@
       background:#000;
       overflow:hidden;
       transition:all .3s ease;
+      position:relative;
     }
     iframe{width:100%;height:100%;border:0;}
+    /* Fullscreen overlay inside the frame (ai1.html pattern) */
+    .frame .fs-overlay{position:absolute;bottom:12px;right:12px;pointer-events:none;z-index:30}
+    .frame .fs-exit-btn{pointer-events:auto;align-items:center;display:inline-flex;gap:6px;padding:6px 10px;border-radius:8px;background:linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.35));color:#fff;border:1px solid rgba(255,255,255,.12);font-weight:600;cursor:pointer;font-size:12px}
+    .frame .fs-exit-btn:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(0,0,0,.5)}
+    .frame .fs-exit-btn[hidden]{display:none}
 
     /* Back button (uses JS now) */
     .back{
@@ -115,14 +121,37 @@
     }
   </style>
   <style>
-    /* Fullscreen controls */
-    .frame{position:relative}
-    .fullscreen-btn{ position:fixed; top:72px; right:28px; z-index:15; display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; border:1px solid rgba(255,255,255,.22); background:var(--p); color:#fff; font-weight:600; cursor:pointer; box-shadow:0 6px 20px rgba(0,0,0,.35); }
-    .fullscreen-btn:hover{filter:brightness(1.08)}
-    .fullscreen-btn:focus-visible{outline:3px solid rgba(255,255,255,.35)}
-    @media(max-width:720px){ .fullscreen-btn span{display:none} .fullscreen-btn{top:64px; right:22px; padding:8px 10px} }
-    .fs-overlay{position:fixed; inset:0; pointer-events:none}
-    .fs-exit-btn{ position:fixed; right:20px; bottom:20px; pointer-events:auto; padding:8px 12px; border-radius:999px; border:1px solid rgba(255,255,255,.25); background:rgba(0,0,0,.6); color:#fff; font-weight:600; }
+    /* Fullscreen button (ai1.html exact) */
+    .fullscreen-btn{
+      position:fixed;
+      top:22px;
+      right:280px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 14px;
+      height:48px;
+      border-radius:12px;
+      background:linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.06));
+      color:#fff;
+      font-size:18px;
+      font-weight:700;
+      border:1px solid rgba(255,255,255,.28);
+      box-shadow:0 6px 22px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.15);
+      transition:background .2s ease, transform .2s ease, box-shadow .2s ease;
+      z-index:20;
+      cursor:pointer;
+      backdrop-filter: blur(4px);
+    }
+    .fullscreen-btn:hover{
+      background:linear-gradient(180deg, rgba(255,255,255,.2), rgba(255,255,255,.1));
+      transform:translateY(-1px);
+      box-shadow:0 10px 26px rgba(0,0,0,.4), inset 0 0 0 1px rgba(255,255,255,.2);
+    }
+    .fullscreen-btn:focus-visible{ outline:2px solid #fff; outline-offset:3px; }
+    .fullscreen-btn .label{font-size:16px;letter-spacing:.2px;opacity:.95}
+    .fullscreen-btn .icon{font-size:20px;line-height:1}
+    @media(max-width:720px){ .fullscreen-btn{right:185px;height:40px;font-size:18px;top:16px;padding:8px 12px;gap:8px} .fullscreen-btn .label{display:none} }
   </style>
   <script>
     // Inactivity timeout: redirect to index.html after 10 minutes
@@ -173,8 +202,11 @@
 
   <!-- Corner icon -->
   <a href="index.html" aria-label="Back to homepage"><img class="corner-img" src="Assets/platthumb2.png" alt="Splunk Platform icon"></a>
-  <!-- Fullscreen toggle under corner icon -->
-  <button class="fullscreen-btn" onclick="toggleFullscreen()" aria-label="Enter fullscreen"><span>Fullscreen</span> ⛶</button>
+  <!-- Fullscreen button (ai1.html exact) -->
+  <button class="fullscreen-btn" aria-label="Toggle Fullscreen" title="Toggle Fullscreen (F)" onclick="toggleFullscreen()">
+    <span class="icon" aria-hidden="true">⛶</span>
+    <span class="label">Fullscreen</span>
+  </button>
 
   <div class="wrap" role="main">
   <!-- Title and subtitle -->
@@ -189,9 +221,10 @@
         allow="fullscreen; autoplay; encrypted-media; clipboard-read; clipboard-write"
         loading="lazy">
       </iframe>
-      <!-- Fullscreen exit overlay (visible only in fullscreen) -->
-      <div class="fs-overlay" id="fs-overlay" hidden>
-        <button class="fs-exit-btn" onclick="exitFullscreen()" aria-label="Exit fullscreen">Exit</button>
+      <div class="fs-overlay" aria-hidden="true">
+        <button class="fs-exit-btn" id="fsExitBtn" aria-label="Exit fullscreen" title="Exit fullscreen" hidden onclick="toggleFullscreen()">
+          ✕ <span class="fs-label">Exit</span>
+        </button>
       </div>
     </div>
 
