@@ -180,6 +180,21 @@
     }
 
     /* Responsive tweaks */
+    /* Tablet/small laptop: optimize spacing */
+    @media (max-width:1400px){
+      .wrap{padding:30px}
+    }
+    /* 13" MacBook optimization (1440px width) */
+    @media (max-width:1440px){
+      .wrap{padding:30px}
+      .corner-img{width:200px;max-width:16vw}
+    }
+    /* Smaller laptops */
+    @media (max-width:1280px){
+      .wrap{padding:28px}
+      .corner-img{width:180px}
+    }
+    /* Mobile */
     @media (max-width:720px){
       .wrap{padding:24px}
       .corner-img{width:160px; top:15px; right:18px}
