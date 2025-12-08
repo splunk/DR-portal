@@ -88,12 +88,29 @@
       .corner-img{ top:calc(20px + env(safe-area-inset-top)); right:calc(25px + env(safe-area-inset-right)) }
     }
 
-    @media (max-width:1200px){
+    /* Tablet/small laptop: center cards when wrapping */
+    @media (max-width:1400px){
       .cols{justify-content:center;gap:50px}
+      .card{min-width:280px;max-width:420px}
     }
+    /* 13" MacBook optimization (1440px width) */
+    @media (max-width:1440px){
+      body{padding:30px}
+      .cols{gap:40px}
+      .card{min-width:260px;max-width:380px}
+      .corner-img{width:200px;max-width:16vw}
+    }
+    /* Smaller laptops */
+    @media (max-width:1280px){
+      .cols{gap:35px}
+      .card{min-width:240px;max-width:340px}
+      .corner-img{width:180px}
+    }
+    /* Mobile */
     @media (max-width:720px){
       body{padding:24px}
       .cols{flex-direction:column;align-items:center;gap:40px}
+      .card{min-width:320px;max-width:480px}
       .shot img{width:100%}
       .corner-img{width:160px; top:15px; right:18px}
     }
