@@ -147,6 +147,85 @@
       pointer-events:auto;
     }
 
+    /* Video button */
+    .video-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      margin-top:24px;
+      padding:12px 24px;
+      background:linear-gradient(180deg, rgba(255,179,0,.9), rgba(247,46,167,.85));
+      color:#000;
+      font-family:'Lexend',system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,sans-serif;
+      font-size:16px;
+      font-weight:700;
+      border:none;
+      border-radius:10px;
+      cursor:pointer;
+      transition:transform .2s ease, box-shadow .2s ease;
+      box-shadow:0 8px 20px rgba(255,179,0,.3);
+    }
+    .video-btn:hover{
+      transform:translateY(-2px);
+      box-shadow:0 12px 28px rgba(255,179,0,.4);
+    }
+    .video-btn:focus-visible{
+      outline:2px solid #fff;
+      outline-offset:3px;
+    }
+
+    /* Video modal */
+    .video-modal{
+      display:none;
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.95);
+      z-index:100;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+    }
+    .video-modal.active{
+      display:flex;
+    }
+    .video-modal-content{
+      width:100%;
+      max-width:1000px;
+      aspect-ratio:16/9;
+      background:#000;
+      border-radius:12px;
+      overflow:hidden;
+      box-shadow:0 0 40px rgba(0,0,0,.8);
+      position:relative;
+    }
+    .video-modal-content iframe{
+      width:100%;
+      height:100%;
+      border:0;
+    }
+    .video-modal-close{
+      position:absolute;
+      top:12px;
+      right:12px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:40px;
+      height:40px;
+      background:rgba(255,255,255,.1);
+      color:#fff;
+      border:1px solid rgba(255,255,255,.2);
+      border-radius:8px;
+      font-size:24px;
+      cursor:pointer;
+      z-index:101;
+      transition:background .2s ease;
+    }
+    .video-modal-close:hover{
+      background:rgba(255,255,255,.15);
+    }
+
     @media(max-width:720px){
       body{padding:24px}
       .logo-cisco{height:40px}
@@ -159,6 +238,8 @@
       .fullscreen-btn{right:98px;height:32px;font-size:14px;top:163px;padding:6px 10px;gap:6px}
       .fullscreen-btn .label{display:none}
       .fullscreen-btn .icon{font-size:14px}
+      .video-btn{padding:10px 16px;font-size:14px;gap:6px;margin-top:18px}
+      .video-modal-content{max-width:90vw;aspect-ratio:16/9}
     }
   </style>
   <script>
@@ -211,6 +292,23 @@
     }
     document.addEventListener('fullscreenchange', updateFullscreenUI);
     document.addEventListener('DOMContentLoaded', updateFullscreenUI);
+
+    // Video modal toggle
+    function toggleVideoModal() {
+      const modal = document.getElementById('videoModal');
+      if (!modal) return;
+      modal.classList.toggle('active');
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      const videoBtn = document.getElementById('videoBtn');
+      const closeBtn = document.getElementById('videoModalClose');
+      const modal = document.getElementById('videoModal');
+      if (videoBtn) videoBtn.addEventListener('click', toggleVideoModal);
+      if (closeBtn) closeBtn.addEventListener('click', toggleVideoModal);
+      if (modal) modal.addEventListener('click', (e) => {
+        if (e.target === modal) toggleVideoModal();
+      });
+    });
   </script>
 </head>
 <body>
@@ -245,7 +343,25 @@
       </iframe>
     </div>
 
+    <!-- Video button -->
+    <button class="video-btn" id="videoBtn" aria-label="Watch video" title="Watch video">
+      <span>▶</span>
+      <span>VIDEO</span>
+    </button>
 
+  </div>
+
+  <!-- Video modal -->
+  <div class="video-modal" id="videoModal">
+    <div class="video-modal-content">
+      <button class="video-modal-close" id="videoModalClose" aria-label="Close video" title="Close video">✕</button>
+      <iframe
+        src="https://cisco.sharepoint.com/:v:/s/Splunk_Product_Marketing/IQBBXMOgBKKNSI6CR8QHj3uvAcjNYhNOcx4EXtiaIbdq7LU?e=MPRg94&amp;nav=eyJyZWZlcnJlckluZm8iOnsicmVmZXJyYWwiOiIiLCJ0aW1lc3RhbXAiOiIifX0%3D&embed=true"
+        title="AI Canvas Demo Video"
+        allowfullscreen
+        allow="autoplay">
+      </iframe>
+    </div>
   </div>
   <!-- Optional noscript fallback -->
   <noscript>
